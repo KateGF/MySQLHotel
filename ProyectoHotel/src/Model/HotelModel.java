@@ -12,25 +12,37 @@ import java.util.Date;
  * @author josep
  */
 public class HotelModel {
+    
     private String name;
-        private int idHotel;
+    private int idHotel;
     private Date registerDate;
+    
     private int idDistrict;
     private int idDiscount;
+    private int idClassification;
+    
     private String district;
     private String canton;
     private String state;
     private String country;
     private String clasification ;
 
-    public HotelModel(int idHotel,String name, int idDiscount, String clasification, String district, String canton, String state, String country) {
-       this.idHotel = idHotel;
+     public HotelModel(int idHotel,String name,Date registerDate, int idDiscount, int clasification, int district) {
+        this.idHotel = idHotel;
+        this.name = name;
+        this.idDiscount = idDiscount;
+        this.idDistrict = district;
+        this.idClassification = clasification;
+    }
+
+    
+    
+    public HotelModel(int idHotel,String name,Date registerDate, int idDiscount, String clasification, String district) {
+        this.idHotel = idHotel;
         this.name = name;
         this.idDiscount = idDiscount;
         this.district = district;
-        this.canton = canton;
-        this.state = state;
-        this.country = country;
+       
         this.clasification = clasification;
     }
 

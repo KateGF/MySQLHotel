@@ -33,7 +33,7 @@ public class MainWindowHotel extends javax.swing.JFrame {
 
     public MainWindowHotel(HotelModel hotel, UserModel user) {
         initComponents();
-        adminZoneButton.setVisible(false);
+        //adminZoneButton.setVisible(false);
         //changeImage();
         Timer timer = new Timer(5000, new ActionListener() {
             @Override
@@ -47,9 +47,7 @@ public class MainWindowHotel extends javax.swing.JFrame {
         this.user = user;
         setHotelInfo(hotel);
         //setDefaultCloseOperation(2);
-        if(user.getIdUserType()==2){
-            adminZoneButton.setVisible(true);
-        }
+      
 
     }
 
@@ -93,7 +91,6 @@ public class MainWindowHotel extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        adminZoneButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         hotelName = new javax.swing.JLabel();
@@ -116,16 +113,6 @@ public class MainWindowHotel extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(50, 70, 80));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        adminZoneButton.setBackground(new java.awt.Color(240, 248, 255));
-        adminZoneButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        adminZoneButton.setText("Admin Zone");
-        adminZoneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminZoneButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(adminZoneButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 30));
-
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 248, 255));
         jLabel8.setText("REVIEWS");
@@ -139,7 +126,7 @@ public class MainWindowHotel extends javax.swing.JFrame {
         hotelName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         hotelName.setForeground(new java.awt.Color(240, 248, 255));
         hotelName.setText("HOTEL NAME");
-        jPanel1.add(hotelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        jPanel1.add(hotelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(240, 248, 255));
@@ -188,11 +175,6 @@ public class MainWindowHotel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void adminZoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminZoneButtonActionPerformed
-        new admin(this.hotel,this.user).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_adminZoneButtonActionPerformed
-
     private void book1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_book1ActionPerformed
         // TODO add your handling code here:
         // pasarle hotel como parametro
@@ -204,7 +186,6 @@ public class MainWindowHotel extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminZoneButton;
     private javax.swing.JButton book1;
     private javax.swing.JTextField canton;
     private javax.swing.JTextField country;

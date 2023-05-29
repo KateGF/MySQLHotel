@@ -251,4 +251,8 @@ public class UserModel {
     public void setIdHotelAdmin(int idHotelAdmin) {
         this.idHotelAdmin = idHotelAdmin;
     }
+    
+    public String toString(){
+        return this.firstName + " " + this.lastName;
+    }
 }

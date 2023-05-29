@@ -56,6 +56,39 @@ public class LocationsController {
         return locations;
     }
     
+    public static ArrayList<Location> getStatesByCountry(int idCountry) {
+        ArrayList<Location> locations = new ArrayList<>();
+        String statement = "{call getStateByCountry(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+             call.setInt(1, idCountry);
+            call = queryData(call);
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    int idX = rs.getInt("idState");
+                    Location location = new Location();
+                    location.setName(name);
+                    location.setID(idX);
+                    locations.add(location);
+                }
+            }
+            
+            call.getConnection().close();
+            call.close();
+
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+        
+        }
+        return locations;
+    }
     
     /**
      * Recibe una llamada parametrizada y la manda a ejecutar a la base de
@@ -90,5 +123,71 @@ public class LocationsController {
             return null;
         }
     }
+
+    public static ArrayList<Location> getCantonsByState(int id) {
+    ArrayList<Location> locations = new ArrayList<>();
+        String statement = "{call getCantonsByState(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+             call.setInt(1, id);
+            call = queryData(call);
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    int idX = rs.getInt("idState");
+                    Location location = new Location();
+                    location.setName(name);
+                    location.setID(idX);
+                    locations.add(location);
+                }
+            }
+            
+            call.getConnection().close();
+            call.close();
+
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+        
+        }
+        return locations; }
+
+    public static ArrayList<Location> getDistrictsByCanton(int id) {
+    ArrayList<Location> locations = new ArrayList<>();
+        String statement = "{call getDistrictsByCanton(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+             call.setInt(1, id);
+            call = queryData(call);
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                    String name = rs.getString("name");
+                    int idX = rs.getInt("idDistrict");
+                    Location location = new Location();
+                    location.setName(name);
+                    location.setID(idX);
+                    locations.add(location);
+                }
+            }
+            
+            call.getConnection().close();
+            call.close();
+
+           
+        } catch (SQLException e) {
+            System.out.println(e);
+        
+        }
+        return locations; }
 
 }
