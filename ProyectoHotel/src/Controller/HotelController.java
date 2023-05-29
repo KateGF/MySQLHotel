@@ -227,7 +227,7 @@ public class HotelController {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call getHotels()}";
-        Connection DBconnection = new ConnectionDB().getConnection();
+        Connection DBconnection = new ConnectionDB().getConnection2();
         ArrayList<HotelModel> hoteles = new ArrayList<>();
         try {
 
@@ -253,6 +253,7 @@ public class HotelController {
                        int idHotel = rs.getInt("idHotel");
                     
                     HotelModel hotelModel = new HotelModel(idHotel,name, idDisc, null, districtH, cantonH, stateH, countryH);
+                    
                     hoteles.add(hotelModel);
                 }
             }
