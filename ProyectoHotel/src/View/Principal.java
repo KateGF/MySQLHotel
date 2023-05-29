@@ -1,15 +1,10 @@
 package View;
 
 import Controller.LocationsController;
-import Controller.ReservationController;
-import Model.HotelModel;
-import Model.Location.Location;
-import Model.UserModel;
-import Model.ReservationModel;
-import Model.Response;
+import Model.*;
+import Model.Location.*;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -33,12 +28,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void init() {
-        jPanel2.setVisible(false);
+        //jPanel2.setVisible(false);
         this.setLocationRelativeTo(this);
-        loadLocation("Country", countryBox);
-        loadLocation("State", stateBox);
-        loadLocation("Canton", cantonBox);
-        loadLocation("District", districtBox);
+        loadLocation("Country", countryBox,0);
+        //loadLocation("State", stateBox);
+        //loadLocation("Canton", cantonBox);
+        //loadLocation("District", districtBox);
 
         this.hotelList = Controller.HotelController.getHotels();
         addHotels();
@@ -50,7 +45,6 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem3 = new javax.swing.JMenuItem();
-        jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         list1 = new java.awt.List();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -86,38 +81,35 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(237, 201, 96));
-
-        jPanel1.setBackground(new java.awt.Color(50, 70, 80));
-        jPanel1.setToolTipText("");
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setText("jButton2");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 329, 0, 0));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(454, 329, 0, 0));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Country");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 110, -1));
 
-        jPanel2.add(countryBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 109, -1));
+        jPanel2.add(countryBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 140, -1));
 
-        jPanel2.add(stateBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 109, -1));
+        jPanel2.add(stateBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, -1));
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("State");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 110, -1));
 
-        jPanel2.add(districtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 110, -1));
+        jPanel2.add(districtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 140, -1));
 
-        jPanel2.add(cantonBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 109, -1));
+        jPanel2.add(cantonBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 140, -1));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Canton");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 110, -1));
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("District");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 110, -1));
 
@@ -127,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 110, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 140, -1));
 
         jButton4.setText("Filter Hotels");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +127,9 @@ public class Principal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 110, 40));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 140, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 140, 320));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 170, 320));
 
         jButton6.setText("View Hotel");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -145,17 +137,20 @@ public class Principal extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 240, 40));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 90, 40));
 
         jLabel2.setBackground(new java.awt.Color(240, 248, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(240, 248, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("HOTELS");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 240, -1));
-        jPanel1.add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 240, 260));
+        jLabel2.setText("LOCATIONS");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, -1));
+        getContentPane().add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 380, 260));
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        jLabel4.setBackground(new java.awt.Color(240, 248, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("HOTELS");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 380, -1));
 
         jMenu1.setText("File");
 
@@ -304,6 +299,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -323,7 +319,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private java.awt.List list1;
     private javax.swing.JComboBox stateBox;
@@ -336,8 +331,8 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    void loadLocation(String type, JComboBox combo) {
-        ArrayList<Location> lcts = LocationsController.getLocations(type);
+    void loadLocation(String type, JComboBox combo,int id) {
+        ArrayList<Location> lcts = LocationsController.getCountries();
         for (Location c : lcts) {
             combo.addItem(c.getName());
         }

@@ -18,7 +18,21 @@ public class ConnectionDB {
 
   
 public  Connection getConnection() {
-        try {
+    
+     try{  
+            //Class.forName("com.mysql.jdbc.Driver");
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/hoteles", "katy", "@Katy123");
+          
+            return con;
+           
+        } catch (Exception e) {
+            System.out.println(e);
+              return null;
+        }
+    }
+       /* try {
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             
             // Para el método getConnection del driver debe colocar el url la base de datos a la que se desea conectar,
@@ -33,8 +47,8 @@ public  Connection getConnection() {
         } catch (SQLException e) {
             System.out.println(e);
             return null;
-        }
-    }
+        }*/
+    
 
 
     public  Connection getConnection2() {
