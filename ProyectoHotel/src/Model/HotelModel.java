@@ -30,6 +30,7 @@ public class HotelModel {
      public HotelModel(int idHotel,String name,Date registerDate, int idDiscount, int clasification, int district) {
         this.idHotel = idHotel;
         this.name = name;
+        this.registerDate = registerDate;
         this.idDiscount = idDiscount;
         this.idDistrict = district;
         this.idClassification = clasification;
@@ -46,6 +47,17 @@ public class HotelModel {
         this.clasification = clasification;
     }
 
+    public int getIdClassification() {
+        return idClassification;
+    }
+
+    public void setIdClassification(int idClassification) {
+        this.idClassification = idClassification;
+    }
+
+    
+    
+    
     public String getClasification() {
         return clasification;
     }

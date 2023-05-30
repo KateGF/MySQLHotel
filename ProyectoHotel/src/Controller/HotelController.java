@@ -24,15 +24,10 @@ import oracle.jdbc.internal.OracleTypes;
  */
 public class HotelController {
 
-   
-
-   
-   
-
     public static Response insertHotel(HotelModel hotel, UserModel user) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insertHotel(?,?,?,?)}";
+        String statement = "{call insertHotel(?,?,?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
@@ -46,28 +41,18 @@ public class HotelController {
             call.setString(1, hotel.getName());
             call.setDate(2, new java.sql.Date(hotel.getRegisterDate().getTime()));
             call.setInt(3, hotel.getIdDistrict());
-            call.setInt(4, hotel.getIdDiscount());
+            call.setInt(4, hotel.getIdClassification());
+            call.setInt(5, hotel.getIdDiscount());
+            call.setString(6, user.getUsername());
             call = insertData(call);
 
             if (call == null) {
                 return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
             }
 
-            // Se obtiene el código de respuesta del procedimiento (para verificar si hubo algún error en la ejecución).
-            // Este código lo puede utilizar para verificar que tipo de error hubo, y así poder generar un mensaje de error
-            // claro para el usuario sobre el error que sucedió.
-            //int result_code = call.getInt(15);
-            // Se cierra la conexión con la base de datos.
-            // ES IMPORTANTE QUE SIEMPRE QUE SE ABRA UNA CONEXIÓN LA CIERRE, PUES ESTAS NO SE CIERRAN 
-            // AUTOMÁTICAMENTE. 
             call.getConnection().close();
             call.close();
 
-            // Se retorna el objeto respuesta.
-            /* Para esta prueba, el código de error 0 significa que no hubo errores.
-             if (result_code != 0) {
-             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
-             }*/
             return new Response(Response_code.SUCCESS, "Hotel registrado exitosamente.");
         } catch (SQLException e) {
             System.out.println(e);
@@ -100,7 +85,7 @@ public class HotelController {
                     Date registerdate = rs.getDate("RegisterDate");
                     int idDisc = rs.getInt("idDiscount");
                     int classi = rs.getInt("idClasification");
-                    HotelModel hotelModel = new HotelModel(idHotel, name, registerdate,idDisc,classi, idDisc );
+                    HotelModel hotelModel = new HotelModel(idHotel, name, registerdate, idDisc, classi, idDisc);
                     hoteles.add(hotelModel);
                 }
             }
@@ -186,7 +171,6 @@ public class HotelController {
 
         return hoteles;
     }
-   
 
     public static ArrayList<HotelModel> getHotels() {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
@@ -199,22 +183,20 @@ public class HotelController {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-           
            // call.registerOutParameter(1, OracleTypes.CURSOR);
-
             call = queryData(call);
 
             if (call != null) {
 
                 ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
-                    
+
                     int idHotel = rs.getInt("idHotel");
-                    
+
                     String name = rs.getString("name");
                     int idDisc = rs.getInt("Discount");
                     String districtH = rs.getString("District");
-                    Date dateReg = rs.getDate("dateReg");
+                    Date dateReg = rs.getDate("regDate");
                     String cantonH = rs.getString("Canton");
                     String stateH = rs.getString("State");
                     String countryH = rs.getString("Country");
@@ -222,22 +204,21 @@ public class HotelController {
                     //String clasification = rs.getString("clasification");
                     HotelModel hotelModel = new HotelModel(idHotel, name, dateReg, idDisc, classi, districtH);
                     hoteles.add(hotelModel);
-                
+
                 }
             }
 
-              call.getConnection().close();
+            call.getConnection().close();
             call.close();
 
-           } catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e);
-       }
+        }
 
         return hoteles;
     }
 
-       
-public static ArrayList<UserModel> peoplePerHotel(int idHotel) {
+    public static ArrayList<UserModel> peoplePerHotel(int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call peoplePerHotel(?)}";
@@ -248,9 +229,7 @@ public static ArrayList<UserModel> peoplePerHotel(int idHotel) {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-           
            // call.registerOutParameter(1, OracleTypes.CURSOR);
-
             call = queryData(call);
 
             if (call != null) {
@@ -266,9 +245,9 @@ public static ArrayList<UserModel> peoplePerHotel(int idHotel) {
                     String stateH = rs.getString("State");
                     String countryH = rs.getString("Country");
                     //   int idHotel = rs.getInt("idHotel");
-                    
+
                   //  HotelModel hotelModel = new HotelModel(idHotel,name, idDisc, null, districtH, cantonH, stateH, countryH);
-                  //  users.add(hotelModel);
+                    //  users.add(hotelModel);
                 }
             }
 
@@ -296,7 +275,7 @@ public static ArrayList<UserModel> peoplePerHotel(int idHotel) {
         return users;
     }
 
-public static ArrayList<HotelModel> discountPerHotel(int idHotel) {
+    public static ArrayList<HotelModel> discountPerHotel(int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call peoplePerHotel(?)}";
@@ -307,9 +286,7 @@ public static ArrayList<HotelModel> discountPerHotel(int idHotel) {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-           
            // call.registerOutParameter(1, OracleTypes.CURSOR);
-
             call = queryData(call);
 
             if (call != null) {
@@ -317,7 +294,7 @@ public static ArrayList<HotelModel> discountPerHotel(int idHotel) {
                 ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
-                    }
+                }
             }
 
             // Se obtiene el código de respuesta del procedimiento (para verificar si hubo algún error en la ejecución).
@@ -344,7 +321,7 @@ public static ArrayList<HotelModel> discountPerHotel(int idHotel) {
         return hoteles;
     }
 
-public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
+    public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call peoplePerHotel(?)}";
@@ -355,9 +332,7 @@ public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-           
            // call.registerOutParameter(1, OracleTypes.CURSOR);
-
             call = queryData(call);
 
             if (call != null) {
@@ -365,7 +340,7 @@ public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
                 ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
-                   }
+                }
             }
 
             // Se obtiene el código de respuesta del procedimiento (para verificar si hubo algún error en la ejecución).
@@ -392,7 +367,7 @@ public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
         return hoteles;
     }
 
- private static CallableStatement insertData(CallableStatement call) {
+    private static CallableStatement insertData(CallableStatement call) {
         try {
             call.executeQuery();
             return call;
@@ -402,7 +377,6 @@ public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
         }
     }
 
-    
     private static CallableStatement queryData(CallableStatement call) {
         try {
             call.execute();
@@ -412,6 +386,5 @@ public static ArrayList<HotelModel> CalificationPerHotel(int idHotel) {
             return null;
         }
     }
-
 
 }

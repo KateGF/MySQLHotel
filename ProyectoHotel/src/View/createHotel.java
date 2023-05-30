@@ -75,24 +75,20 @@ public class createHotel extends javax.swing.JFrame {
         cantonBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         reserva = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        nameText = new javax.swing.JTextField();
         reserva1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         roomw = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        discountText = new javax.swing.JTextField();
         roomw1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        classText = new javax.swing.JTextField();
+        jButton11 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,43 +97,37 @@ public class createHotel extends javax.swing.JFrame {
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Country");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 110, -1));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, -1));
 
-        jPanel4.add(countryBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
+        jPanel4.add(countryBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 140, -1));
 
         stateBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 stateBoxMousePressed(evt);
             }
         });
-        jPanel4.add(stateBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 140, -1));
+        jPanel4.add(stateBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 140, -1));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("State");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 110, -1));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 110, -1));
 
-        jPanel4.add(districtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 140, -1));
+        jPanel4.add(districtBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 140, -1));
 
         cantonBox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cantonBoxMousePressed(evt);
             }
         });
-        jPanel4.add(cantonBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 140, -1));
+        jPanel4.add(cantonBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 140, -1));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Canton");
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 110, -1));
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 110, -1));
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("District");
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 110, -1));
-
-        jLabel11.setBackground(new java.awt.Color(240, 248, 255));
-        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("LOCATIONS");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, -1));
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 110, -1));
 
         jButton12.setText("OK");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +135,7 @@ public class createHotel extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        jPanel4.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, -1, -1));
 
         jButton13.setText("OK");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +143,7 @@ public class createHotel extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
+        jPanel4.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
 
         jButton14.setText("OK");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -161,32 +151,22 @@ public class createHotel extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+        jPanel4.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
         jButton15.setText("OK");
-        jPanel4.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(50, 70, 80));
-        jLabel10.setText("CREATE HOTEL");
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/images/icons/Tag-26.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        jPanel4.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
         reserva.setBackground(new java.awt.Color(65, 65, 65));
         reserva.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        reserva.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        reserva.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         reserva.setText("Name");
         reserva.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 reservaMouseClicked(evt);
             }
         });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/images/icons/Date-26 (1).png"))); // NOI18N
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Discount-26.png"))); // NOI18N
+        jPanel4.add(reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 100, 30));
+        jPanel4.add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 190, 30));
 
         reserva1.setBackground(new java.awt.Color(65, 65, 65));
         reserva1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -197,16 +177,32 @@ public class createHotel extends javax.swing.JFrame {
                 reserva1MouseClicked(evt);
             }
         });
+        jPanel4.add(reserva1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 100, 30));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 140, -1));
 
         roomw.setBackground(new java.awt.Color(0, 0, 0));
         roomw.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        roomw.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        roomw.setText("     Discount");
+        roomw.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        roomw.setText("Discount");
         roomw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 roomwMouseClicked(evt);
             }
         });
+        jPanel4.add(roomw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 98, 31));
+        jPanel4.add(discountText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 142, -1));
+
+        roomw1.setBackground(new java.awt.Color(0, 0, 0));
+        roomw1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        roomw1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        roomw1.setText("Classification");
+        roomw1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                roomw1MouseClicked(evt);
+            }
+        });
+        jPanel4.add(roomw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 98, 31));
+        jPanel4.add(classText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 142, -1));
 
         jButton11.setText("OK");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -214,98 +210,26 @@ public class createHotel extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 70, 50));
 
-        roomw1.setBackground(new java.awt.Color(0, 0, 0));
-        roomw1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        roomw1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        roomw1.setText("Classification");
-        roomw1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                roomw1MouseClicked(evt);
-            }
-        });
+        jLabel10.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(50, 70, 80));
+        jLabel10.setText("CREATE HOTEL");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 213, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(jTextField1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(reserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(roomw1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(roomw, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(26, 26, 26)
-                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                            .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(144, 146, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel10)
-                .addGap(92, 92, 92)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(roomw, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(reserva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(reserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(roomw1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton11)
-                .addGap(90, 90, 90))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -377,16 +301,17 @@ public class createHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_stateBoxMousePressed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        String name = jTextField1.getText();
+        String name = nameText.getText();
         Date registerDate = jDateChooser1.getDate();
         int district = districts.get(districtBox.getSelectedIndex()).getID();
-        int discount = Integer.parseInt(jTextField2.getText());
-        int classi = Integer.parseInt(jTextField3.getText());
+        int discount = Integer.parseInt(classText.getText());
+        int classi = Integer.parseInt(discountText.getText());
         
-        HotelModel hotel = new HotelModel(discount, name, registerDate, discount, classi, district);
+        HotelModel hotel = new HotelModel(0, name, registerDate, discount, classi, district);
         
         Response insertHotel = HotelController.insertHotel(hotel,user);
         JOptionPane.showMessageDialog(this, insertHotel.getMessage());
+        this.setVisible(false);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void roomw1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomw1MouseClicked
@@ -431,7 +356,9 @@ public class createHotel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cantonBox;
+    private javax.swing.JTextField classText;
     private javax.swing.JComboBox countryBox;
+    private javax.swing.JTextField discountText;
     private javax.swing.JComboBox districtBox;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -440,19 +367,13 @@ public class createHotel extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nameText;
     private javax.swing.JLabel reserva;
     private javax.swing.JLabel reserva1;
     private javax.swing.JLabel roomw;
