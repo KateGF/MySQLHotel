@@ -5,6 +5,7 @@
 package View;
 import Controller.UserController;
 import Model.Response;
+import View.Admin.editLocations;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -69,6 +70,7 @@ public class ViewLogin extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,6 +137,16 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(240, 248, 255));
         jLabel9.setText("MESSAGE");
 
+        jButton7.setBackground(new java.awt.Color(240, 248, 255));
+        jButton7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(50, 70, 80));
+        jButton7.setText("ADMIN LOCATIONS");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -177,6 +189,9 @@ public class ViewLogin extends javax.swing.JFrame {
                         .addGap(87, 87, 87)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -209,13 +224,14 @@ public class ViewLogin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(26, 26, 26)))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton5))
-                .addGap(100, 100, 100))
+                .addGap(38, 38, 38)
+                .addComponent(jButton7)
+                .addGap(39, 39, 39))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -247,6 +263,10 @@ public class ViewLogin extends javax.swing.JFrame {
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       new editLocations("SuperUser").setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -294,6 +314,7 @@ public class ViewLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

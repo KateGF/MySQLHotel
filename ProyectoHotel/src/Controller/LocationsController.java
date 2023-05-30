@@ -21,7 +21,6 @@ import java.util.ArrayList;
  */
 public class LocationsController {
 
-    
     public static ArrayList<Location> getCountries() {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getCountries()}";
@@ -30,7 +29,7 @@ public class LocationsController {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-           
+
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
@@ -44,18 +43,17 @@ public class LocationsController {
                     locations.add(location);
                 }
             }
-            
+
             call.getConnection().close();
             call.close();
 
-           
         } catch (SQLException e) {
             System.out.println(e);
-        
+
         }
         return locations;
     }
-    
+
     public static ArrayList<Location> getStatesByCountry(int idCountry) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getStateByCountry(?)}";
@@ -64,7 +62,7 @@ public class LocationsController {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-             call.setInt(1, idCountry);
+            call.setInt(1, idCountry);
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
@@ -78,25 +76,17 @@ public class LocationsController {
                     locations.add(location);
                 }
             }
-            
+
             call.getConnection().close();
             call.close();
 
-           
         } catch (SQLException e) {
             System.out.println(e);
-        
+
         }
         return locations;
     }
-    
-    /**
-     * Recibe una llamada parametrizada y la manda a ejecutar a la base de
-     * datos.
-     *
-     * @param call
-     * @return retorna el objeto de llamada.
-     */
+
     private static CallableStatement insertData(CallableStatement call) {
         try {
             call.executeQuery();
@@ -107,13 +97,6 @@ public class LocationsController {
         }
     }
 
-    /**
-     * Recibe una consulta parametrizada y la manda a ejecutar a la base de
-     * datos.
-     *
-     * @param call
-     * @return retorna el objeto de llamada.
-     */
     private static CallableStatement queryData(CallableStatement call) {
         try {
             call.execute();
@@ -125,14 +108,14 @@ public class LocationsController {
     }
 
     public static ArrayList<Location> getCantonsByState(int id) {
-    ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getCantonsByState(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-             call.setInt(1, id);
+            call.setInt(1, id);
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
@@ -146,26 +129,26 @@ public class LocationsController {
                     locations.add(location);
                 }
             }
-            
+
             call.getConnection().close();
             call.close();
 
-           
         } catch (SQLException e) {
             System.out.println(e);
-        
+
         }
-        return locations; }
+        return locations;
+    }
 
     public static ArrayList<Location> getDistrictsByCanton(int id) {
-    ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getDistrictsByCanton(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-             call.setInt(1, id);
+            call.setInt(1, id);
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
@@ -179,15 +162,190 @@ public class LocationsController {
                     locations.add(location);
                 }
             }
-            
+
             call.getConnection().close();
             call.close();
 
-           
         } catch (SQLException e) {
             System.out.println(e);
-        
+
         }
-        return locations; }
+        return locations;
+    }
+
+    public static String addCountry(String name, String username) {
+        String statement = "{call insertCountry(?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, name);
+            call.setString(2, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Inserted";
+            } else {
+                return "Not inserted";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+
+    }
+
+    public static String addState(String name, int idCountry, String username) {
+        String statement = "{call insertState(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, name);
+            call.setInt(2, idCountry);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Inserted";
+            } else {
+                return "Not inserted";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
+
+    public static String addCanton(String name, int idState, String username) {
+        String statement = "{call insertCanton(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, name);
+            call.setInt(2, idState);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Inserted";
+            } else {
+                return "Not inserted";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
+
+    public static String editCountry(String newName, int idCountry, String username) {
+        String statement = "{call editCountry(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, newName);
+            call.setInt(2, idCountry);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Edited";
+            } else {
+                return "Not edited";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
+
+    public static String editState(String newName, int idCountry, String username) {
+        String statement = "{call editState(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, newName);
+            call.setInt(2, idCountry);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Edited";
+            } else {
+                return "Not edited";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
+
+    public static String editCanton(String newName, int idCountry, String username) {
+        String statement = "{call editCanton(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, newName);
+            call.setInt(2, idCountry);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Edited";
+            } else {
+                return "Not edited";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
+
+    public static String editDistrict(String newName, int idCountry, String username) {
+        String statement = "{call editDistrict(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setString(1, newName);
+            call.setInt(2, idCountry);
+            call.setString(3, username);
+            call = insertData(call);
+            if (call != null) {
+                call.getConnection().close();
+                call.close();
+                return "Edited";
+            } else {
+                return "Not edited";
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+            return "Error: " + e;
+        }
+    }
 
 }

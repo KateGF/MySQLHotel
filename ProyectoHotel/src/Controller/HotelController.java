@@ -63,7 +63,7 @@ public class HotelController {
     public static ArrayList<HotelModel> getHotelsByDistrict(int idDistrict) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getHotel(?)}";
+        String statement = "{call getHotelsByDistrict(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<HotelModel> hoteles = new ArrayList<>();
         try {
@@ -80,13 +80,20 @@ public class HotelController {
                 ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
-                    int idHotel = rs.getInt("idHotel");
+                  int idHotel = rs.getInt("idHotel");
+
                     String name = rs.getString("name");
-                    Date registerdate = rs.getDate("RegisterDate");
-                    int idDisc = rs.getInt("idDiscount");
-                    int classi = rs.getInt("idClasification");
-                    HotelModel hotelModel = new HotelModel(idHotel, name, registerdate, idDisc, classi, idDisc);
+                    int idDisc = rs.getInt("Discount");
+                    String districtH = rs.getString("District");
+                    Date dateReg = rs.getDate("regDate");
+                    String cantonH = rs.getString("Canton");
+                    String stateH = rs.getString("State");
+                    String countryH = rs.getString("Country");
+                    String classi = rs.getString("classi");
+                    //String clasification = rs.getString("clasification");
+                    HotelModel hotelModel = new HotelModel(idHotel, name, dateReg, idDisc, classi, districtH);
                     hoteles.add(hotelModel);
+
                 }
             }
 

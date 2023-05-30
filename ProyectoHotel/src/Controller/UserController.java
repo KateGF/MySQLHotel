@@ -166,7 +166,7 @@ public class UserController {
             call.close();
 
         } catch (SQLException e) {
-            System.out.println(e);
+           // System.out.println(e);
             // new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
         }
         //new Response(Response_code.SUCCESS, "Persona obtenida exitosamente.");
