@@ -26,17 +26,17 @@ import oracle.jdbc.internal.OracleTypes;
 public class AmmenityController {
 
    
-    public static Response insertAmmenity(  String name, int idHotel) {
+    public static Response insertAmmenity(  int idAmenity, int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insert_Amenity(?,?)}";
+        String statement = "{call insert_AmenityHotel(?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
         
-            call.setString(1, name);
+            call.setInt(1, idAmenity);
             call.setInt(2, idHotel);
 
             call = insertData(call);
