@@ -54,14 +54,9 @@ public class ViewHotel extends javax.swing.JFrame {
     }
 
     void setHotelInfo(HotelModel hotel) {
-        this.hotelName.setText(hotel.getName());
-        //this.clasification1.setText(hotel.getClasification() + "");
-        this.country.setText(hotel.getCountry());
-        this.state.setText(hotel.getState());
-        this.district.setText(hotel.getDistrict());
-        this.discount.setText(hotel.getDiscount() + "");
-        this.canton.setText(hotel.getCanton());
-    //    this.clasification1.setText(hotel.getClasification());
+        this.hotelName1.setText(hotel.getName());
+        this.regLabel.setText("Reg Date: " + hotel.getRegisterDate().toLocaleString());
+        this.regLabel1.setText("Classi: " +hotel.getClasification());
         getHotelReviews(hotel.getIdHotel());
         getHotelAmmenities(hotel.getIdHotel());
         
@@ -95,20 +90,15 @@ public class ViewHotel extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        hotelName = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        country = new javax.swing.JTextField();
-        state = new javax.swing.JTextField();
-        canton = new javax.swing.JTextField();
-        discount = new javax.swing.JTextField();
-        district = new javax.swing.JTextField();
+        regLabel = new javax.swing.JLabel();
         listReview = new java.awt.List();
         book1 = new javax.swing.JButton();
         listAmmenity = new java.awt.List();
         jLabel9 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        listReview1 = new java.awt.List();
+        hotelName1 = new javax.swing.JLabel();
+        regLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -118,50 +108,18 @@ public class ViewHotel extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 248, 255));
         jLabel8.setText("REVIEWS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel7.setText("DISCOUNT AVAILABLE :");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+        jLabel7.setText("DISCOUNTS :");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
-        hotelName.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        hotelName.setForeground(new java.awt.Color(240, 248, 255));
-        hotelName.setText("HOTEL NAME");
-        jPanel1.add(hotelName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel5.setText("DISTRICT");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel4.setText("STATE");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel3.setText("COUNTRY");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
-
-        country.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countryActionPerformed(evt);
-            }
-        });
-        jPanel1.add(country, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 206, -1));
-        jPanel1.add(state, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 206, -1));
-
-        canton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cantonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(canton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 206, -1));
-        jPanel1.add(discount, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 206, -1));
-        jPanel1.add(district, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 206, -1));
-        jPanel1.add(listReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 170, 290));
+        regLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        regLabel.setForeground(new java.awt.Color(240, 248, 255));
+        regLabel.setText("Classi:");
+        jPanel1.add(regLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
+        jPanel1.add(listReview, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 150, 290));
 
         book1.setBackground(new java.awt.Color(240, 248, 255));
         book1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -171,18 +129,25 @@ public class ViewHotel extends javax.swing.JFrame {
                 book1ActionPerformed(evt);
             }
         });
-        jPanel1.add(book1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, 124, 46));
-        jPanel1.add(listAmmenity, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 170, 290));
+        jPanel1.add(book1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 124, 46));
+        jPanel1.add(listAmmenity, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 150, 290));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(240, 248, 255));
         jLabel9.setText("AMENITIES");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, -1));
+        jPanel1.add(listReview1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 170, 290));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel6.setText("CANTON");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
+        hotelName1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        hotelName1.setForeground(new java.awt.Color(240, 248, 255));
+        hotelName1.setText("HOTEL NAME");
+        jPanel1.add(hotelName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        regLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        regLabel1.setForeground(new java.awt.Color(240, 248, 255));
+        regLabel1.setText("Reg Date");
+        jPanel1.add(regLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 540, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -195,36 +160,23 @@ public class ViewHotel extends javax.swing.JFrame {
         new ViewMakeReservation(this.user,this.hotel,this).setVisible(true);
     }//GEN-LAST:event_book1ActionPerformed
 
-    private void countryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_countryActionPerformed
-
-    private void cantonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cantonActionPerformed
-
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton book1;
-    private javax.swing.JTextField canton;
-    private javax.swing.JTextField country;
-    private javax.swing.JTextField discount;
-    private javax.swing.JTextField district;
-    private javax.swing.JLabel hotelName;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel hotelName1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private java.awt.List listAmmenity;
     private java.awt.List listReview;
-    private javax.swing.JTextField state;
+    private java.awt.List listReview1;
+    private javax.swing.JLabel regLabel;
+    private javax.swing.JLabel regLabel1;
     // End of variables declaration//GEN-END:variables
 
     private void getHotelAmmenities(int idHotel) {

@@ -123,7 +123,7 @@ public class PaymentController {
     public static ArrayList<PaymentMethod> getPayments() {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getPayments(?)}";
+        String statement = "{call getPayments()}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<PaymentMethod> payments = new ArrayList<>();
         try {
@@ -132,21 +132,21 @@ public class PaymentController {
             CallableStatement call = DBconnection.prepareCall(statement);
 
            
-            call.registerOutParameter(1, OracleTypes.CURSOR);
+            //call.registerOutParameter(1, OracleTypes.CURSOR);
 
             call = queryData(call);
 
             if (call != null) {
 
-                ResultSet rs = (ResultSet) call.getObject(1);
+                ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
-                    String name = rs.getString("namePaymentMethod");
-                    //int idDisc = rs.getInt("idPayment");
+                    String name = rs.getString("name");
+                    int idDisc = rs.getInt("idPayment");
                   
                     
                     //HotelModel hotelModel = new HotelModel(idHotel,name, idDisc, null, districtH, cantonH, stateH, countryH);
-                  PaymentMethod payment = new PaymentMethod(name);
+                  PaymentMethod payment = new PaymentMethod(name,idDisc);
                     payments.add(payment);
                 }
             }

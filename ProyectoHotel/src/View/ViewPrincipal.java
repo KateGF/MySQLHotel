@@ -6,8 +6,16 @@ import Model.*;
 import Model.Location.*;
 import View.Admin.AdminHotel;
 import View.Admin.AdminLocations;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /*
@@ -229,6 +237,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         profilePic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton5.setText("Change Profile Pic");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Edit Profile");
 
@@ -589,18 +602,22 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        int dist =  districts.get(districtBox.getSelectedIndex()).getID();
+        int dist = districts.get(districtBox.getSelectedIndex()).getID();
         this.hotelList = Controller.HotelController.getHotelsByDistrict(dist);
         addHotels();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-       new AdminLocations(user.getFirstName()).setVisible(true);
+        new AdminLocations(user.getFirstName()).setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        picture();
+    }//GEN-LAST:event_jButton5ActionPerformed
     /**
      * Creates new form Principal
      */
@@ -733,4 +750,35 @@ public class ViewPrincipal extends javax.swing.JFrame {
      }
         
      */
+    private void picture() {
+        byte[] person_image = null;
+        String path;
+        String filename = null;
+
+        try {
+            JFileChooser chooser = new JFileChooser();
+            chooser.showOpenDialog(null);
+            File f = chooser.getSelectedFile();
+            path = f + "";
+            filename = f.getAbsolutePath();
+            ImageIcon imgThisImg = new ImageIcon(new ImageIcon(filename)
+                    .getImage().getScaledInstance(280, 187, Image.SCALE_DEFAULT));
+            jLabel1.setIcon(imgThisImg);
+            File image = new File(filename);
+            FileInputStream fis = new FileInputStream(image);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum);
+            }
+            person_image = bos.toByteArray();
+        } catch (HeadlessException | IOException e) {
+            JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE
+        
+    
+
+);
+    
+}  
+    }
 }

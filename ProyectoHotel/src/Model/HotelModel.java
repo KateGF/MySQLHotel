@@ -43,7 +43,7 @@ public class HotelModel {
         this.name = name;
         this.idDiscount = idDiscount;
         this.district = district;
-       
+       this.registerDate = registerDate;
         this.clasification = clasification;
     }
 

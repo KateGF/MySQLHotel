@@ -10,11 +10,22 @@ package Model;
  */
 public class PaymentMethod {
     private String namePaymentMethod;
+    private int idPaymentMethod;
 
-    public PaymentMethod(String namePaymentMethod) {
+    public PaymentMethod(String namePaymentMethod, int idPaymentMethod) {
         this.namePaymentMethod = namePaymentMethod;
+        this.idPaymentMethod = idPaymentMethod;
     }
 
+    public int getIdPaymentMethod() {
+        return idPaymentMethod;
+    }
+
+    public void setIdPaymentMethod(int idPaymentMethod) {
+        this.idPaymentMethod = idPaymentMethod;
+    }
+
+    
     public String getNamePaymentMethod() {
         return namePaymentMethod;
     }
