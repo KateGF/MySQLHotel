@@ -9,14 +9,15 @@ package Model;
  * @author josep
  */
 import java.time.LocalDate;
+import java.util.Date;
 
 public class DiscountModel {
-    private LocalDate expireDate;
+    private Date expireDate;
     private String code;
     private double percentage;
     private String description_DSCT;
 
-    public DiscountModel(LocalDate expireDate, String code, double percentage, String description_DSCT) {
+    public DiscountModel(Date expireDate, String code, double percentage, String description_DSCT) {
         this.expireDate = expireDate;
         this.code = code;
         this.percentage = percentage;
@@ -24,11 +25,11 @@ public class DiscountModel {
     }
 
 
-    public LocalDate getExpireDate() {
+    public Date getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(LocalDate expireDate) {
+    public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
     }
 

@@ -30,7 +30,7 @@ public class ReservationController {
             ReservationXRoomModel ReservationxRoom, UserModel user, int idPayment) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insert_reservation(?,?,?,?,?,?,?,?)}";
+        String statement = "{call insert_reservationAll(?,?,?,?,?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
@@ -40,6 +40,7 @@ public class ReservationController {
 
             call.setInt(1, user.getIdUser());
             call.setInt(2, idPayment);
+            //Penalty
             call.setInt(3, 1);
             int adminPrice = ReservationxRoom.getAdminPrice();
             call.setInt(4,adminPrice );

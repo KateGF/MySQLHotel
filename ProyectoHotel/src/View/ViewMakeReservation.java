@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -49,6 +50,12 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         this.user = user;
         this.hotel = hotel;
         this.windowHotel = windowHotel;
+        
+        Date today = new Date();
+        jdcFecha2.setDate(today);
+        
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+        jdcFecha.setDate(tomorrow);
         getRooms();
         getPayments();
         
@@ -63,6 +70,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
                     list1.addItem(r.getName());
                 }
                 Price.setText(room.getRecommendedPrice()+ "");
+                roomType.setText(room.getCategoryName());
             }
         });
     }
@@ -75,12 +83,49 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     }
     
     void getPayments() {
-        payments = PaymentController.getPayments();
+        payments = PaymentController.getPaymentsByHotel(hotel.getIdHotel());
         for (PaymentMethod p : payments) {
-            jComboBox3.addItem(p.getNamePaymentMethod());
+            jComboBox4.addItem(p.getNamePaymentMethod());
         }
     }
 
+    void addReservation(){
+         try{
+        //CHECKIN
+        // Obtiene la fecha seleccionada en el componente JDateChooser
+        Date mFecha = jdcFecha.getDate();
+        
+
+        // Almacena la fecha en una variable de tipo java.util.Date
+        Date fecha = new Date(mFecha.getTime());
+
+        // Realiza alguna operación con la variable fecha...
+        //CHECK OUT
+        // Obtiene la fecha seleccionada en el componente JDateChooser
+        Date mFecha2 = jdcFecha2.getDate();
+
+        // Almacena la fecha en una variable de tipo java.util.Date
+        Date fecha2 = new Date(mFecha2.getTime());
+
+        // Realiza alguna operación con la variable fecha...
+        PaymentMethod payment = payments.get(jComboBox4.getSelectedIndex());
+        // ReservationController.insertReservation(hotel, room,user,payment.getIdPayment());
+        int parseDouble = Integer.parseInt( room.getRecommendedPrice()+"");
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        int idDiscount = 1;
+        
+        reservationxroom = new ReservationXRoomModel(parseDouble,
+                fecha, fecha2, 0, room.getIdRoom(), idDiscount);
+        
+         ReservationController.insertReservation(hotel, reservationxroom,user,payment.getIdPaymentMethod());
+         this.dispose();
+         windowHotel.dispose();
+        }
+        catch (Exception e )
+        {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +137,6 @@ public class ViewMakeReservation extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -108,8 +152,12 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<String>();
-        jLabel9 = new javax.swing.JLabel();
+        roomType = new javax.swing.JTextField();
+        list2 = new java.awt.List();
+        jLabel13 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<String>();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -123,16 +171,13 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         jLabel5.setText("NUMBER OF PEOPLE");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 152, -1));
 
-        jComboBox1.setBackground(new java.awt.Color(240, 248, 255));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 159, -1));
-
         jButton1.setText("PAY");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 120, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 120, 50));
 
         jLabel4.setBackground(new java.awt.Color(240, 248, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
@@ -197,14 +242,29 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         jLabel8.setText("TYPE OF ROOM");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
 
-        jComboBox3.setBackground(new java.awt.Color(240, 248, 255));
-        jPanel1.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 159, -1));
+        roomType.setEnabled(false);
+        jPanel1.add(roomType, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 160, -1));
 
-        jLabel9.setBackground(new java.awt.Color(240, 248, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel9.setText("Payment");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        list2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(list2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 160, 170));
+
+        jLabel13.setBackground(new java.awt.Color(240, 248, 255));
+        jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(240, 248, 255));
+        jLabel13.setText("Discount Available");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+
+        jComboBox4.setBackground(new java.awt.Color(240, 248, 255));
+        jPanel1.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 159, -1));
+
+        jLabel14.setBackground(new java.awt.Color(240, 248, 255));
+        jLabel14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(240, 248, 255));
+        jLabel14.setText("Payment");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
+
+        jTextField1.setText("-Card Number-");
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 160, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -212,32 +272,8 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        //CHECKIN
-        // Obtiene la fecha seleccionada en el componente JDateChooser
-        Date mFecha = jdcFecha.getDate();
-
-        // Almacena la fecha en una variable de tipo java.util.Date
-        Date fecha = new Date(mFecha.getTime());
-
-        // Realiza alguna operación con la variable fecha...
-        //CHECK OUT
-        // Obtiene la fecha seleccionada en el componente JDateChooser
-        Date mFecha2 = jdcFecha2.getDate();
-
-        // Almacena la fecha en una variable de tipo java.util.Date
-        Date fecha2 = new Date(mFecha2.getTime());
-
-        // Realiza alguna operación con la variable fecha...
-        PaymentMethod payment = payments.get(jComboBox3.getSelectedIndex());
-        // ReservationController.insertReservation(hotel, room,user,payment.getIdPayment());
-        int parseDouble = Integer.parseInt( room.getRecommendedPrice()+"");
-        reservationxroom = new ReservationXRoomModel(parseDouble,
-                fecha, fecha2, 0, room.getIdRoom(), 1);
-        
-         ReservationController.insertReservation(hotel, reservationxroom,user,1);
-         this.dispose();
-         windowHotel.dispose();
+addReservation();
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked
@@ -251,23 +287,26 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Price;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JDateChooser jdcFecha;
     private com.toedter.calendar.JDateChooser jdcFecha2;
     private java.awt.List list1;
+    private java.awt.List list2;
+    private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 }

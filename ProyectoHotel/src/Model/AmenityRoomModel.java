@@ -9,40 +9,32 @@ package Model;
  * @author josep
  */
 public class AmenityRoomModel {
-    private String name;
-    private int idHotel;
-     private int idHab;
 
-    public AmenityRoomModel(String name, int idHotel, int idHab) {
-        this.name = name;
-        this.idHotel = idHotel;
-        this.idHab = idHab;
+    
+    private int idRoom;
+    private int idAmenity;
+    
+
+    public AmenityRoomModel( int idHotel, int idHab) {
+       
+        this.idRoom = idHotel;
+        this.idAmenity = idHab;
     }
 
     public int getIdHab() {
-        return idHab;
+        return idAmenity;
     }
 
     public void setIdHab(int idHab) {
-        this.idHab = idHab;
+        this.idAmenity = idHab;
     }
-    
+
    
-    
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getIdHotel() {
-        return idHotel;
+        return idRoom;
     }
 
     public void setIdHotel(int idHotel) {
-        this.idHotel = idHotel;
+        this.idRoom = idHotel;
     }
 }
