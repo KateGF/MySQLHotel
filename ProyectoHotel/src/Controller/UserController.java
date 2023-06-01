@@ -72,7 +72,7 @@ public class UserController {
     public static Response insertPerson(UserModel user) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insert_user(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+        String statement = "{call INSERT_USER(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
@@ -144,29 +144,31 @@ public class UserController {
         UserModel userReturn = null;
         try {
 
-            CallableStatement call = DBconnection.prepareCall(statement);
-            call.setString(1, username);
-           // call.registerOutParameter(2, OracleTypes.CURSOR);
-            call = queryData(call);
+            if (DBconnection != null) {
+                CallableStatement call = DBconnection.prepareCall(statement);
+                call.setString(1, username);
+                // call.registerOutParameter(2, OracleTypes.CURSOR);
+                call = queryData(call);
 
-            if (call != null) {
-                ResultSet rs = (ResultSet) call.getResultSet();
-                while (rs.next()) {
-                    
-                    int idUser = rs.getInt("idUser");
-                    String firstname = rs.getString("firstname");
-                    String s_username = rs.getString("username");
-                    String password = rs.getString("password");
-                    int idUserType = rs.getInt("idUserType");
-                    userReturn = new UserModel(idUser,firstname, s_username, password,idUserType);
+                if (call != null) {
+                    ResultSet rs = (ResultSet) call.getResultSet();
+                    while (rs.next()) {
+
+                        int idUser = rs.getInt("idUser");
+                        String firstname = rs.getString("firstname");
+                        String s_username = rs.getString("username");
+                        String password = rs.getString("password");
+                        int idUserType = rs.getInt("idUserType");
+                        userReturn = new UserModel(idUser, firstname, s_username, password, idUserType);
+                    }
                 }
+
+                call.getConnection().close();
+                call.close();
             }
 
-            call.getConnection().close();
-            call.close();
-
         } catch (SQLException e) {
-           // System.out.println(e);
+            // System.out.println(e);
             // new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
         }
         //new Response(Response_code.SUCCESS, "Persona obtenida exitosamente.");
@@ -182,7 +184,7 @@ public class UserController {
             } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
 

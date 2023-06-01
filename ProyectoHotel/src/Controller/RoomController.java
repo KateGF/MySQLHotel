@@ -7,7 +7,6 @@ package Controller;
 
 import Constants.Response_code;
 import Model.CategoryModel;
-import Model.HotelModel;
 import Model.Response;
 import Model.RoomModel;
 import java.sql.CallableStatement;
@@ -15,8 +14,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import oracle.jdbc.internal.OracleTypes;
 
 /**
  *
@@ -57,7 +54,7 @@ public class RoomController {
     }
 
     public static ArrayList<RoomModel> getRooms(int idHotel) {
-        String statement = "{call getRoomFromHotel(?,?)}";
+        String statement = "{call getRoomFromHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<RoomModel> rooms = new ArrayList<>();
         try {
@@ -66,28 +63,29 @@ public class RoomController {
             CallableStatement call = DBconnection.prepareCall(statement);
 
             call.setInt(1, idHotel);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
+            //call.registerOutParameter(2, OracleTypes.CURSOR);
 
             call = queryData(call);
 
             if (call != null) {
-                ResultSet rs = (ResultSet) call.getObject(2);
+                ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
 
-                    String name = rs.getString("name");
+                    String name = rs.getString("roomname");
                     int capacity = rs.getInt("capacity");
                     int recommendedPrice = rs.getInt("recommendedPrice");
-                    int idRoomCategory = rs.getInt("idRoomCategory");
+                    String idRoomCategory = rs.getString("category");
                     int idRoom = rs.getInt("idRoom");
 
                     RoomModel room = new RoomModel(idRoom, name, capacity, recommendedPrice, idHotel, idRoomCategory);
                     rooms.add(room);
                 }
+                 call.getConnection().close();
+                call.close();
             }
 
-            call.getConnection().close();
-            call.close();
+           
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -117,7 +115,7 @@ public class RoomController {
 
     public static ArrayList<CategoryModel> getCategories() {
 
-        String statement = "{call getCategories(?)}";
+        String statement = "{call getCategories()}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<CategoryModel> categories = new ArrayList<>();
         try {
@@ -125,12 +123,12 @@ public class RoomController {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-            call.registerOutParameter(1, OracleTypes.CURSOR);
+            //call.registerOutParameter(1, OracleTypes.CURSOR);
 
             call = queryData(call);
 
             if (call != null) {
-                ResultSet rs = (ResultSet) call.getObject(1);
+                ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
 

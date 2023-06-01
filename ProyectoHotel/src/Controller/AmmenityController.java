@@ -93,7 +93,7 @@ public class AmmenityController {
     public static ArrayList<AmenityModel> getAmenities() {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getAmenities(?)}";
+        String statement = "{call getAllAmenities()}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<AmenityModel> amenities = new ArrayList<>();
         try {
@@ -101,20 +101,20 @@ public class AmmenityController {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-            call.registerOutParameter(1, OracleTypes.CURSOR);
+            //call.registerOutParameter(1, OracleTypes.CURSOR);
 
             call = queryData(call);
 
            if (call != null) {
 
-                ResultSet rs = (ResultSet) call.getObject(1);
+                ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
                 
                     String name = rs.getString("name");
-                     int idHotel = rs.getInt("idHotel");
-                      int idAmmenity = rs.getInt("idAmenity");
-                    AmenityModel amm = new AmenityModel(name, idHotel, idAmmenity);
+                    //int idHotel = rs.getInt("idHotel");
+                    int idAmmenity = rs.getInt("idAmenity");
+                    AmenityModel amm = new AmenityModel(name, 0, idAmmenity);
                     amenities.add(amm);
                 }
             }
@@ -146,7 +146,7 @@ public class AmmenityController {
      public static ArrayList<AmenityModel> getAmenitiesByHotel(int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getAmenitiesByHotel(?,?)}";
+        String statement = "{call getAmenitiesByHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<AmenityModel> amenities = new ArrayList<>();
         try {
@@ -155,13 +155,13 @@ public class AmmenityController {
             CallableStatement call = DBconnection.prepareCall(statement);
             
             call.setInt(1, idHotel);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
+            //call.registerOutParameter(2, OracleTypes.CURSOR);
 
             call = queryData(call);
 
            if (call != null) {
 
-                ResultSet rs = (ResultSet) call.getObject(2);
+                ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
                 

@@ -5,7 +5,7 @@
 package View;
 import Controller.UserController;
 import Model.Response;
-import View.Admin.editLocations;
+import View.Admin.AdminLocations;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -249,14 +249,14 @@ public class ViewLogin extends javax.swing.JFrame {
         String Spassword = password.getText();
         if(UserController.Login(Susername,Spassword)==true){
             this.setVisible(false);
-            new Principal(UserController.getUser(Susername)).setVisible(true);
+            new ViewPrincipal(UserController.getUser(Susername)).setVisible(true);
         }else{
             jLabel9.setText("Usuario o Password Incorrecto");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        Init newframe = new Init();
+        ViewRegister newframe = new ViewRegister();
         newframe.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -265,7 +265,7 @@ public class ViewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       new editLocations("SuperUser").setVisible(true);
+       new AdminLocations("SuperUser").setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
     
     /**

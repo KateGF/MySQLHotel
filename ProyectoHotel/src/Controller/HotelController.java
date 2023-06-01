@@ -27,7 +27,7 @@ public class HotelController {
     public static Response insertHotel(HotelModel hotel, UserModel user) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insertHotel(?,?,?,?,?,?)}";
+        String statement = "{call insert_Hotel(?,?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
@@ -43,7 +43,6 @@ public class HotelController {
             call.setInt(3, hotel.getIdDistrict());
             call.setInt(4, hotel.getIdClassification());
             call.setInt(5, hotel.getIdDiscount());
-            call.setString(6, user.getUsername());
             call = insertData(call);
 
             if (call == null) {
@@ -213,10 +212,11 @@ public class HotelController {
                     hoteles.add(hotelModel);
 
                 }
+                 call.getConnection().close();
+            call.close();
             }
 
-            call.getConnection().close();
-            call.close();
+           
 
         } catch (SQLException e) {
             System.out.println(e);

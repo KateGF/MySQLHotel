@@ -41,9 +41,9 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     
     ArrayList<RoomModel> rooms;
     ArrayList<PaymentMethod> payments;
-    MainWindowHotel windowHotel;
+    ViewHotel windowHotel;
     
-    public ViewMakeReservation(UserModel user, HotelModel hotel,MainWindowHotel windowHotel) {
+    public ViewMakeReservation(UserModel user, HotelModel hotel,ViewHotel windowHotel) {
         initComponents();
         setLocationRelativeTo(this);
         this.user = user;

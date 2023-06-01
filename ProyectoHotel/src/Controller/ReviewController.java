@@ -77,7 +77,7 @@ public class ReviewController {
     
     
     public static ArrayList<Review> getReviews(int idHotel) {
-        String statement = "{call getReviewsHotel(?,?)}";
+        String statement = "{call getReviewsHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<Review> reviews = new ArrayList<>();
         try {
@@ -85,12 +85,12 @@ public class ReviewController {
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
             call.setInt(1, idHotel);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
+            //call.registerOutParameter(2, OracleTypes.CURSOR);
 
             call = queryData(call);
 
             if (call != null) {
-                ResultSet rs = (ResultSet) call.getObject(2);
+                ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
 

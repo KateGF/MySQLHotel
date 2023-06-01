@@ -16,6 +16,8 @@ public class RoomModel {
     private int idRoomCategory;
     private int idRoom;
     
+    private String categoryName;
+    
     public RoomModel(int idRoom, String name, int capacity, int recommendedPrice, int idHotel, int idRoomCategory) {
         this.idRoom = idRoom;
         this.name = name;
@@ -24,7 +26,27 @@ public class RoomModel {
         this.idHotel = idHotel;
         this.idRoomCategory = idRoomCategory;
     }
+    
+    public RoomModel(int idRoom, String name, int capacity, int recommendedPrice, int idHotel, String roomCategory) {
+        this.idRoom = idRoom;
+        this.name = name;
+        this.capacity = capacity;
+        this.recommendedPrice = recommendedPrice;
+        this.idHotel = idHotel;
+        this.categoryName = roomCategory;
+    }
 
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    
+    
+    
     public int getIdRoom() {
         return idRoom;
     }
