@@ -5,10 +5,12 @@
 package View.Admin;
 
 import Controller.AmmenityController;
+import Controller.ReservationController;
 import Controller.RoomController;
 import Model.AmenityModel;
 import Model.CategoryModel;
 import Model.HotelModel;
+import Model.ReservationModel;
 import Model.Response;
 import Model.RoomModel;
 import Model.UserModel;
@@ -24,58 +26,65 @@ public class AdminHotel extends javax.swing.JFrame {
     HotelModel hotel;
     UserModel user;
     ArrayList<RoomModel> rooms;
-    ArrayList<CategoryModel> categories;   
-    ArrayList<AmenityModel> ammenities;   
-     ArrayList<AmenityModel> ammenities2;   
-    
+    ArrayList<CategoryModel> categories;
+    ArrayList<AmenityModel> ammenities;
+    ArrayList<AmenityModel> ammenities2;
+    ArrayList<ReservationModel> reservations;
+
     public AdminHotel() {
         initComponents();
     }
-    
+
     public AdminHotel(HotelModel hotel, UserModel user) {
         initComponents();
         this.hotel = hotel;
         this.user = user;
-        
-        
+
         loadAmmenities();
         loadCategories();
         getRooms();
+        getReservations();
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
     }
 
-    void loadAmmenities(){
+    void loadAmmenities() {
         ammenities = AmmenityController.getAmenities();
         jComboBox2.removeAllItems();
-          for (AmenityModel r : ammenities) {
-           jComboBox2.addItem(r.getName().toString());
-          }
-          
-          ammenities2 = AmmenityController.getAmenitiesByHotel(hotel.getIdHotel());
+        for (AmenityModel r : ammenities) {
+            jComboBox2.addItem(r.getName().toString());
+        }
+
+        ammenities2 = AmmenityController.getAmenitiesByHotel(hotel.getIdHotel());
         list2.removeAll();
-           for (AmenityModel a : ammenities2) {
+        for (AmenityModel a : ammenities2) {
             list2.add(a.getName());
         }
     }
-    
-    void loadCategories(){
+
+    void loadCategories() {
         categories = RoomController.getCategories();
-          for (CategoryModel c : categories) {
-           jComboBox4.addItem(c.getName());
-          }
+        for (CategoryModel c : categories) {
+            jComboBox4.addItem(c.getName());
+        }
     }
-    
-     void getRooms() {
+
+    void getRooms() {
         rooms = RoomController.getRooms(this.hotel.getIdHotel());
         for (RoomModel r : rooms) {
             roomList.add(r.getName());
         }
     }
-    
-    
-    
-    
+
+    void getReservations() {
+          
+     this.reservations = ReservationController.getReservationsByHotel(hotel.getIdHotel());
+     list3.removeAll();
+     for (ReservationModel r : reservations) {
+     list3.add(r.toString());
+     }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1184,134 +1193,101 @@ public class AdminHotel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void amenitypMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amenitypMouseClicked
-        amenityp.setBackground(new  java.awt.Color(44 , 59 , 66));
+        amenityp.setBackground(new java.awt.Color(44, 59, 66));
         PanelAmenitys.setVisible(true);
-        
-        
-        
-        
-        reserva.setBackground(new  java.awt.Color(34 ,45,49));
+
+        reserva.setBackground(new java.awt.Color(34, 45, 49));
         PanelReservations.setVisible(false);
-        
-        
-        
-        roomw.setBackground(new  java.awt.Color(34 ,45,49));
+
+        roomw.setBackground(new java.awt.Color(34, 45, 49));
         PanelRooms.setVisible(false);
-        
-        jLabel7.setBackground(new  java.awt.Color(34 ,45,49));
+
+        jLabel7.setBackground(new java.awt.Color(34, 45, 49));
         PanelDiscounts.setVisible(false);
-        
-        jLabel10.setBackground(new  java.awt.Color(34 ,45,49));
+
+        jLabel10.setBackground(new java.awt.Color(34, 45, 49));
         PanelPenaltys.setVisible(false);
-        
+
     }//GEN-LAST:event_amenitypMouseClicked
 
     private void reservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservaMouseClicked
-        amenityp.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelAmenitys.setVisible(false); 
-        
-        
-        
-        
-        reserva.setBackground(new  java.awt.Color(44 , 59 , 66));
+        amenityp.setBackground(new java.awt.Color(34, 45, 49));
+        PanelAmenitys.setVisible(false);
+
+        reserva.setBackground(new java.awt.Color(44, 59, 66));
         PanelReservations.setVisible(true);
-        
-        
-        
-        roomw.setBackground(new  java.awt.Color(34 ,45,49));
+
+        roomw.setBackground(new java.awt.Color(34, 45, 49));
         PanelRooms.setVisible(false);
-        
-        jLabel7.setBackground(new  java.awt.Color(34 ,45,49));
+
+        jLabel7.setBackground(new java.awt.Color(34, 45, 49));
         PanelDiscounts.setVisible(false);
-        
-        jLabel10.setBackground(new  java.awt.Color(34 ,45,49));
+
+        jLabel10.setBackground(new java.awt.Color(34, 45, 49));
         PanelPenaltys.setVisible(false);
-        
+
     }//GEN-LAST:event_reservaMouseClicked
 
     private void roomwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomwMouseClicked
-        amenityp.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelAmenitys.setVisible(false); 
-        
-        
-        
-        
-        reserva.setBackground(new  java.awt.Color(34 ,45,49));
+        amenityp.setBackground(new java.awt.Color(34, 45, 49));
+        PanelAmenitys.setVisible(false);
+
+        reserva.setBackground(new java.awt.Color(34, 45, 49));
         PanelReservations.setVisible(false);
-        
-        
-        
-        roomw.setBackground(new  java.awt.Color(44 , 59 , 66));
-        PanelRooms.setVisible(true); 
-        
-        
-        jLabel7.setBackground(new  java.awt.Color(44 , 59 , 66));
+
+        roomw.setBackground(new java.awt.Color(44, 59, 66));
+        PanelRooms.setVisible(true);
+
+        jLabel7.setBackground(new java.awt.Color(44, 59, 66));
         PanelDiscounts.setVisible(false);
-        
-        jLabel10.setBackground(new  java.awt.Color(44 , 59 , 66));
+
+        jLabel10.setBackground(new java.awt.Color(44, 59, 66));
         PanelPenaltys.setVisible(false);
     }//GEN-LAST:event_roomwMouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-       this.setVisible(false);
-               
+        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        
-        
-        amenityp.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelAmenitys.setVisible(false); 
-        
-        
-        
-        
-        reserva.setBackground(new  java.awt.Color(34 ,45,49));
+
+        amenityp.setBackground(new java.awt.Color(34, 45, 49));
+        PanelAmenitys.setVisible(false);
+
+        reserva.setBackground(new java.awt.Color(34, 45, 49));
         PanelReservations.setVisible(false);
-        
-        
-        
-        roomw.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelRooms.setVisible(false); 
-        
-        
-        jLabel7.setBackground(new  java.awt.Color(44 , 59 , 66));
+
+        roomw.setBackground(new java.awt.Color(34, 45, 49));
+        PanelRooms.setVisible(false);
+
+        jLabel7.setBackground(new java.awt.Color(44, 59, 66));
         PanelDiscounts.setVisible(true);
-        
- 
-   
-        
-        jLabel10.setBackground(new  java.awt.Color(34 ,45,49));
+
+        jLabel10.setBackground(new java.awt.Color(34, 45, 49));
         PanelPenaltys.setVisible(false);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-                
-        
-        amenityp.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelAmenitys.setVisible(false); 
-        
-        
-        
-        
-        reserva.setBackground(new  java.awt.Color(34 ,45,49));
+
+        amenityp.setBackground(new java.awt.Color(34, 45, 49));
+        PanelAmenitys.setVisible(false);
+
+        reserva.setBackground(new java.awt.Color(34, 45, 49));
         PanelReservations.setVisible(false);
-        
-        
-        
-        roomw.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelRooms.setVisible(false); 
-        
-        
-        jLabel7.setBackground(new  java.awt.Color(34 ,45,49));
+
+        roomw.setBackground(new java.awt.Color(34, 45, 49));
+        PanelRooms.setVisible(false);
+
+        jLabel7.setBackground(new java.awt.Color(34, 45, 49));
         PanelDiscounts.setVisible(false);
-        
-        jLabel10.setBackground(new  java.awt.Color(44 , 59 , 66));
+
+        jLabel10.setBackground(new java.awt.Color(44, 59, 66));
         PanelPenaltys.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void txt2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt2KeyTyped
-        if(txt2.getText().length() >= 120){
+        if (txt2.getText().length() >= 120) {
 
             evt.consume();
 
@@ -1323,7 +1299,7 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_codeActionPerformed
 
     private void codeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codeKeyTyped
-        if(code.getText().length() >= 6){
+        if (code.getText().length() >= 6) {
 
             evt.consume();
 
@@ -1349,7 +1325,7 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton773ActionPerformed
 
     private void txt3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt3KeyTyped
-        if(txt3.getText().length() >= 120){
+        if (txt3.getText().length() >= 120) {
 
             evt.consume();
 
@@ -1365,8 +1341,8 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
-        AmenityModel amm = ammenities.get( list2.getSelectedIndex());
-        Response removeAmmenity = AmmenityController.removeAmmenity(amm.getIdAmmenity(),hotel.getIdHotel());
+        AmenityModel amm = ammenities.get(list2.getSelectedIndex());
+        Response removeAmmenity = AmmenityController.removeAmmenity(amm.getIdAmmenity(), hotel.getIdHotel());
         JOptionPane.showMessageDialog(this, removeAmmenity.getMessage());
         loadAmmenities();
     }//GEN-LAST:event_jButton77ActionPerformed
@@ -1384,21 +1360,21 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        
+
         String name = jTextField2.getText();
-        int capacity =  (Integer) jSpinner2.getValue();
+        int capacity = (Integer) jSpinner2.getValue();
         int price = Integer.parseInt(jTextField3.getText());
         CategoryModel roomCat = categories.get(jComboBox4.getSelectedIndex());
-        RoomModel roomModel = new RoomModel(0,name, capacity, price, hotel.getIdHotel(), roomCat.getIdroomcategory());
-        
+        RoomModel roomModel = new RoomModel(0, name, capacity, price, hotel.getIdHotel(), roomCat.getIdroomcategory());
+
         Response insertRoom = RoomController.insertRoom(roomModel);
         JOptionPane.showMessageDialog(this, insertRoom.getMessage());
         getRooms();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
-   
-       new AdminAmenity().setVisible(true);
+
+        new AdminAmenity().setVisible(true);
     }//GEN-LAST:event_jButton277ActionPerformed
 
     private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
@@ -1406,17 +1382,17 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel35MouseClicked
 
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
-      int selectedIndex = jComboBox2.getSelectedIndex();
-      String selectedIndexS = jComboBox2.getSelectedItem().toString();
+        int selectedIndex = jComboBox2.getSelectedIndex();
+        String selectedIndexS = jComboBox2.getSelectedItem().toString();
         String[] items = list2.getItems();
-      
-      AmenityModel get = ammenities.get(selectedIndex);
-      AmmenityController.insertAmmenity(get.getIdAmmenity() , hotel.getIdHotel());
-      loadAmmenities();
+
+        AmenityModel get = ammenities.get(selectedIndex);
+        AmmenityController.insertAmmenity(get.getIdAmmenity(), hotel.getIdHotel());
+        loadAmmenities();
     }//GEN-LAST:event_jButton278ActionPerformed
 
     private void jButton279ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton279ActionPerformed
-      loadAmmenities();
+        loadAmmenities();
     }//GEN-LAST:event_jButton279ActionPerformed
 
     /**

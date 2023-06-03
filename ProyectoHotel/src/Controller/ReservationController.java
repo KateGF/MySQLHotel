@@ -140,6 +140,53 @@ public class ReservationController {
         return reservations;
     }
 
+    public static ArrayList<ReservationModel> getReservationsByHotel(int idHotel) {
+        String statement = "{call getReservationsFromHotel(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        ArrayList<ReservationModel> reservations = new ArrayList<>();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+
+            call.setInt(1, idHotel);
+          //  call.registerOutParameter(2, OracleTypes.CURSOR);
+
+            call = queryData(call);
+
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+
+                    int iduser = rs.getInt("idUser");
+                    int idReservation = rs.getInt("idReservation");
+                    int adminPrice = rs.getInt("adminPrice");
+                    String firstName = rs.getString("firstName");
+                    String roomName = rs.getString("Room");
+                    String category = rs.getString("roomcategory");
+                    int idRoom = rs.getInt("idRoom");
+                    int idhotel = rs.getInt("idHotel");
+                    String hotelName = rs.getString("hotelName");
+                    int capacity = rs.getInt("capacity");
+                    String paymentName = rs.getString("namePaymentMethod");
+
+                    ReservationModel reserv = new ReservationModel(iduser, idReservation, adminPrice, 
+                            firstName, roomName, idhotel, hotelName,category,idRoom,paymentName,capacity);
+                    reservations.add(reserv);
+                }
+            }
+
+            call.getConnection().close();
+            call.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return reservations;
+    }
+
+    
     private static CallableStatement insertData(CallableStatement call) {
         try {
             call.executeQuery();

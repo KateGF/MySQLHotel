@@ -394,4 +394,37 @@ public class HotelController {
         }
     }
 
+    public static Response setAsDefault(int idUser, int idHotel) {
+    // Para construir una llamada parametrizada, coloque el nombre del procedimiento
+        // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
+        String statement = "{call insert_HotelDefault(?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            // Se insertan los parámetros en la llamada. Note que los símbolos de pregunta
+            // están indexados (inician a partir de 1, no de 0). 
+            // Tome en cuenta que los tipos de datos que inserte aquí, deben coincidir 
+            // con los tipos de datos que recibe el procedimiento de la base de datos.
+
+       
+            call.setInt(1, idUser);
+            call.setInt(2, idHotel);
+          
+            call = insertData(call);
+
+            if (call == null) {
+                return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+            }
+
+            call.getConnection().close();
+            call.close();
+
+            return new Response(Response_code.SUCCESS, "Hotel registrado default exitosamente.");
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+        } }
+
 }
