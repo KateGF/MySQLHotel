@@ -74,10 +74,10 @@ public class DiscountController {
    
     
     
-    public static ArrayList<DiscountModel> getDiscounts(int idHotel) {
+    public static ArrayList<DiscountModel> getDiscountsHotel(int idHotel) {
         String statement = "{call getDiscountsHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
-        ArrayList<DiscountModel> reviews = new ArrayList<>();
+        ArrayList<DiscountModel> discounts = new ArrayList<>();
         try {
 
             // Se crea una llamada parametrizada.
@@ -91,14 +91,14 @@ public class DiscountController {
                 ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
-
+                    int idDiscount = rs.getInt("idDiscount");
                     Date expireDate = rs.getDate("expireDate");
-                    int code = rs.getInt("code");
-                    String percentage = rs.getString("percentage");
+                     String code = rs.getString("code");
+                    Double percentage = Double.parseDouble(rs.getString("percentage"));
                     String description = rs.getString("description");
 
-                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, description);
-                    reviews.add(revi);
+                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, description, idDiscount);
+                    discounts.add(revi);
                 }
             }
 
@@ -108,7 +108,44 @@ public class DiscountController {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return reviews;
+        return discounts;
+    }
+    
+    
+    public static ArrayList<DiscountModel> getDiscounts() {
+        String statement = "{call getDiscounts()}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        ArrayList<DiscountModel> discounts = new ArrayList<>();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            //call.registerOutParameter(2, OracleTypes.CURSOR);
+
+            call = queryData(call);
+
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                    int idDiscount = rs.getInt("idDiscount");
+                    Date expireDate = rs.getDate("expireDate");
+                    String code = rs.getString("code");
+                    Double percentage = Double.parseDouble(rs.getString("percentage"));
+                    //String description = rs.getString("description");
+
+                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, "", idDiscount);
+                    discounts.add(revi);
+                }
+            }
+
+            call.getConnection().close();
+            call.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return discounts;
     }
     private static CallableStatement insertData(CallableStatement call) {
         try {

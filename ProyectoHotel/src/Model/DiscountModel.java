@@ -12,16 +12,26 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class DiscountModel {
+    private int idDiscount;
     private Date expireDate;
     private String code;
     private double percentage;
     private String description_DSCT;
-
-    public DiscountModel(Date expireDate, String code, double percentage, String description_DSCT) {
+    
+    public DiscountModel(Date expireDate, double percentage,String code, String description_DSCT, int idDisc) {
         this.expireDate = expireDate;
         this.code = code;
         this.percentage = percentage;
         this.description_DSCT = description_DSCT;
+        this.idDiscount = idDisc;
+    }
+
+    public int getIdDiscount() {
+        return idDiscount;
+    }
+
+    public void setIdDiscount(int idDiscount) {
+        this.idDiscount = idDiscount;
     }
 
 

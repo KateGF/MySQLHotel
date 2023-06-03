@@ -44,12 +44,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         init();
     }
 
-    void AddCountries() {
-        countries = LocationsController.getCountries();
-        for (Location c : countries) {
-            countryBox.addItem(c.getName());
-        }
-    }
+    
 
     void init() {
         //jPanel2.setVisible(false);
@@ -63,9 +58,15 @@ public class ViewPrincipal extends javax.swing.JFrame {
         if (user.getIdUserType() == 2) {
             jButton1.setVisible(true);
         }
-        userLabel.setText(this.user.toString());
+        userLabel.setText(this.user.getUsername());
     }
 
+    void AddCountries() {
+        countries = LocationsController.getCountries();
+        for (Location c : countries) {
+            countryBox.addItem(c.getName());
+        }
+    }
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -544,8 +545,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4MousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        HotelModel hotel = hotelList.get(list1.getSelectedIndex());
-        new AdminHotel(hotel, this.user).setVisible(true);
+        if(list1.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(this, "Select Hotel From the List");
+        }else{
+             HotelModel hotel = hotelList.get(list1.getSelectedIndex());
+            new AdminHotel(hotel, this.user).setVisible(true);
+        }
+       
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -554,9 +560,17 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_list1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Response setAsDefault = Controller.HotelController.setAsDefault(this.user.getIdUser(),this.hotelSelected.getIdHotel());
+        if(list1.getSelectedIndex()==-1){
+              JOptionPane.showMessageDialog(this, "Select Hotel From the List");
+        }else{
+             Response setAsDefault = 
+                Controller.HotelController.setAsDefault(
+                        this.user.getIdUser(),
+                        this.hotelSelected.getIdHotel());
         
         JOptionPane.showMessageDialog(this, setAsDefault.getMessage());
+        }
+       
     }//GEN-LAST:event_jButton8ActionPerformed
     void countryBoxPress() {
         int selectedIndex = countryBox.getSelectedIndex();
@@ -782,7 +796,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
             filename = f.getAbsolutePath();
             ImageIcon imgThisImg = new ImageIcon(new ImageIcon(filename)
                     .getImage().getScaledInstance(280, 187, Image.SCALE_DEFAULT));
-            jLabel1.setIcon(imgThisImg);
+            profilePic.setIcon(imgThisImg);
             File image = new File(filename);
             FileInputStream fis = new FileInputStream(image);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();

@@ -4,8 +4,11 @@
  */
 package View.Admin;
 
+import Controller.DiscountController;
 import Controller.HotelController;
 import Controller.LocationsController;
+import Model.DiscountModel;
+import Model.HotelClasificationModel;
 import Model.HotelModel;
 import Model.Location.Location;
 import Model.Response;
@@ -20,8 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class AdminCreateHotel extends javax.swing.JFrame {
 
-    
-     /**
+    /**
      * Creates new form createHotel
      */
     public AdminCreateHotel() {
@@ -29,10 +31,11 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
         AddCountries();
+        AddDiscounts();
     }
-    
-   UserModel user;
-    
+
+    UserModel user;
+
     /**
      * Creates new form createHotel
      */
@@ -41,20 +44,38 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
         AddCountries();
+        AddDiscounts();
         this.user = user;
     }
-    
+
     ArrayList<Location> countries;
     ArrayList<Location> states;
     ArrayList<Location> cantons;
     ArrayList<Location> districts;
-    
-    void AddCountries(){
-     countries = LocationsController.getCountries();
+    ArrayList<DiscountModel> discounts;
+    ArrayList<HotelClasificationModel> hotelClasif;
+
+    void AddCountries() {
+        countries = LocationsController.getCountries();
         for (Location c : countries) {
             countryBox.addItem(c.getName());
         }
-}
+    }
+
+    void AddDiscounts() {
+        discounts = DiscountController.getDiscounts();
+        for (DiscountModel d : discounts) {
+            discountBox.addItem(d.getCode() + "--" + d.getPercentage());
+        }
+    }
+    
+    /*
+     void AddClasification() {
+        discounts = Clas.getDiscounts();
+        for (DiscountModel c : clasification) {
+            discountBox.addItem(d.getCode() + "--" + d.getPercentage());
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,11 +105,11 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         reserva1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         roomw = new javax.swing.JLabel();
-        discountText = new javax.swing.JTextField();
         roomw1 = new javax.swing.JLabel();
-        classText = new javax.swing.JTextField();
+        classiText = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        discountBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,8 +210,7 @@ public class AdminCreateHotel extends javax.swing.JFrame {
                 roomwMouseClicked(evt);
             }
         });
-        jPanel4.add(roomw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 98, 31));
-        jPanel4.add(discountText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 142, -1));
+        jPanel4.add(roomw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 98, 31));
 
         roomw1.setBackground(new java.awt.Color(0, 0, 0));
         roomw1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -202,7 +222,13 @@ public class AdminCreateHotel extends javax.swing.JFrame {
             }
         });
         jPanel4.add(roomw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 98, 31));
-        jPanel4.add(classText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 142, -1));
+
+        classiText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classiTextActionPerformed(evt);
+            }
+        });
+        jPanel4.add(classiText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 142, -1));
 
         jButton11.setText("OK");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -210,12 +236,14 @@ public class AdminCreateHotel extends javax.swing.JFrame {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 70, 50));
+        jPanel4.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 70, 50));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(50, 70, 80));
         jLabel10.setText("CREATE HOTEL");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 213, -1));
+
+        jPanel4.add(discountBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 140, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -248,7 +276,7 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private void reservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reservaMouseClicked
 
     }//GEN-LAST:event_reservaMouseClicked
- void cantonPress() {
+    void cantonPress() {
         int selectedIndex = cantonBox.getSelectedIndex();
         int id = cantons.get(selectedIndex).getID();
         districts = LocationsController.getDistrictsByCanton(id);
@@ -261,7 +289,7 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         cantonPress();
     }//GEN-LAST:event_jButton14ActionPerformed
- void statePress() {
+    void statePress() {
         try {
             int selectedIndex = stateBox.getSelectedIndex();
             int id = states.get(selectedIndex).getID();
@@ -278,7 +306,7 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         statePress();
     }//GEN-LAST:event_jButton13ActionPerformed
- void countryBoxPress() {
+    void countryBoxPress() {
         int selectedIndex = countryBox.getSelectedIndex();
         int id = countries.get(selectedIndex).getID();
         states = LocationsController.getStatesByCountry(id);
@@ -304,12 +332,14 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         String name = nameText.getText();
         Date registerDate = jDateChooser1.getDate();
         int district = districts.get(districtBox.getSelectedIndex()).getID();
-        int discount = Integer.parseInt(classText.getText());
-        int classi = Integer.parseInt(discountText.getText());
-        
+        int discount = discounts.get(discountBox.getSelectedIndex()).getIdDiscount();
+
+        //int classi = Integer.parseInt(classiText.getText());
+        int classi = discounts.get(discountBox.getSelectedIndex()).getIdDiscount();
+
         HotelModel hotel = new HotelModel(0, name, registerDate, discount, classi, district);
-        
-        Response insertHotel = HotelController.insertHotel(hotel,user);
+
+        Response insertHotel = HotelController.insertHotel(hotel, user);
         JOptionPane.showMessageDialog(this, insertHotel.getMessage());
         this.setVisible(false);
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -317,6 +347,10 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private void roomw1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomw1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_roomw1MouseClicked
+
+    private void classiTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classiTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classiTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,9 +396,9 @@ public class AdminCreateHotel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cantonBox;
-    private javax.swing.JTextField classText;
+    private javax.swing.JTextField classiText;
     private javax.swing.JComboBox countryBox;
-    private javax.swing.JTextField discountText;
+    private javax.swing.JComboBox discountBox;
     private javax.swing.JComboBox districtBox;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

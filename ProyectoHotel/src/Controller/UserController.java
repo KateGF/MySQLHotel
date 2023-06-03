@@ -159,7 +159,10 @@ public class UserController {
                         String s_username = rs.getString("username");
                         String password = rs.getString("password");
                         int idUserType = rs.getInt("idUserType");
+                       // userReturn = new UserModel(idUser, firstname, s_username, password, idUserType);
+                        
                         userReturn = new UserModel(idUser, firstname, s_username, password, idUserType);
+                      
                     }
                 }
 
