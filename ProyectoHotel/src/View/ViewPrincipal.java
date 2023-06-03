@@ -354,13 +354,13 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(userLabel))
-                .addGap(29, 29, 29)
-                .addComponent(jButton9)
-                .addGap(177, 177, 177)
+                .addGap(28, 28, 28)
                 .addComponent(profilePic, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addGap(25, 25, 25))
+                .addGap(11, 11, 11)
+                .addComponent(jButton9)
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
