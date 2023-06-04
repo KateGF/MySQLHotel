@@ -24,7 +24,8 @@ import oracle.jdbc.internal.OracleTypes;
  * @author guzka
  */
 public class AmmenityController {
-
+    
+    
    
     public static Response insertAmmenity(  int idAmenity, int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento

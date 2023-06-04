@@ -19,14 +19,14 @@ import java.util.Date;
  */
 
 // Queries that are with joins
-public class Q06TotalHotel {
+public class Q06TotalHotelModel {
     int totalRooms;
     int totalPaid;
     String hotelName;
     int idHotel;
     Date registerDate;
 
-    public Q06TotalHotel(int totalRooms, int totalPaid, String hotelName, int idHotel, Date registerDate) {
+    public Q06TotalHotelModel(int totalRooms, int totalPaid, String hotelName, int idHotel, Date registerDate) {
         this.totalRooms = totalRooms;
         this.totalPaid = totalPaid;
         this.hotelName = hotelName;

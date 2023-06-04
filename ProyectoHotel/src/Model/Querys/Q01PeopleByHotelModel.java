@@ -19,7 +19,7 @@ import java.util.Date;
  */
 
 // Queries that are with joins
-public class Q01PeopleByHotel {
+public class Q01PeopleByHotelModel {
     String name;
     String lastName;
     int id;
@@ -29,7 +29,7 @@ public class Q01PeopleByHotel {
     String country;
     int payment;
 
-    public Q01PeopleByHotel(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
+    public Q01PeopleByHotelModel(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
         this.name = name;
         this.id = id;
         this.checkIn = checkIn;

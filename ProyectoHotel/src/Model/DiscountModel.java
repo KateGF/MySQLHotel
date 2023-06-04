@@ -17,13 +17,15 @@ public class DiscountModel {
     private String code;
     private double percentage;
     private String description_DSCT;
+    private int idHotel;
     
-    public DiscountModel(Date expireDate, double percentage,String code, String description_DSCT, int idDisc) {
+    public DiscountModel(Date expireDate, double percentage,String code, String description_DSCT, int idDisc, int idHotel) {
         this.expireDate = expireDate;
         this.code = code;
         this.percentage = percentage;
         this.description_DSCT = description_DSCT;
         this.idDiscount = idDisc;
+        this.idHotel = idHotel;
     }
 
     public int getIdDiscount() {

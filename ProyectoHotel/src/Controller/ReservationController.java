@@ -30,7 +30,7 @@ public class ReservationController {
             ReservationXRoomModel ReservationxRoom, UserModel user, int idPayment) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insert_reservationAll(?,?,?,?,?,?,?,?)}";
+        String statement = "{call insert_reservationAll2(?,?,?,?,?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
@@ -50,14 +50,21 @@ public class ReservationController {
             java.sql.Date sqlDateCheckOut = new java.sql.Date(time);
             call.setDate(6, sqlDateCheckOut);
             call.setInt(7, ReservationxRoom.getIdRoom());
-            call.setInt(8, ReservationxRoom.getIdDiscount());
+           
+            int idDiscount = ReservationxRoom.getIdDiscount();
+            if(idDiscount==0){
+                 call.setNull(8, 0);
+            }else{
+                 call.setInt(8,idDiscount );
+            }
+           
 
             call = queryData(call);
 
             call.getConnection().close();
             call.close();
 
-            return new Response(Response_code.SUCCESS, "Habitacion registrada exitosamente.");
+            return new Response(Response_code.SUCCESS, "Reservación registrada exitosamente.");
         } catch (SQLException e) {
             System.out.println(e);
             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");

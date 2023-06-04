@@ -78,6 +78,12 @@ public class ViewHotel extends javax.swing.JFrame {
         }
     }
 
+        private void getHotelAmmenities(int idHotel) {
+        ArrayList<AmenityModel> ammenities = AmmenityController.getAmenitiesByHotel(idHotel);
+        for (AmenityModel a : ammenities) {
+            listAmmenity.add(a.getName());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -179,11 +185,6 @@ public class ViewHotel extends javax.swing.JFrame {
     private javax.swing.JLabel regLabel1;
     // End of variables declaration//GEN-END:variables
 
-    private void getHotelAmmenities(int idHotel) {
-        ArrayList<AmenityModel> ammenities = AmmenityController.getAmenitiesByHotel(idHotel);
-        for (AmenityModel a : ammenities) {
-            listAmmenity.add(a.getName());
-        }
-    }
+
 
 }

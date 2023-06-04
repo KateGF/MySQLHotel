@@ -1,13 +1,16 @@
 package View;
 
 import Controller.AmmenityController;
+import Controller.DiscountController;
 import Controller.PaymentController;
 import Controller.ReservationController;
 import Controller.RoomController;
 import Model.AmenityModel;
+import Model.DiscountModel;
 import Model.HotelModel;
 import Model.PaymentMethod;
 import Model.ReservationXRoomModel;
+import Model.Response;
 import Model.Review;
 import Model.RoomModel;
 import Model.UserModel;
@@ -39,37 +42,39 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     HotelModel hotel;
     RoomModel room;
     ReservationXRoomModel reservationxroom;
-    
+
     ArrayList<RoomModel> rooms;
     ArrayList<PaymentMethod> payments;
+    ArrayList<DiscountModel> discounts;
     ViewHotel windowHotel;
-    
-    public ViewMakeReservation(UserModel user, HotelModel hotel,ViewHotel windowHotel) {
+
+    public ViewMakeReservation(UserModel user, HotelModel hotel, ViewHotel windowHotel) {
         initComponents();
         setLocationRelativeTo(this);
         this.user = user;
         this.hotel = hotel;
         this.windowHotel = windowHotel;
-        
+
         Date today = new Date();
         jdcFecha2.setDate(today);
-        
+
         Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
         jdcFecha.setDate(tomorrow);
         getRooms();
         getPayments();
-        
+        getDiscounts();
+
         jComboBox2.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                room = rooms.get(jComboBox2.getSelectedIndex()-1);
+                room = rooms.get(jComboBox2.getSelectedIndex() - 1);
                 list1.removeAll();
                 ArrayList<AmenityModel> amenitiesByRoom = AmmenityController.getAmenitiesByRoom(room.getIdRoom());
                 for (AmenityModel r : amenitiesByRoom) {
                     list1.addItem(r.getName());
                 }
-                Price.setText(room.getRecommendedPrice()+ "");
+                Price.setText(room.getRecommendedPrice() + "");
                 roomType.setText(room.getCategoryName());
             }
         });
@@ -81,7 +86,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
             jComboBox2.addItem(r.getName());
         }
     }
-    
+
     void getPayments() {
         payments = PaymentController.getPaymentsByHotel(hotel.getIdHotel());
         for (PaymentMethod p : payments) {
@@ -89,12 +94,18 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         }
     }
 
-    void addReservation(){
-         try{
+    void getDiscounts() {
+        discounts = DiscountController.getDiscountsHotel(hotel.getIdHotel());
+        for (DiscountModel d : discounts) {
+            list2.add(d.getCode() + " -- " + d.getExpireDate().toLocaleString());
+        }
+    }
+
+    void addReservation() {
+
         //CHECKIN
         // Obtiene la fecha seleccionada en el componente JDateChooser
         Date mFecha = jdcFecha.getDate();
-        
 
         // Almacena la fecha en una variable de tipo java.util.Date
         Date fecha = new Date(mFecha.getTime());
@@ -110,22 +121,29 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         // Realiza alguna operación con la variable fecha...
         PaymentMethod payment = payments.get(jComboBox4.getSelectedIndex());
         // ReservationController.insertReservation(hotel, room,user,payment.getIdPayment());
-        int parseDouble = Integer.parseInt( room.getRecommendedPrice()+"");
+        int parseDouble = Integer.parseInt(room.getRecommendedPrice() + "");
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        int idDiscount = 1;
-        
+        int selectedIndex = list2.getSelectedIndex();
+        int idDiscount = 0;
+        if (selectedIndex != -1) {
+            DiscountModel get = discounts.get(selectedIndex);
+            if (get != null) {
+                idDiscount = get.getIdDiscount();
+            }
+        }
+
+      
+
         reservationxroom = new ReservationXRoomModel(parseDouble,
                 fecha, fecha2, 0, room.getIdRoom(), idDiscount);
-        
-         ReservationController.insertReservation(hotel, reservationxroom,user,payment.getIdPaymentMethod());
-         this.dispose();
-         windowHotel.dispose();
-        }
-        catch (Exception e )
-        {
-            JOptionPane.showMessageDialog(this, e);
-        }
+
+        Response insertReservation = ReservationController.insertReservation(hotel, reservationxroom, user, payment.getIdPaymentMethod());
+        JOptionPane.showMessageDialog(this, insertReservation.getMessage());
+        this.dispose();
+        windowHotel.dispose();
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,7 +195,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 120, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 120, 50));
 
         jLabel4.setBackground(new java.awt.Color(240, 248, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
@@ -272,8 +290,8 @@ public class ViewMakeReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-addReservation();
-       
+        addReservation();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox2MouseClicked

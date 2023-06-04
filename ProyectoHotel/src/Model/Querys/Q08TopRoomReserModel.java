@@ -19,12 +19,12 @@ import java.util.Date;
  */
 
 // Queries that are with joins
-public class Q08TopRoomReser {
+public class Q08TopRoomReserModel {
     int idRoom;
     int idReservation;
     int totalPayRoom;
 
-    public Q08TopRoomReser(int idRoom, int idReservation, int totalPayRoom) {
+    public Q08TopRoomReserModel(int idRoom, int idReservation, int totalPayRoom) {
         this.idRoom = idRoom;
         this.idReservation = idReservation;
         this.totalPayRoom = totalPayRoom;

@@ -23,57 +23,37 @@ import java.util.Date;
 public class DiscountController {
 
    
-    public static Response insertDiscount(int star,int reserv) {
-        // Para construir una llamada parametrizada, coloque el nombre del procedimiento
-        // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call insert_review(?,?)}";
+    public static Response insertDiscount(Date expireDate,String code,Double percentage,int idHotel) {
+      
+        String statement = "{call insert_discounthotel(?,?,?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
-            // Se crea una llamada parametrizada.
+          
             CallableStatement call = DBconnection.prepareCall(statement);
-            // Se insertan los parámetros en la llamada. Note que los símbolos de pregunta
-            // están indexados (inician a partir de 1, no de 0). 
-            // Tome en cuenta que los tipos de datos que inserte aquí, deben coincidir 
-            // con los tipos de datos que recibe el procedimiento de la base de datos.
-
-            call.setInt(1, star);
-            call.setInt(2, reserv);
-
-            // Los parámetros de salida son parametros que se pueden consultar en el objeto llamada
-            // despues de ejecutar la llamada. Son útiles para retornar códigos de error o consultas.
-            // call.registerOutParameter(15, java.sql.Types.NUMERIC);
-            // Se ejecuta la llamada.
+        
+            call.setDate(1, new java.sql.Date(expireDate.getTime()));
+            call.setString(2, code);
+            call.setDouble(3, percentage);
+            call.setInt(4, idHotel);
             call = insertData(call);
 
             if (call == null) {
                 return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
             }
 
-            // Se obtiene el código de respuesta del procedimiento (para verificar si hubo algún error en la ejecución).
-            // Este código lo puede utilizar para verificar que tipo de error hubo, y así poder generar un mensaje de error
-            // claro para el usuario sobre el error que sucedió.
-            //int result_code = call.getInt(15);
-            // Se cierra la conexión con la base de datos.
-            // ES IMPORTANTE QUE SIEMPRE QUE SE ABRA UNA CONEXIÓN LA CIERRE, PUES ESTAS NO SE CIERRAN 
-            // AUTOMÁTICAMENTE. 
+       
             call.getConnection().close();
             call.close();
 
-            // Se retorna el objeto respuesta.
-            /* Para esta prueba, el código de error 0 significa que no hubo errores.
-             if (result_code != 0) {
-             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
-             }*/
-            return new Response(Response_code.SUCCESS, "Review registrado exitosamente.");
+           
+            return new Response(Response_code.SUCCESS, "Discount registrado exitosamente.");
         } catch (SQLException e) {
             System.out.println(e);
             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
         }
     }
-   
-    
-    
+     
     public static ArrayList<DiscountModel> getDiscountsHotel(int idHotel) {
         String statement = "{call getDiscountsHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
@@ -93,25 +73,25 @@ public class DiscountController {
                 while (rs.next()) {
                     int idDiscount = rs.getInt("idDiscount");
                     Date expireDate = rs.getDate("expireDate");
-                     String code = rs.getString("code");
+                    String code = rs.getString("code");
                     Double percentage = Double.parseDouble(rs.getString("percentage"));
-                    String description = rs.getString("description");
-
-                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, description, idDiscount);
+                    //String description = rs.getString("description");
+                  
+                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, "", idDiscount,idHotel);
                     discounts.add(revi);
                 }
+                
+                 call.getConnection().close();
+                call.close();
             }
 
-            call.getConnection().close();
-            call.close();
+           
 
         } catch (SQLException e) {
             System.out.println(e);
         }
         return discounts;
     }
-    
-    
     public static ArrayList<DiscountModel> getDiscounts() {
         String statement = "{call getDiscounts()}";
         Connection DBconnection = new ConnectionDB().getConnection();
@@ -133,8 +113,8 @@ public class DiscountController {
                     String code = rs.getString("code");
                     Double percentage = Double.parseDouble(rs.getString("percentage"));
                     //String description = rs.getString("description");
-
-                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, "", idDiscount);
+                    int idHotel = rs.getInt("idHotel");
+                    DiscountModel revi = new DiscountModel(expireDate, percentage, code, "", idDiscount,idHotel);
                     discounts.add(revi);
                 }
             }
@@ -166,6 +146,7 @@ public class DiscountController {
         }
     }
 
+    
     
     
 }

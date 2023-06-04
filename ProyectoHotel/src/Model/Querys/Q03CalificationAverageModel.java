@@ -19,14 +19,14 @@ import java.util.Date;
  */
 
 // Queries that are with joins
-public class Q03CalificationAverage {
+public class Q03CalificationAverageModel {
     String name;
     String lastName;
     Date checkIn;
     Date checkOut;
     String comments;
 
-    public Q03CalificationAverage(String name, String lastName, Date checkIn, Date checkOut, String comments) {
+    public Q03CalificationAverageModel(String name, String lastName, Date checkIn, Date checkOut, String comments) {
         this.name = name;
         this.lastName = lastName;
         this.checkIn = checkIn;

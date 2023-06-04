@@ -4,19 +4,49 @@
  */
 package View.Admin.Queries;
 
+import Controller.QueriesController;
+import Model.AmenityModel;
+import Model.Querys.Q02OfferByHotelModel;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
  * @author josep
  */
-public class Query02Offer extends javax.swing.JFrame {
+public class Query02OfferView extends javax.swing.JFrame {
 
     /**
      * Creates new form offers
      */
-    public Query02Offer() {
+    public Query02OfferView() {
         initComponents();
+        setLocationRelativeTo(this);
+    }
+    
+    int idHotel;
+    
+ public Query02OfferView(int idHotel) {
+        initComponents();
+        setLocationRelativeTo(this);
+        this.idHotel = idHotel;
+        jLabel4.setText(idHotel + "");
+        callQuery(idHotel);
     }
 
+ 
+ void callQuery(int idHotel){
+     
+     //String code = NameBox.getSelectedItem().toString();
+     //Date date1 = start.getDate();
+     //Date date2 = finish.getDate();
+     ArrayList<Q02OfferByHotelModel> offerByHotel = QueriesController.offerByHotel(idHotel);
+      
+      for (Q02OfferByHotelModel a : offerByHotel) {
+            listOffers.add(a.getCode() +  "Total : " + a .getTotalAmountOffer());
+        }
+ 
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,11 +65,12 @@ public class Query02Offer extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        start = new com.toedter.calendar.JDateChooser();
+        finish = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        listCountry = new java.awt.List();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        listOffers = new java.awt.List();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -90,16 +121,8 @@ public class Query02Offer extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, -1, -1));
-
-        jButton14.setText("OK");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-        jPanel2.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        jPanel2.add(start, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        jPanel2.add(finish, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(240, 248, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -107,10 +130,26 @@ public class Query02Offer extends javax.swing.JFrame {
         jLabel4.setText("FILTER");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, -1));
 
-        listCountry.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        listCountry.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton15.setText("OK");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+
+        jButton16.setText("OK");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+
+        listOffers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        listOffers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listCountryMouseClicked(evt);
+                listOffersMouseClicked(evt);
             }
         });
 
@@ -171,7 +210,7 @@ public class Query02Offer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
-                        .addComponent(listCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(listOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -190,7 +229,7 @@ public class Query02Offer extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(listCountry, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(listOffers, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70))))
         );
 
@@ -217,13 +256,19 @@ public class Query02Offer extends javax.swing.JFrame {
 //        statePress();
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-//        cantonPress();
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void listCountryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listCountryMouseClicked
+    private void listOffersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listOffersMouseClicked
 //        countryBoxPress();
-    }//GEN-LAST:event_listCountryMouseClicked
+    }//GEN-LAST:event_listOffersMouseClicked
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,33 +287,35 @@ public class Query02Offer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Query02Offer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query02OfferView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Query02Offer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query02OfferView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Query02Offer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query02OfferView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Query02Offer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query02OfferView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Query02Offer().setVisible(true);
+                new Query02OfferView(4).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox NameBox;
+    private com.toedter.calendar.JDateChooser finish;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel38;
@@ -280,6 +327,7 @@ public class Query02Offer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private java.awt.List listCountry;
+    private java.awt.List listOffers;
+    private com.toedter.calendar.JDateChooser start;
     // End of variables declaration//GEN-END:variables
 }

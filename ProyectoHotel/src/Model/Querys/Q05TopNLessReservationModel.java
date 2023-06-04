@@ -19,21 +19,21 @@ import java.util.Date;
  */
 
 // Queries that are with joins
-public class Q04TopNMoreReservation {
-    int numMaxReservations;
+public class Q05TopNLessReservationModel {
+     int numLessReservations;
     Date date;
 
-    public Q04TopNMoreReservation(int numReservations, Date date) {
-        this.numMaxReservations = numReservations;
+    public Q05TopNLessReservationModel(int numLessReservations, Date date) {
+        this.numLessReservations = numLessReservations;
         this.date = date;
     }
 
-    public int getNumReservations() {
-        return numMaxReservations;
+    public int getNumLessReservations() {
+        return numLessReservations;
     }
 
-    public void setNumReservations(int numReservations) {
-        this.numMaxReservations = numReservations;
+    public void setNumLessReservations(int numLessReservations) {
+        this.numLessReservations = numLessReservations;
     }
 
     public Date getDate() {
@@ -44,5 +44,5 @@ public class Q04TopNMoreReservation {
         this.date = date;
     }
 
-   
+    
 }
