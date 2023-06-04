@@ -21,19 +21,28 @@ import java.util.Date;
 // Queries that are with joins
 public class Q06TotalHotelModel {
     int totalRooms;
+    int totalReserv;
     int totalPaid;
     String hotelName;
     int idHotel;
-    Date registerDate;
 
-    public Q06TotalHotelModel(int totalRooms, int totalPaid, String hotelName, int idHotel, Date registerDate) {
+    public Q06TotalHotelModel(int totalRooms, int totalPaid, String hotelName, int reservations) {
         this.totalRooms = totalRooms;
         this.totalPaid = totalPaid;
         this.hotelName = hotelName;
-        this.idHotel = idHotel;
-        this.registerDate = registerDate;
+        this.totalReserv = reservations;
+
     }
 
+    public int getTotalReserv() {
+        return totalReserv;
+    }
+
+    public void setTotalReserv(int totalReserv) {
+        this.totalReserv = totalReserv;
+    }
+
+    
     public int getTotalRooms() {
         return totalRooms;
     }
@@ -58,21 +67,7 @@ public class Q06TotalHotelModel {
         this.hotelName = hotelName;
     }
 
-    public int getIdHotel() {
-        return idHotel;
-    }
 
-    public void setIdHotel(int idHotel) {
-        this.idHotel = idHotel;
-    }
-
-    public Date getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
-    }
     
     
     
