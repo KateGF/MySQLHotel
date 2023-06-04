@@ -20,84 +20,60 @@ import java.util.Date;
 
 // Queries that are with joins
 public class Q02OfferByHotel {
-    String name;
-    String lastName;
-    int id;
-    Date checkIn;
-    Date checkOut;
-    int room;
-    String country;
-    int payment;
+    String offerName;
+    Date startDate;
+    Date finishDate;
+    String Description;
+    int totalAmountOffer;
 
-    public Q02OfferByHotel(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
-        this.name = name;
-        this.id = id;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.room = room;
-        this.country = country;
-        this.payment = payment;
-    }
-    
-
-    public String getName() {
-        return name;
+    public Q02OfferByHotel(String offerName, Date startDate, Date finishDate, String Description, int totalAmountOffer) {
+        this.offerName = offerName;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.Description = Description;
+        this.totalAmountOffer = totalAmountOffer;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getOfferName() {
+        return offerName;
     }
 
-    public int getId() {
-        return id;
+    public void setOfferName(String offerName) {
+        this.offerName = offerName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public Date getCheckIn() {
-        return checkIn;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
+    public Date getFinishDate() {
+        return finishDate;
     }
 
-    public Date getCheckOut() {
-        return checkOut;
+    public void setFinishDate(Date finishDate) {
+        this.finishDate = finishDate;
     }
 
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
+    public String getDescription() {
+        return Description;
     }
 
-    public int getRoom() {
-        return room;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
-    public void setRoom(int room) {
-        this.room = room;
+    public int getTotalAmountOffer() {
+        return totalAmountOffer;
     }
 
-    public String getCountry() {
-        return country;
+    public void setTotalAmountOffer(int totalAmountOffer) {
+        this.totalAmountOffer = totalAmountOffer;
     }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getPayment() {
-        return payment;
-    }
-
-    public void setPayment(int payment) {
-        this.payment = payment;
-    }
-    
-    
-    
+ 
     
     
 }

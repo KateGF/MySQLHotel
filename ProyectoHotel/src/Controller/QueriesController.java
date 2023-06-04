@@ -35,8 +35,11 @@ public class QueriesController {
                 ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
+                  
                     String name = rs.getString("name");
                     int idX = rs.getInt("idState");
+                    
+                    
                     Location location = new Location();
                     location.setName(name);
                     location.setID(idX);

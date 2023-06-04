@@ -22,23 +22,17 @@ import java.util.Date;
 public class Q03CalificationAverage {
     String name;
     String lastName;
-    int id;
     Date checkIn;
     Date checkOut;
-    int room;
-    String country;
-    int payment;
+    String comments;
 
-    public Q03CalificationAverage(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
+    public Q03CalificationAverage(String name, String lastName, Date checkIn, Date checkOut, String comments) {
         this.name = name;
-        this.id = id;
+        this.lastName = lastName;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.room = room;
-        this.country = country;
-        this.payment = payment;
+        this.comments = comments;
     }
-    
 
     public String getName() {
         return name;
@@ -48,12 +42,12 @@ public class Q03CalificationAverage {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getCheckIn() {
@@ -72,32 +66,13 @@ public class Q03CalificationAverage {
         this.checkOut = checkOut;
     }
 
-    public int getRoom() {
-        return room;
+    public String getComments() {
+        return comments;
     }
 
-    public void setRoom(int room) {
-        this.room = room;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getPayment() {
-        return payment;
-    }
-
-    public void setPayment(int payment) {
-        this.payment = payment;
-    }
-    
-    
-    
-    
-    
+   
 }

@@ -20,84 +20,61 @@ import java.util.Date;
 
 // Queries that are with joins
 public class Q06TotalHotel {
-    String name;
-    String lastName;
-    int id;
-    Date checkIn;
-    Date checkOut;
-    int room;
-    String country;
-    int payment;
+    int totalRooms;
+    int totalPaid;
+    String hotelName;
+    int idHotel;
+    Date registerDate;
 
-    public Q06TotalHotel(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
-        this.name = name;
-        this.id = id;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.room = room;
-        this.country = country;
-        this.payment = payment;
-    }
-    
-
-    public String getName() {
-        return name;
+    public Q06TotalHotel(int totalRooms, int totalPaid, String hotelName, int idHotel, Date registerDate) {
+        this.totalRooms = totalRooms;
+        this.totalPaid = totalPaid;
+        this.hotelName = hotelName;
+        this.idHotel = idHotel;
+        this.registerDate = registerDate;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getTotalRooms() {
+        return totalRooms;
     }
 
-    public int getId() {
-        return id;
+    public void setTotalRooms(int totalRooms) {
+        this.totalRooms = totalRooms;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getTotalPaid() {
+        return totalPaid;
     }
 
-    public Date getCheckIn() {
-        return checkIn;
+    public void setTotalPaid(int totalPaid) {
+        this.totalPaid = totalPaid;
     }
 
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
+    public String getHotelName() {
+        return hotelName;
     }
 
-    public Date getCheckOut() {
-        return checkOut;
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
+    public int getIdHotel() {
+        return idHotel;
     }
 
-    public int getRoom() {
-        return room;
+    public void setIdHotel(int idHotel) {
+        this.idHotel = idHotel;
     }
 
-    public void setRoom(int room) {
-        this.room = room;
+    public Date getRegisterDate() {
+        return registerDate;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getPayment() {
-        return payment;
-    }
-
-    public void setPayment(int payment) {
-        this.payment = payment;
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
     }
     
     
     
-    
-    
+
 }

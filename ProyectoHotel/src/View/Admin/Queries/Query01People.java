@@ -5,6 +5,8 @@
  */
 package View.Admin.Queries;
 
+import Controller.QueriesController;
+
 /**
  *
  * @author guzka
@@ -1085,7 +1087,7 @@ public class Query01People extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -1135,6 +1137,6 @@ public class Query01People extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadPeople(int idHotel) {
- 
+        QueriesController.peopleByHotel(idHotel);
     }
 }

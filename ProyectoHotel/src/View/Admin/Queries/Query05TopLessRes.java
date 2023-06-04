@@ -41,7 +41,7 @@ public class Query05TopLessRes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Listado de personas hospedadas por hotel en el tiempo.");
+        jLabel1.setText("Consultas: e) Listado del top N de los días con menores reservas concretadas. ");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

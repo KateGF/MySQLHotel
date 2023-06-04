@@ -4,6 +4,7 @@
  */
 package View.Master;
 
+import View.Admin.Queries.Query02Offer;
 import View.Admin.*;
 import Controller.AmmenityController;
 import Model.AmenityModel;
@@ -1024,7 +1025,7 @@ public class master extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         
-        offers newframe51470 = new offers();
+        Query02Offer newframe51470 = new Query02Offer();
         newframe51470.setVisible(true);
         
         

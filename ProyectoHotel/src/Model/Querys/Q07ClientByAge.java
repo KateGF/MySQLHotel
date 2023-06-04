@@ -20,83 +20,39 @@ import java.util.Date;
 
 // Queries that are with joins
 public class Q07ClientByAge {
-    String name;
-    String lastName;
-    int id;
-    Date checkIn;
-    Date checkOut;
-    int room;
-    String country;
-    int payment;
+    int totalClients;
+    int idGender;
+    String nameGender;
 
-    public Q07ClientByAge(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
-        this.name = name;
-        this.id = id;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.room = room;
-        this.country = country;
-        this.payment = payment;
-    }
-    
-
-    public String getName() {
-        return name;
+    public Q07ClientByAge(int totalClients, int idGender, String nameGender) {
+        this.totalClients = totalClients;
+        this.idGender = idGender;
+        this.nameGender = nameGender;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getTotalClients() {
+        return totalClients;
     }
 
-    public int getId() {
-        return id;
+    public void setTotalClients(int totalClients) {
+        this.totalClients = totalClients;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdGender() {
+        return idGender;
     }
 
-    public Date getCheckIn() {
-        return checkIn;
+    public void setIdGender(int idGender) {
+        this.idGender = idGender;
     }
 
-    public void setCheckIn(Date checkIn) {
-        this.checkIn = checkIn;
+    public String getNameGender() {
+        return nameGender;
     }
 
-    public Date getCheckOut() {
-        return checkOut;
+    public void setNameGender(String nameGender) {
+        this.nameGender = nameGender;
     }
-
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
-    }
-
-    public int getRoom() {
-        return room;
-    }
-
-    public void setRoom(int room) {
-        this.room = room;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getPayment() {
-        return payment;
-    }
-
-    public void setPayment(int payment) {
-        this.payment = payment;
-    }
-    
-    
     
     
     
