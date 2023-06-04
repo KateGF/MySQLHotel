@@ -11,6 +11,7 @@ import Model.HotelModel;
 import Model.Location.Location;
 import Model.Querys.Q01PeopleByHotelModel;
 import Model.Querys.Q02OfferByHotelModel;
+import Model.Querys.Q06TotalHotelModel;
 import Model.Response;
 import Model.UserModel;
 import java.sql.CallableStatement;
@@ -222,7 +223,7 @@ public class QueriesController {
         return offers;
     }
 
-    
+    // FALTA
     public static ArrayList<Location> calificationAv(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -255,7 +256,7 @@ public class QueriesController {
         }
         return locations;
     }
-
+    // FALTA
     public static ArrayList<Location> topNMoreRes(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -288,7 +289,7 @@ public class QueriesController {
         }
         return locations;
     }
-
+    // FALTA
     public static ArrayList<Location> topNLessRes(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -322,26 +323,31 @@ public class QueriesController {
         return locations;
     }
 
-     public static ArrayList<Location> totalHotel(int idHotel) {
-        ArrayList<Location> locations = new ArrayList<>();
-        String statement = "{call getPeopleByHotel(?)}";
+     public static ArrayList<Q06TotalHotelModel> totalHotel(int idHotel) {
+        ArrayList<Q06TotalHotelModel> totalHotel = new ArrayList<>();
+        
+        String statement = "{call getRoomsReservfromHotelAll()}"; 
+       
+        
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-            call.setInt(1, idHotel);
+
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
-                    String name = rs.getString("name");
-                    int idX = rs.getInt("idState");
-                    Location location = new Location();
-                    location.setName(name);
-                    location.setID(idX);
-                    locations.add(location);
+                    String name = rs.getString("Name");
+                    int rooms = rs.getInt("rooms");
+                    int reserv = rs.getInt("reservations");
+                    int sumR = rs.getInt("sum");
+                      
+                    Q06TotalHotelModel totalReserv = new Q06TotalHotelModel(rooms, sumR, name, reserv);
+                    totalHotel.add(totalReserv);
+
                 }
             }
 
@@ -352,9 +358,11 @@ public class QueriesController {
             System.out.println(e);
 
         }
-        return locations;
+        return totalHotel;
     }
 
+     
+     // FALTA
      public static ArrayList<Location> clientByAge(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -387,7 +395,8 @@ public class QueriesController {
         }
         return locations;
     }
-
+     
+     // FALTA
       public static ArrayList<Location> topRoomReserv(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
