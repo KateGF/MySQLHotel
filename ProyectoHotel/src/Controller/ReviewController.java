@@ -6,17 +6,13 @@
 package Controller;
 
 import Constants.Response_code;
-import Model.HotelModel;
 import Model.Response;
 import Model.Review;
-import View.ViewMakeReservation;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import oracle.jdbc.internal.OracleTypes;
 
 /**
  *

@@ -17,7 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import oracle.jdbc.internal.OracleTypes;
+//import oracle.jdbc.internal.OracleTypes;
 
 /**
  *
@@ -202,7 +202,7 @@ public class AmmenityController {
       public static ArrayList<AmenityModel> getAmenitiesByRoom(int idIDRoom) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getAmenitiesByRoom(?,?)}";
+        String statement = "{call getAmenitiesByRoom(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<AmenityModel> amenities = new ArrayList<>();
         try {
@@ -211,13 +211,13 @@ public class AmmenityController {
             CallableStatement call = DBconnection.prepareCall(statement);
             
             call.setInt(1, idIDRoom);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
+      //      call.registerOutParameter(2, OracleTypes.CURSOR);
 
             call = queryData(call);
 
            if (call != null) {
 
-                ResultSet rs = (ResultSet) call.getObject(2);
+                ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
                 
