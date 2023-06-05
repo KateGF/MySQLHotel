@@ -18,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import oracle.jdbc.internal.OracleTypes;
 
 /**
  *
@@ -111,7 +110,6 @@ public class ReservationController {
             CallableStatement call = DBconnection.prepareCall(statement);
 
             call.setInt(1, idUser);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
 
             call = queryData(call);
 
