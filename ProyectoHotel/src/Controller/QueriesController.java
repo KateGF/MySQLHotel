@@ -398,9 +398,7 @@ public class QueriesController {
         return ageRange;
     }
      
-     
-     
-     
+    
      
      public static ArrayList<Q07ClientByAgeModel> clientByAgeGender(int age1, int age2, String gender) {
         ArrayList<Q07ClientByAgeModel> ageGenderAll = new ArrayList<>();
