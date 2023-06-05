@@ -4,19 +4,49 @@
  */
 package View.Admin.Queries;
 
+import Controller.QueriesController;
+import Model.Querys.Q01PeopleByHotelModel;
+import Model.Querys.Q06TotalHotelModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author josep
  */
-public class Query01People extends javax.swing.JFrame {
+public class Query01PeopleView extends javax.swing.JFrame {
 
     /**
      * Creates new form People
      */
-    public Query01People() {
+    public Query01PeopleView() {
         initComponents();
+        setLocationRelativeTo(this);
+//        callQuery();
     }
 
+    
+    int idHotel = 0;
+    /*String orderBy;
+    void callQuery(){
+     
+     //String code = NameBox.getSelectedItem().toString();
+     //Date date1 = start.getDate();
+     //Date date2 = finish.getDate();
+     ArrayList<Q01PeopleByHotelModel> peopleByHotel = QueriesController.peoplePerHotel(WIDTH, ordenBy);
+      
+    int row = 0;
+      for (Q01PeopleByHotelModel a : peopleByHotel) {
+         //   hotelList.add("Hotel: " + a.getHotelName() +  " - Num Rooms : " + a.getTotalRooms() + " - Num Reservations : " + a.getTotalReserv() + " -Total Paid : " + a.getTotalPaid());
+       peopleTable.setValueAt(a.getHotelName(), row, 0);
+       peopleTable.setValueAt(a.getTotalRooms(), row, 1);
+       peopleTable.setValueAt(a.getTotalReserv(), row, 2);
+       peopleTable.setValueAt(a.getTotalPaid(), row, 3);
+      row++;
+      }
+ 
+ }*/
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,12 +65,13 @@ public class Query01People extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        peopleTable = new javax.swing.JTable();
         jLabel42 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(50, 70, 80));
 
@@ -105,18 +136,18 @@ public class Query01People extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        peopleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "First Name", "MiddleName", "LastName", "Second Surname", "ID", "Check In", "Check Out", "Room", "Country", "Total Paid"
+                "First Name", "LastName", "ID", "Check In", "Check Out", "Room", "Country", "Total Paid"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(peopleTable);
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/images/icons/Tag-26.png"))); // NOI18N
 
@@ -125,7 +156,7 @@ public class Query01People extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Hotel :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,21 +239,23 @@ public class Query01People extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Query01People.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query01PeopleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Query01People.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query01PeopleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Query01People.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query01PeopleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Query01People.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Query01PeopleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Query01People().setVisible(true);
+                new Query01PeopleView().setVisible(true);
             }
         });
     }
@@ -240,6 +273,6 @@ public class Query01People extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable peopleTable;
     // End of variables declaration//GEN-END:variables
 }

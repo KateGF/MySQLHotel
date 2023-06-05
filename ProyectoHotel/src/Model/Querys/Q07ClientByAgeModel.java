@@ -20,30 +20,31 @@ import java.util.Date;
 
 // Queries that are with joins
 public class Q07ClientByAgeModel {
-    int totalClients;
-    int idGender;
+    String range;
+    int total;
     String nameGender;
 
-    public Q07ClientByAgeModel(int totalClients, int idGender, String nameGender) {
-        this.totalClients = totalClients;
-        this.idGender = idGender;
+    public Q07ClientByAgeModel(String range, int total, String nameGender) {
+        this.range = range;
+        this.total = total;
         this.nameGender = nameGender;
     }
 
-    public int getTotalClients() {
-        return totalClients;
+   
+    public String getRange() {
+        return range;
     }
 
-    public void setTotalClients(int totalClients) {
-        this.totalClients = totalClients;
+    public void setRange(String range) {
+        this.range = range;
     }
 
-    public int getIdGender() {
-        return idGender;
+    public int getTotal() {
+        return total;
     }
 
-    public void setIdGender(int idGender) {
-        this.idGender = idGender;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public String getNameGender() {
@@ -53,7 +54,11 @@ public class Q07ClientByAgeModel {
     public void setNameGender(String nameGender) {
         this.nameGender = nameGender;
     }
-    
-    
+
+    public Q07ClientByAgeModel(String range, int total) {
+        this.range = range;
+        this.total = total;
+    }
+
     
 }
