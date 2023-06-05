@@ -70,12 +70,14 @@ public class ViewMakeReservation extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent ae) {
                 room = rooms.get(jComboBox2.getSelectedIndex() - 1);
                 list1.removeAll();
+             
                 ArrayList<AmenityModel> amenitiesByRoom = AmmenityController.getAmenitiesByRoom(room.getIdRoom());
                 for (AmenityModel r : amenitiesByRoom) {
-                    list1.addItem(r.getName());
+                    list1.add(r.getName());
                 }
                 Price.setText(room.getRecommendedPrice() + "");
                 roomType.setText(room.getCategoryName());
+                //loadAmenitiesByRoom();
             }
         });
     }
@@ -86,6 +88,8 @@ public class ViewMakeReservation extends javax.swing.JFrame {
             jComboBox2.addItem(r.getName());
         }
     }
+    
+    
 
     void getPayments() {
         payments = PaymentController.getPaymentsByHotel(hotel.getIdHotel());
@@ -173,7 +177,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         roomType = new javax.swing.JTextField();
         list2 = new java.awt.List();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<String>();
+        jComboBox4 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
@@ -236,6 +240,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         list1.setBackground(new java.awt.Color(102, 102, 102));
+        list1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 160, 170));
 
         jLabel12.setBackground(new java.awt.Color(240, 248, 255));

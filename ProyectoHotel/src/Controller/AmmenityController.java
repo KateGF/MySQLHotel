@@ -27,7 +27,7 @@ public class AmmenityController {
     
     
    
-    public static Response insertAmmenity(  int idAmenity, int idHotel) {
+    public static Response insertHotelAmmenity(  int idAmenity, int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call insert_AmenityHotel(?,?)}";
@@ -57,6 +57,38 @@ public class AmmenityController {
             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
         }
     }
+    
+    public static Response insertRoomAmmenity(  int idAmenity, int idRoom) {
+        // Para construir una llamada parametrizada, coloque el nombre del procedimiento
+        // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
+        String statement = "{call insert_AmenityxRoom(?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+        
+            call.setInt(1, idAmenity);
+            call.setInt(2, idRoom);
+
+            call = insertData(call);
+
+            if (call == null) {
+                return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+            }
+
+           
+            call.getConnection().close();
+            call.close();
+
+           
+            return new Response(Response_code.SUCCESS, "Amenity registrada exitosamente.");
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+        }
+    }
+    
     
     public static Response removeAmmenity(  int idAmm, int idHotel) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
