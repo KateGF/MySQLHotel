@@ -12,6 +12,7 @@ import Model.Location.Location;
 import Model.Querys.Q01PeopleByHotelModel;
 import Model.Querys.Q02OfferByHotelModel;
 import Model.Querys.Q06TotalHotelModel;
+import Model.Querys.Q07ClientByAgeModel;
 import Model.Response;
 import Model.UserModel;
 import java.sql.CallableStatement;
@@ -27,7 +28,7 @@ import java.util.Date;
  */
 public class QueriesController {
 
-    
+    // FALTA ***************************************
     public static ArrayList<UserModel> peoplePerHotel(int idHotel, String ordenBy) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
@@ -85,6 +86,7 @@ public class QueriesController {
         return users;
     }
 
+     // QUERY 02
     public static ArrayList<Q02OfferByHotelModel> offerByHotel(int idHotel ) {
         ArrayList<Q02OfferByHotelModel> offers = new ArrayList<>();
         
@@ -172,7 +174,7 @@ public class QueriesController {
         }
         return offers;
     }
-
+   
     public static ArrayList<Q02OfferByHotelModel> offerByHotelCode(int idHotel, Date d1, Date d2, String ccode ) {
         ArrayList<Q02OfferByHotelModel> offers = new ArrayList<>();
         String statement;
@@ -223,7 +225,7 @@ public class QueriesController {
         return offers;
     }
 
-    // FALTA
+    // FALTA ***************************************
     public static ArrayList<Location> calificationAv(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -256,7 +258,7 @@ public class QueriesController {
         }
         return locations;
     }
-    // FALTA
+    // FALTA ***************************************
     public static ArrayList<Location> topNMoreRes(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -289,7 +291,7 @@ public class QueriesController {
         }
         return locations;
     }
-    // FALTA
+    // FALTA ***************************************
     public static ArrayList<Location> topNLessRes(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";
@@ -322,7 +324,7 @@ public class QueriesController {
         }
         return locations;
     }
-
+    // QUERY 06
      public static ArrayList<Q06TotalHotelModel> totalHotel() {
         ArrayList<Q06TotalHotelModel> totalHotel = new ArrayList<>();
         
@@ -361,28 +363,28 @@ public class QueriesController {
         return totalHotel;
     }
 
-     
-     // FALTA
-     public static ArrayList<Location> clientByAge(int idHotel) {
-        ArrayList<Location> locations = new ArrayList<>();
-        String statement = "{call getPeopleByHotel(?)}";
+  
+     // QUERY 07
+     public static ArrayList<Q07ClientByAgeModel> clientByAgeRange(int age1, int age2) {
+        ArrayList<Q07ClientByAgeModel> ageRange = new ArrayList<>();
+        String statement = "{call userByAgeRange(?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
-            call.setInt(1, idHotel);
+            call.setInt(1, age1);
+            call.setInt(2, age2);
+            
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
-                    String name = rs.getString("name");
-                    int idX = rs.getInt("idState");
-                    Location location = new Location();
-                    location.setName(name);
-                    location.setID(idX);
-                    locations.add(location);
+                    int total = rs.getInt("totalUsers");
+ 
+                    Q07ClientByAgeModel ageRangeU = new Q07ClientByAgeModel(age1+"-"+age2, total);
+                    ageRange.add(ageRangeU);
                 }
             }
 
@@ -393,10 +395,51 @@ public class QueriesController {
             System.out.println(e);
 
         }
-        return locations;
+        return ageRange;
     }
      
-     // FALTA
+     
+     
+     
+     
+     public static ArrayList<Q07ClientByAgeModel> clientByAgeGender(int age1, int age2, String gender) {
+        ArrayList<Q07ClientByAgeModel> ageGenderAll = new ArrayList<>();
+        String statement = "{call userByAgeRange(?,?,?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setInt(1, age1);
+            call.setInt(2, age2);
+            call.setString(2, gender);
+            
+            call = queryData(call);
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                    String genderType = rs.getString("Type");
+                    int total = rs.getInt("totalUsers");
+ 
+                    Q07ClientByAgeModel ageRange = new Q07ClientByAgeModel(age1+"-"+age2, total, genderType);
+                    ageGenderAll.add(ageRange);
+                }
+            }
+
+            call.getConnection().close();
+            call.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return ageGenderAll;
+    }
+     
+   
+     
+     // FALTA ***************************************
       public static ArrayList<Location> topRoomReserv(int idHotel) {
         ArrayList<Location> locations = new ArrayList<>();
         String statement = "{call getPeopleByHotel(?)}";

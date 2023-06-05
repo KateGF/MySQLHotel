@@ -12,6 +12,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import oracle.jdbc.internal.OracleTypes;
 
 /**
  *
@@ -122,7 +123,7 @@ public class ReservationXRoomController {
 
             CallableStatement call = DBconnection.prepareCall(statement);
             call.setString(1, username);
-            //call.registerOutParameter(2, OracleTypes.CURSOR);
+            call.registerOutParameter(2, OracleTypes.CURSOR);
             call = queryData(call);
 
             if (call != null) {

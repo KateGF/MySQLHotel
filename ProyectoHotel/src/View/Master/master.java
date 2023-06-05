@@ -78,24 +78,16 @@ public class master extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        parameter1 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        inquieriess = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        delete = new javax.swing.JLabel();
+        inquieriess = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        parameter1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         PanelDeleteHotel = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        reserva3 = new javax.swing.JLabel();
-        reserva4 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
         PanelParameters = new javax.swing.JPanel();
         PanelCreateHotel = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
@@ -123,7 +115,6 @@ public class master extends javax.swing.JFrame {
         roomw7 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        list2 = new java.awt.List();
         realPanelconsultations = new javax.swing.JPanel();
         jPanel59 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -138,6 +129,7 @@ public class master extends javax.swing.JFrame {
         book3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(184, 210, 222));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,19 +157,19 @@ public class master extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addGap(27, 27, 27)
+                .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
+                .addGap(0, 14, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
+                    .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         sidepanel.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 270, 40));
@@ -257,42 +249,24 @@ public class master extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(50, 70, 80));
         jPanel10.setPreferredSize(new java.awt.Dimension(176, 25));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Sleep-01-26.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-
-        parameter1.setBackground(new java.awt.Color(0, 0, 0));
-        parameter1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        parameter1.setForeground(new java.awt.Color(255, 255, 255));
-        parameter1.setText("        Parameters");
-        parameter1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                parameter1MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(parameter1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
+            .addGap(0, 270, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 4, Short.MAX_VALUE))
-            .addComponent(parameter1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
         sidepanel.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 270, 30));
 
         jPanel12.setBackground(new java.awt.Color(65, 65, 65));
         jPanel12.setPreferredSize(new java.awt.Dimension(176, 25));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Restaurant-26.png"))); // NOI18N
+        jLabel5.setText("jLabel2");
 
         inquieriess.setBackground(new java.awt.Color(27, 74, 97));
         inquieriess.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -306,15 +280,12 @@ public class master extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Restaurant-26.png"))); // NOI18N
-        jLabel5.setText("jLabel2");
-
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(inquieriess, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,46 +293,14 @@ public class master extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inquieriess, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(inquieriess, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         sidepanel.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 270, 40));
-
-        jPanel11.setBackground(new java.awt.Color(65, 65, 65));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Ticket-26.png"))); // NOI18N
-        jLabel4.setText("jLabel4");
-
-        delete.setBackground(new java.awt.Color(65, 65, 65));
-        delete.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        delete.setForeground(new java.awt.Color(255, 255, 255));
-        delete.setText("Delete Hotel");
-        delete.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                deleteMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addComponent(delete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        sidepanel.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 40));
 
         jLabel8.setBackground(new java.awt.Color(44, 120, 156));
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -372,6 +311,21 @@ public class master extends javax.swing.JFrame {
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/sinfondo (1).png"))); // NOI18N
         jLabel17.setText("jLabel17");
         sidepanel.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 120, 70));
+
+        parameter1.setBackground(new java.awt.Color(0, 0, 0));
+        parameter1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        parameter1.setForeground(new java.awt.Color(255, 255, 255));
+        parameter1.setText("        Parameters");
+        parameter1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                parameter1MouseClicked(evt);
+            }
+        });
+        sidepanel.add(parameter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 184, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/icons/Sleep-01-26.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        sidepanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 34, -1));
 
         jPanel1.add(sidepanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 570));
 
@@ -394,81 +348,15 @@ public class master extends javax.swing.JFrame {
 
         PanelDeleteHotel.setBackground(new java.awt.Color(255, 255, 225));
 
-        jPanel4.setBackground(new java.awt.Color(50, 70, 80));
-
-        reserva3.setBackground(new java.awt.Color(65, 65, 65));
-        reserva3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        reserva3.setForeground(new java.awt.Color(255, 255, 255));
-        reserva3.setText("Hotel :");
-        reserva3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reserva3MouseClicked(evt);
-            }
-        });
-
-        reserva4.setBackground(new java.awt.Color(65, 65, 65));
-        reserva4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        reserva4.setForeground(new java.awt.Color(255, 255, 255));
-        reserva4.setText("DELETE HOTEL");
-        reserva4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                reserva4MouseClicked(evt);
-            }
-        });
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton2.setText("jButton2");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(reserva3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(reserva4)))
-                .addContainerGap(208, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(reserva4)
-                .addGap(44, 44, 44)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reserva3)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout PanelDeleteHotelLayout = new javax.swing.GroupLayout(PanelDeleteHotel);
         PanelDeleteHotel.setLayout(PanelDeleteHotelLayout);
         PanelDeleteHotelLayout.setHorizontalGroup(
             PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelDeleteHotelLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+            .addGap(0, 690, Short.MAX_VALUE)
         );
         PanelDeleteHotelLayout.setVerticalGroup(
             PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelDeleteHotelLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+            .addGap(0, 510, Short.MAX_VALUE)
         );
 
         jPanel3.add(PanelDeleteHotel, "card3");
@@ -652,20 +540,6 @@ public class master extends javax.swing.JFrame {
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel16.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 140, -1));
         jPanel16.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 150, 40));
-
-        list2.setBackground(new java.awt.Color(255, 255, 225));
-        list2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        list2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                list2MouseClicked(evt);
-            }
-        });
-        list2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                list2ActionPerformed(evt);
-            }
-        });
-        jPanel16.add(list2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 530, 160));
 
         jPanel15.add(jPanel16, java.awt.BorderLayout.CENTER);
 
@@ -870,7 +744,7 @@ public class master extends javax.swing.JFrame {
         
         
         
-        delete.setBackground(new  java.awt.Color(34 ,45,49));
+//        delete.setBackground(new  java.awt.Color(34 ,45,49));
         PanelDeleteHotel.setVisible(false);
         
         
@@ -887,32 +761,6 @@ public class master extends javax.swing.JFrame {
         
     }//GEN-LAST:event_inquieriessMouseClicked
 
-    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
-        inquieriess.setBackground(new  java.awt.Color(34 ,45,49));
-        realPanelconsultations.setVisible(false); 
-        
-        
-        
-        
-        delete.setBackground(new  java.awt.Color(44 , 59 , 66));
-        PanelDeleteHotel.setVisible(true);
-        
-        
-        
-        admin.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelParameters.setVisible(false);
-        
-        jLabel7.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelCreateHotel.setVisible(false);
-        
-        inquieriess.setBackground(new  java.awt.Color(34 ,45,49));
-        realPanelconsultations.setVisible(false);
-        
-        admin.setBackground(new  java.awt.Color(34 ,45,49));
-        PanelAdmin.setVisible(false);
-        
-    }//GEN-LAST:event_deleteMouseClicked
-
     private void adminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminMouseClicked
              inquieriess.setBackground(new  java.awt.Color(34 ,45,49));
         realPanelconsultations.setVisible(false); 
@@ -920,7 +768,7 @@ public class master extends javax.swing.JFrame {
         
         
         
-        delete.setBackground(new  java.awt.Color(34 ,45,49));
+//        delete.setBackground(new  java.awt.Color(34 ,45,49));
         PanelDeleteHotel.setVisible(false);
         
         
@@ -961,7 +809,7 @@ public class master extends javax.swing.JFrame {
         
         
         
-        delete.setBackground(new  java.awt.Color(34 ,45,49));
+//        delete.setBackground(new  java.awt.Color(34 ,45,49));
         PanelDeleteHotel.setVisible(false); 
         
         
@@ -1014,14 +862,6 @@ public class master extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_roomw7MouseClicked
 
-    private void reserva3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reserva3MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reserva3MouseClicked
-
-    private void reserva4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reserva4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reserva4MouseClicked
-
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         
@@ -1048,14 +888,6 @@ public class master extends javax.swing.JFrame {
         tophotel newframe5149 = new tophotel();
         newframe5149.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void list2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_list2MouseClicked
-
-    private void list2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_list2ActionPerformed
 
     private void parameter1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameter1MouseClicked
         Parameters newframe112 = new Parameters();
@@ -1118,10 +950,8 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JLabel admin;
     private javax.swing.JButton book1;
     private javax.swing.JButton book3;
-    private javax.swing.JLabel delete;
     private javax.swing.JLabel inquieriess;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -1131,7 +961,6 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel17;
@@ -1145,7 +974,6 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1153,26 +981,21 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel59;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField5;
-    private java.awt.List list2;
     private javax.swing.JLabel parameter1;
     private javax.swing.JPanel realPanelconsultations;
     private javax.swing.JLabel reserva1;
     private javax.swing.JLabel reserva2;
-    private javax.swing.JLabel reserva3;
-    private javax.swing.JLabel reserva4;
     private javax.swing.JLabel roomw1;
     private javax.swing.JLabel roomw2;
     private javax.swing.JLabel roomw3;
