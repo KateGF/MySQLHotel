@@ -5,6 +5,7 @@
 package Controller;
 
 import Model.GenderModel;
+import Model.HotelModel;
 import Model.Location.Location;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -38,6 +39,9 @@ public class GenderController {
                 while (rs.next()) {
                     String name = rs.getString("type");
                     int idX = rs.getInt("idGender");
+                   GenderModel genderModel = new GenderModel(name);
+                    genders.add(genderModel); 
+                    
                 }
             }
 

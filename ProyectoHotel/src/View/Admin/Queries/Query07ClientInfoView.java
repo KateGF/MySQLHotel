@@ -37,6 +37,7 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         loadGenders();
+        System.out.println("pase");
        // callQuery(18, 25);
         
     }
@@ -198,7 +199,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         jLabel10.setText("Gender");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 70, -1));
 
-        genderBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         genderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderBoxActionPerformed(evt);
