@@ -4,9 +4,11 @@
  */
 package View.Admin;
 
+import Controller.ClassificationController;
 import Controller.DiscountController;
 import Controller.HotelController;
 import Controller.LocationsController;
+import Model.ClassificationModel;
 import Model.DiscountModel;
 import Model.HotelClasificationModel;
 import Model.HotelModel;
@@ -26,12 +28,15 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     /**
      * Creates new form createHotel
      */
+    ArrayList<ClassificationModel> classifi;
     public AdminCreateHotel() {
         initComponents();
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
         AddCountries();
-        AddDiscounts();
+      //  AddDiscounts();
+        
+       
     }
 
     UserModel user;
@@ -44,8 +49,13 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
         AddCountries();
-        AddDiscounts();
+        //AddDiscounts();
         this.user = user;
+         classifi = ClassificationController.getClassifications();
+        classBox.removeAllItems();
+        for (ClassificationModel r : classifi) {
+            classBox.addItem(r.getName());
+        }
     }
 
     ArrayList<Location> countries;
@@ -62,13 +72,14 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         }
     }
 
+    /*
     void AddDiscounts() {
         discounts = DiscountController.getDiscounts();
         for (DiscountModel d : discounts) {
             discountBox.addItem(d.getCode() + "--" + d.getPercentage());
         }
     }
-    
+    */
     /*
      void AddClasification() {
         discounts = Clas.getDiscounts();
@@ -104,12 +115,10 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         nameText = new javax.swing.JTextField();
         reserva1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        roomw = new javax.swing.JLabel();
         roomw1 = new javax.swing.JLabel();
-        classiText = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        discountBox = new javax.swing.JComboBox();
+        classBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,17 +210,6 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         jPanel4.add(reserva1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 100, 30));
         jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 140, -1));
 
-        roomw.setBackground(new java.awt.Color(0, 0, 0));
-        roomw.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        roomw.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        roomw.setText("Discount");
-        roomw.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                roomwMouseClicked(evt);
-            }
-        });
-        jPanel4.add(roomw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 98, 31));
-
         roomw1.setBackground(new java.awt.Color(0, 0, 0));
         roomw1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         roomw1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -222,13 +220,6 @@ public class AdminCreateHotel extends javax.swing.JFrame {
             }
         });
         jPanel4.add(roomw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 98, 31));
-
-        classiText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classiTextActionPerformed(evt);
-            }
-        });
-        jPanel4.add(classiText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 142, -1));
 
         jButton11.setText("OK");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +234,7 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         jLabel10.setText("CREATE HOTEL");
         jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 213, -1));
 
-        jPanel4.add(discountBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 140, -1));
+        jPanel4.add(classBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 140, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -264,10 +255,6 @@ public class AdminCreateHotel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void roomwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomwMouseClicked
-
-    }//GEN-LAST:event_roomwMouseClicked
 
     private void reserva1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reserva1MouseClicked
         // TODO add your handling code here:
@@ -332,12 +319,13 @@ public class AdminCreateHotel extends javax.swing.JFrame {
         String name = nameText.getText();
         Date registerDate = jDateChooser1.getDate();
         int district = districts.get(districtBox.getSelectedIndex()).getID();
-        int discount = discounts.get(discountBox.getSelectedIndex()).getIdDiscount();
+        
+        //int discount = discounts.get(discountBox.getSelectedIndex()).getIdDiscount();
 
         //int classi = Integer.parseInt(classiText.getText());
-        int classi = discounts.get(discountBox.getSelectedIndex()).getIdDiscount();
+        int classi = classifi.get(classBox.getSelectedIndex()).getIdclass();
 
-        HotelModel hotel = new HotelModel(0, name, registerDate, discount, classi, district);
+        HotelModel hotel = new HotelModel(0, name, registerDate, 1, classi, district);
 
         Response insertHotel = HotelController.insertHotel(hotel, user);
         JOptionPane.showMessageDialog(this, insertHotel.getMessage());
@@ -347,10 +335,6 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private void roomw1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomw1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_roomw1MouseClicked
-
-    private void classiTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classiTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classiTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,9 +380,8 @@ public class AdminCreateHotel extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cantonBox;
-    private javax.swing.JTextField classiText;
+    private javax.swing.JComboBox classBox;
     private javax.swing.JComboBox countryBox;
-    private javax.swing.JComboBox discountBox;
     private javax.swing.JComboBox districtBox;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -416,7 +399,6 @@ public class AdminCreateHotel extends javax.swing.JFrame {
     private javax.swing.JTextField nameText;
     private javax.swing.JLabel reserva;
     private javax.swing.JLabel reserva1;
-    private javax.swing.JLabel roomw;
     private javax.swing.JLabel roomw1;
     private javax.swing.JComboBox stateBox;
     // End of variables declaration//GEN-END:variables
