@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import View.Admin.Queries.Query01People;
 import View.Admin.Queries.Query01People;
 import View.Admin.Queries.Query01People;
+import View.ViewReservation;
 
 
 /**
@@ -1306,6 +1307,9 @@ public class AdminHotel extends javax.swing.JFrame {
     private void jButton773ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton773ActionPerformed
        // AdminQuerys newframe514 = new AdminQuerys();
        // newframe514.setVisible(true);
+      
+       new ViewReservation( reservations.get(list3.getSelectedIndex())).setVisible(true);
+       
     }//GEN-LAST:event_jButton773ActionPerformed
 
     private void txt3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt3KeyTyped
