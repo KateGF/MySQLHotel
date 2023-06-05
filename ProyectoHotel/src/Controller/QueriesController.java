@@ -323,7 +323,7 @@ public class QueriesController {
         return locations;
     }
 
-     public static ArrayList<Q06TotalHotelModel> totalHotel(int idHotel) {
+     public static ArrayList<Q06TotalHotelModel> totalHotel() {
         ArrayList<Q06TotalHotelModel> totalHotel = new ArrayList<>();
         
         String statement = "{call getRoomsReservfromHotelAll()}"; 
