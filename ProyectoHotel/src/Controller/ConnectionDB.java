@@ -23,7 +23,7 @@ public  Connection getConnection() {
             //Class.forName("com.mysql.jdbc.Driver");
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/ale", "katy", "@Katy123");
+                    "jdbc:mysql://localhost:3306/ale", "katy", "1234");
           
             return con;
            
@@ -57,7 +57,7 @@ public  Connection getConnection() {
             //Class.forName("com.mysql.jdbc.Driver");
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
             Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/ale", "katy", "@Katy123");
+                    "jdbc:mysql://localhost:3306/ale", "katy", "1234");
           
             return con;
            
