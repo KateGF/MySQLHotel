@@ -5,10 +5,14 @@
 package View.Admin;
 
 import Controller.AmmenityController;
+import Controller.ClassificationController;
 import Model.AmenityModel;
+import Model.ClassificationModel;
+import Model.Response;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +20,7 @@ import java.util.ArrayList;
  */
 public class AdminClassifications extends javax.swing.JFrame {
 
-    ArrayList<AmenityModel> ammenities;
+    ArrayList<ClassificationModel> classifi;
     /**
      * Creates new form addAmenity
      */
@@ -24,23 +28,39 @@ public class AdminClassifications extends javax.swing.JFrame {
         initComponents();
          this.setLocationRelativeTo(this);
          
-        ammenities = AmmenityController.getAmenities();
-        jComboBox2.removeAllItems();
-        for (AmenityModel r : ammenities) {
-            jComboBox2.addItem(r.getName().toString());
-        }
+       getClassifications();
         
-        jComboBox2.addActionListener(new ActionListener() {
+       
+
+    }
+    
+    void getClassifications(){
+         classifi = ClassificationController.getClassifications();
+        jComboBox2.removeAllItems();
+        for (ClassificationModel r : classifi) {
+            jComboBox2.addItem(r.getName());
+        }
+        try{
+         jComboBox2.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                AmenityModel amm = ammenities.get(jComboBox2.getSelectedIndex());
+                int selectedIndex = jComboBox2.getSelectedIndex();
+                if(selectedIndex == -1){
+                    
+                }else{
+                      ClassificationModel amm = classifi.get(selectedIndex);
+                      jTextField1.setText(amm.getName()+ "");
+                }
               
-                jTextField1.setText(amm.getName()+ "");
+              
+                
           
             }
-        });
-
+        });}
+        catch (Exception e ){
+            
+        }
     }
 
     /**
@@ -56,7 +76,7 @@ public class AdminClassifications extends javax.swing.JFrame {
         jButton77 = new javax.swing.JButton();
         jButton277 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton278 = new javax.swing.JButton();
@@ -125,13 +145,13 @@ public class AdminClassifications extends javax.swing.JFrame {
                             .addComponent(jTextField1)
                             .addComponent(jComboBox2, 0, 240, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton77)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel13Layout.createSequentialGroup()
                                 .addComponent(jButton277, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton278, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                                .addComponent(jButton278, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton77))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +163,7 @@ public class AdminClassifications extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton77, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton277, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,19 +177,30 @@ public class AdminClassifications extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
-        // TODO add your handling code here:
+    int idclass = classifi.get( jComboBox2.getSelectedIndex()).getIdclass();
+         Response insertClassification = ClassificationController.deleteClassification(idclass);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
     }//GEN-LAST:event_jButton77ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
-       // AmmenityController.insertAmmenity(FRAMEBITS, WIDTH)
+     String x = jTextField1.getText();
+        Response insertClassification = ClassificationController.insertClassification(x);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
     }//GEN-LAST:event_jButton277ActionPerformed
 
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
-        // TODO add your handling code here:
+         String x = jTextField1.getText();
+        
+        int idclass = classifi.get( jComboBox2.getSelectedIndex()).getIdclass();
+        Response insertClassification = ClassificationController.editClassification(idclass,x);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
     }//GEN-LAST:event_jButton278ActionPerformed
 
     /**
