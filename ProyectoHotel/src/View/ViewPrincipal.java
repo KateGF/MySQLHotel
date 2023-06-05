@@ -10,12 +10,12 @@ import View.Admin.AdminClassifications;
 import View.Admin.AdminGenres;
 import View.Admin.AdminHotel;
 import View.Admin.AdminLocations;
-import View.Admin.Queries.Query01People;
+import View.Admin.Queries.Query01PeopleView;
 import View.Admin.Queries.Query02OfferView;
 import View.Admin.Queries.Query03CalificationAv;
 import View.Admin.Queries.Query04TopMoreRes;
 import View.Admin.Queries.Query05TopLessRes;
-import View.Admin.Queries.Query07TotalClient;
+import View.Admin.Queries.Query07ClientInfoView;
 import View.Admin.Queries.Query08RoomsxRes;
 import View.Admin.Queries.Query02OfferView;
 import View.Admin.Queries.Query06TotalHotel;
@@ -741,7 +741,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-       new Query01People().setVisible(true);
+       new Query01PeopleView().setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void masterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masterActionPerformed
@@ -777,7 +777,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        new Query07TotalClient().setVisible(true);
+        new Query07ClientInfoView().setVisible(true);
         
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
