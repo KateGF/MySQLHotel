@@ -8,16 +8,11 @@ package Controller;
 import Constants.Response_code;
 import Model.AmenityModel;
 import Model.Response;
-import Model.RoomModel;
-import Model.AmenityRoomModel;
-import Model.HotelModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import oracle.jdbc.internal.OracleTypes;
 
 /**
  *
@@ -243,7 +238,7 @@ public class AmmenityController {
             CallableStatement call = DBconnection.prepareCall(statement);
             
             call.setInt(1, idIDRoom);
-            call.registerOutParameter(2, OracleTypes.CURSOR);
+           
 
             call = queryData(call);
 
