@@ -36,6 +36,7 @@ public class AdminHotel extends javax.swing.JFrame {
     ArrayList<CategoryModel> categories;
     ArrayList<AmenityModel> ammenities;
     ArrayList<AmenityModel> ammenities2;
+        ArrayList<AmenityModel> ammenitiesRoom;
     ArrayList<ReservationModel> reservations;
     ArrayList<DiscountModel> discounts;
 
@@ -49,10 +50,12 @@ public class AdminHotel extends javax.swing.JFrame {
         this.user = user;
 
         loadAmmenities();
+        
         loadCategories();
         getRooms();
         getReservations();
         getDiscounts();
+        
         setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
     }
@@ -63,13 +66,23 @@ public class AdminHotel extends javax.swing.JFrame {
         comboAmenityRoom.removeAllItems();
         for (AmenityModel r : ammenities) {
             jComboBox2.addItem(r.getName());
-            comboAmenityRoom.addItem(r.getName());
+           
         }
 
         ammenities2 = AmmenityController.getAmenitiesByHotel(hotel.getIdHotel());
         list2.removeAll();
         for (AmenityModel a : ammenities2) {
             list2.add(a.getName());
+             comboAmenityRoom.addItem(a.getName());
+        }
+    }
+    
+    void loadAmenitiesByRoom() {
+        int idRoom = rooms.get(roomList.getSelectedIndex()).getIdRoom();
+        ammenitiesRoom = AmmenityController.getAmenitiesByRoom(idRoom);
+        list1.removeAll();
+        for (AmenityModel a : ammenitiesRoom) {
+            list1.add(a.getName());
         }
     }
 
@@ -781,14 +794,23 @@ public class AdminHotel extends javax.swing.JFrame {
         jLabel34.setForeground(new java.awt.Color(240, 248, 255));
         jLabel34.setText("Selected Room Amenity");
         jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, -1, -1));
+
+        list1.setBackground(new java.awt.Color(50, 70, 80));
+        list1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel14.add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(262, 264, 320, 110));
 
         jButton5.setText("Remove");
         jPanel14.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, -1, -1));
 
         jButton4.setText("Add");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel14.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
+        comboAmenityRoom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
         jPanel14.add(comboAmenityRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 210, -1));
 
         javax.swing.GroupLayout PanelRoomsLayout = new javax.swing.GroupLayout(PanelRooms);
@@ -1368,8 +1390,20 @@ public class AdminHotel extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void roomListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roomListMouseClicked
-        // TODO add your handling code here:
+    loadAmenitiesByRoom();       
+        
     }//GEN-LAST:event_roomListMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int selectedIndex = comboAmenityRoom.getSelectedIndex();
+     
+        AmenityModel get = ammenities2.get(selectedIndex);
+        int idRoom = rooms.get(roomList.getSelectedIndex()).getIdRoom();
+        Response insertRoomAmmenity = AmmenityController.insertRoomAmmenity(get.getIdAmmenity(), idRoom);
+        JOptionPane.showMessageDialog(this, insertRoomAmmenity.getMessage());
+                
+                
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
