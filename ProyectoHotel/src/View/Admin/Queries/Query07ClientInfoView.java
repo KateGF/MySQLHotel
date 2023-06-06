@@ -8,11 +8,13 @@ import Controller.AmmenityController;
 import Controller.HotelController;
 import Controller.QueriesController;
 import Controller.GenderController;
+import Controller.LocationsController;
 import Controller.RoomController;
 import Model.AmenityModel;
 import Model.CategoryModel;
 import Model.GenderModel;
 import Model.HotelModel;
+import Model.Location.Location;
 import Model.Querys.Q02OfferByHotelModel;
 import Model.Querys.Q06TotalHotelModel;
 import Model.Querys.Q07ClientByAgeModel;
@@ -30,6 +32,7 @@ import javax.swing.JOptionPane;
 public class Query07ClientInfoView extends javax.swing.JFrame {
 
     ArrayList<GenderModel> genders;
+    //String gender;
     /**
      * Creates new form ClientInfo
      */
@@ -37,7 +40,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         loadGenders();
-        System.out.println("pase");
        // callQuery(18, 25);
         
     }
@@ -61,6 +63,21 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
  
  
  }
+  
+  
+   void callQuery2(int age1, int age2, String gender){
+    
+     ArrayList<Q07ClientByAgeModel> clientAgeRangeGender = QueriesController.clientByAgeGender(age1, age2, gender);
+ 
+      for (Q07ClientByAgeModel a : clientAgeRangeGender) {
+         //   hotelList.add("Hotel: " + a.getHotelName() +  " - Num Rooms : " + a.getTotalRooms() + " - Num Reservations : " + a.getTotalReserv() + " -Total Paid : " + a.getTotalPaid());
+       jTable2.setValueAt(a.getRange(), row, 0);
+       jTable2.setValueAt(a.getTotal(), row, 1);
+       jTable2.setValueAt(a.getNameGender(), row, 2);
+      row++;
+      }
+
+ } 
  
  
     void loadGenders() {
@@ -70,7 +87,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
            
         }
         }
-    
     
   
  
@@ -95,7 +111,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         genderBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -205,14 +220,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
             }
         });
         jPanel2.add(genderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 110, -1));
-
-        jButton1.setText("Filter by Gender");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(240, 248, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -460,12 +467,12 @@ callQuery1(46, 60);        // TODO add your handling code here:
 callQuery1(61, 75);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-loadGenders();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void genderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderBoxActionPerformed
         // TODO add your handling code here:
+       // callQuery1(31, 45);
+         String selectedGender = genderBox.getSelectedItem().toString();
+        callQuery2(61, 75, selectedGender);
+        System.out.println("query2");
     }//GEN-LAST:event_genderBoxActionPerformed
 
     /**
@@ -506,7 +513,6 @@ loadGenders();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> genderBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
