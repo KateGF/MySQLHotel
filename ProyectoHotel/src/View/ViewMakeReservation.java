@@ -56,10 +56,10 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         this.windowHotel = windowHotel;
 
         Date today = new Date();
-        jdcFecha2.setDate(today);
+        jdcFecha.setDate(today);
 
         Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
-        jdcFecha.setDate(tomorrow);
+        jdcFecha2.setDate(tomorrow);
         getRooms();
         getPayments();
         getDiscounts();
@@ -211,7 +211,7 @@ public class ViewMakeReservation extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(240, 248, 255));
         jLabel3.setText("CHECK IN");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 60, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 60, -1));
 
         jLabel2.setBackground(new java.awt.Color(240, 248, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N

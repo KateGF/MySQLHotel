@@ -5,12 +5,6 @@
  */
 package Model.Querys;
 
-import Model.HotelModel;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,16 +15,16 @@ import java.util.Date;
 // Queries that are with joins
 public class Q03CalificationAverageModel {
     String name;
-    String lastName;
+    String review;
     Date checkIn;
-    Date checkOut;
+    //Date checkOut;
     String comments;
 
-    public Q03CalificationAverageModel(String name, String lastName, Date checkIn, Date checkOut, String comments) {
+    public Q03CalificationAverageModel(String name, String review, Date checkIn, String comments) {
         this.name = name;
-        this.lastName = lastName;
+        this.review = review;
         this.checkIn = checkIn;
-        this.checkOut = checkOut;
+      //  this.checkOut = checkOut;
         this.comments = comments;
     }
 
@@ -42,12 +36,12 @@ public class Q03CalificationAverageModel {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getReview() {
+        return review;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setReview(String lastName) {
+        this.review = lastName;
     }
 
     public Date getCheckIn() {
@@ -58,13 +52,7 @@ public class Q03CalificationAverageModel {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(Date checkOut) {
-        this.checkOut = checkOut;
-    }
+ 
 
     public String getComments() {
         return comments;

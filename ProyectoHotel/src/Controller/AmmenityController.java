@@ -229,7 +229,7 @@ public class AmmenityController {
       public static ArrayList<AmenityModel> getAmenitiesByRoom(int idIDRoom) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call getAmenitiesByRoom(?,?)}";
+        String statement = "{call getAmenitiesByRoom(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<AmenityModel> amenities = new ArrayList<>();
         try {
@@ -244,7 +244,7 @@ public class AmmenityController {
 
            if (call != null) {
 
-                ResultSet rs = (ResultSet) call.getObject(2);
+                ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
                 
