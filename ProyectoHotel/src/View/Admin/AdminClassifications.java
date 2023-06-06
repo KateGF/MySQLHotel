@@ -176,32 +176,32 @@ public class AdminClassifications extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
-    int idclass = classifi.get( jComboBox2.getSelectedIndex()).getIdclass();
-         Response insertClassification = ClassificationController.deleteClassification(idclass);
-        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
-        getClassifications();
-    }//GEN-LAST:event_jButton77ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
-     String x = jTextField1.getText();
-        Response insertClassification = ClassificationController.insertClassification(x);
-        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
-        getClassifications();
-    }//GEN-LAST:event_jButton277ActionPerformed
-
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
-         String x = jTextField1.getText();
-        
+        String x = jTextField1.getText();
+
         int idclass = classifi.get( jComboBox2.getSelectedIndex()).getIdclass();
         Response insertClassification = ClassificationController.editClassification(idclass,x);
         JOptionPane.showMessageDialog(this, insertClassification.getMessage());
         getClassifications();
     }//GEN-LAST:event_jButton278ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
+        String x = jTextField1.getText();
+        Response insertClassification = ClassificationController.insertClassification(x);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
+    }//GEN-LAST:event_jButton277ActionPerformed
+
+    private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
+        int idclass = classifi.get( jComboBox2.getSelectedIndex()).getIdclass();
+        Response insertClassification = ClassificationController.deleteClassification(idclass);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
+    }//GEN-LAST:event_jButton77ActionPerformed
 
     /**
      * @param args the command line arguments

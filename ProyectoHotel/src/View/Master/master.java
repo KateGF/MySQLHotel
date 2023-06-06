@@ -10,6 +10,12 @@ import Controller.AmmenityController;
 import Model.AmenityModel;
 import Model.HotelModel;
 import Model.Review;
+import Model.UserModel;
+import View.Admin.Queries.Query01PeopleView;
+import View.Admin.Queries.Query03CalificationAv;
+import View.Admin.Queries.Query06TotalHotel;
+import View.Admin.Queries.Query07ClientInfoView;
+import View.Admin.Queries.Query08RoomsxRes;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JDesktopPane;
@@ -39,16 +45,19 @@ public class master extends javax.swing.JFrame {
         // Obtiene el panel en el que se insertará la ventana
  
     }
-    
+    UserModel user ;
     /**
      * Creates new form admin
      */
-    public master(HotelModel hotel) {
+    public master(HotelModel hotel, UserModel user) {
         initComponents();
         this.hotel = hotel;
+        this.user = user;
         loadAmmenities();
-         setLocationRelativeTo(this);
+        setLocationRelativeTo(this);
         setDefaultCloseOperation(2);
+        
+        
     }
 
     void loadAmmenities(){
@@ -88,7 +97,6 @@ public class master extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        PanelDeleteHotel = new javax.swing.JPanel();
         PanelParameters = new javax.swing.JPanel();
         PanelCreateHotel = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
@@ -120,17 +128,19 @@ public class master extends javax.swing.JFrame {
         jPanel59 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        roomReserv = new javax.swing.JButton();
+        people = new javax.swing.JButton();
+        califications = new javax.swing.JButton();
+        totalHotel = new javax.swing.JButton();
+        offer = new javax.swing.JButton();
+        client = new javax.swing.JButton();
         PanelAdmin = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         book1 = new javax.swing.JButton();
         book3 = new javax.swing.JButton();
+        PanelDeleteHotel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(184, 210, 222));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -347,21 +357,6 @@ public class master extends javax.swing.JFrame {
 
         jPanel3.setLayout(new java.awt.CardLayout());
 
-        PanelDeleteHotel.setBackground(new java.awt.Color(255, 255, 225));
-
-        javax.swing.GroupLayout PanelDeleteHotelLayout = new javax.swing.GroupLayout(PanelDeleteHotel);
-        PanelDeleteHotel.setLayout(PanelDeleteHotelLayout);
-        PanelDeleteHotelLayout.setHorizontalGroup(
-            PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 690, Short.MAX_VALUE)
-        );
-        PanelDeleteHotelLayout.setVerticalGroup(
-            PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 510, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(PanelDeleteHotel, "card3");
-
         PanelParameters.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout PanelParametersLayout = new javax.swing.GroupLayout(PanelParameters);
@@ -571,92 +566,80 @@ public class master extends javax.swing.JFrame {
         realPanelconsultations.setForeground(new java.awt.Color(255, 153, 51));
 
         jPanel59.setBackground(new java.awt.Color(50, 70, 80));
+        jPanel59.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel19.setBackground(new java.awt.Color(240, 248, 255));
         jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(240, 248, 255));
         jLabel19.setText("AVAILABLE CONSULTATIONS");
+        jPanel59.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jPanel59.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 111, 34, -1));
 
-        jButton6.setBackground(new java.awt.Color(240, 248, 255));
-        jButton6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(50, 70, 80));
-        jButton6.setText("OFFERS");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        roomReserv.setBackground(new java.awt.Color(240, 248, 255));
+        roomReserv.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        roomReserv.setForeground(new java.awt.Color(50, 70, 80));
+        roomReserv.setText("Room X Reservation");
+        roomReserv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                roomReservActionPerformed(evt);
             }
         });
+        jPanel59.add(roomReserv, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 160, -1));
 
-        jButton7.setBackground(new java.awt.Color(240, 248, 255));
-        jButton7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(50, 70, 80));
-        jButton7.setText("PEOPLE");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        people.setBackground(new java.awt.Color(240, 248, 255));
+        people.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        people.setForeground(new java.awt.Color(50, 70, 80));
+        people.setText("PEOPLE");
+        people.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                peopleActionPerformed(evt);
             }
         });
+        jPanel59.add(people, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 122, -1));
 
-        jButton8.setBackground(new java.awt.Color(240, 248, 255));
-        jButton8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(50, 70, 80));
-        jButton8.setText("RATINGS");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        califications.setBackground(new java.awt.Color(240, 248, 255));
+        califications.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        califications.setForeground(new java.awt.Color(50, 70, 80));
+        califications.setText("Califications");
+        califications.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                calificationsActionPerformed(evt);
             }
         });
+        jPanel59.add(califications, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 160, -1));
 
-        jButton9.setBackground(new java.awt.Color(240, 248, 255));
-        jButton9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton9.setForeground(new java.awt.Color(50, 70, 80));
-        jButton9.setText("SALES");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        totalHotel.setBackground(new java.awt.Color(240, 248, 255));
+        totalHotel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        totalHotel.setForeground(new java.awt.Color(50, 70, 80));
+        totalHotel.setText("Total Hotel");
+        totalHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                totalHotelActionPerformed(evt);
             }
         });
+        jPanel59.add(totalHotel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
 
-        javax.swing.GroupLayout jPanel59Layout = new javax.swing.GroupLayout(jPanel59);
-        jPanel59.setLayout(jPanel59Layout);
-        jPanel59Layout.setHorizontalGroup(
-            jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel59Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel59Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(77, 77, 77))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel59Layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addGap(113, 113, 113))
-        );
-        jPanel59Layout.setVerticalGroup(
-            jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel59Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jLabel22)
-                .addGap(43, 43, 43)
-                .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel59Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton9))
-                .addGap(81, 81, 81))
-        );
+        offer.setBackground(new java.awt.Color(240, 248, 255));
+        offer.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        offer.setForeground(new java.awt.Color(50, 70, 80));
+        offer.setText("OFFERS");
+        offer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                offerActionPerformed(evt);
+            }
+        });
+        jPanel59.add(offer, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 123, -1));
+
+        client.setBackground(new java.awt.Color(240, 248, 255));
+        client.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        client.setForeground(new java.awt.Color(50, 70, 80));
+        client.setText("Client Info");
+        client.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientActionPerformed(evt);
+            }
+        });
+        jPanel59.add(client, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 123, -1));
 
         javax.swing.GroupLayout realPanelconsultationsLayout = new javax.swing.GroupLayout(realPanelconsultations);
         realPanelconsultations.setLayout(realPanelconsultationsLayout);
@@ -664,14 +647,14 @@ public class master extends javax.swing.JFrame {
             realPanelconsultationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(realPanelconsultationsLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jPanel59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addComponent(jPanel59, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         realPanelconsultationsLayout.setVerticalGroup(
             realPanelconsultationsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, realPanelconsultationsLayout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
-                .addComponent(jPanel59, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jPanel59, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66))
         );
 
@@ -730,6 +713,21 @@ public class master extends javax.swing.JFrame {
         );
 
         jPanel3.add(PanelAdmin, "card7");
+
+        PanelDeleteHotel.setBackground(new java.awt.Color(255, 255, 225));
+
+        javax.swing.GroupLayout PanelDeleteHotelLayout = new javax.swing.GroupLayout(PanelDeleteHotel);
+        PanelDeleteHotel.setLayout(PanelDeleteHotelLayout);
+        PanelDeleteHotelLayout.setHorizontalGroup(
+            PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+        );
+        PanelDeleteHotelLayout.setVerticalGroup(
+            PanelDeleteHotelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 510, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(PanelDeleteHotel, "card3");
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, 690, 510));
 
@@ -815,10 +813,12 @@ public class master extends javax.swing.JFrame {
         
         
         jLabel7.setBackground(new  java.awt.Color(44 , 59 , 66));
-        PanelCreateHotel.setVisible(true);
+        //PanelCreateHotel.setVisible(true);
+      //  AdminCreateHotel.setVisible(true);
+   AdminCreateHotel newframe112 = new AdminCreateHotel(this.user);
+        newframe112.setVisible(true);
         
- 
-   
+
         
         inquieriess.setBackground(new  java.awt.Color(34 ,45,49));
         realPanelconsultations.setVisible(false);
@@ -863,32 +863,29 @@ public class master extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_roomw7MouseClicked
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void roomReservActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomReservActionPerformed
         
-        
-        Query02OfferView newframe51470 = new Query02OfferView();
-        newframe51470.setVisible(true);
-        
-        
-        
-       
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        People newframe514 = new People();
+         Query08RoomsxRes newframe514 = new Query08RoomsxRes(this.hotel.getIdHotel());
         newframe514.setVisible(true);
-    }//GEN-LAST:event_jButton7ActionPerformed
+ 
+    }//GEN-LAST:event_roomReservActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        Ranking newframe99 = new Ranking();
-        newframe99.setVisible(true);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void peopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peopleActionPerformed
+        Query01PeopleView newframe514 = new Query01PeopleView(this.hotel.getIdHotel());
+        newframe514.setVisible(true);
+    }//GEN-LAST:event_peopleActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        tophotel newframe5149 = new tophotel();
-        newframe5149.setVisible(true);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void calificationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calificationsActionPerformed
+         Query03CalificationAv newframe514 = new Query03CalificationAv(this.hotel.getIdHotel());
+        newframe514.setVisible(true);
+ 
+    }//GEN-LAST:event_calificationsActionPerformed
+
+    private void totalHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalHotelActionPerformed
+        Query06TotalHotel newframe514 = new Query06TotalHotel();
+        newframe514.setVisible(true);
+ 
+    }//GEN-LAST:event_totalHotelActionPerformed
 
     private void parameter1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parameter1MouseClicked
         Parameters newframe112 = new Parameters();
@@ -904,6 +901,19 @@ public class master extends javax.swing.JFrame {
         deleteAdmin newframe514 = new deleteAdmin();
         newframe514.setVisible(true);
     }//GEN-LAST:event_book3ActionPerformed
+
+    private void offerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_offerActionPerformed
+        // TODO add your handling code here:
+        Query02OfferView newframe514 = new Query02OfferView(this.hotel.getIdHotel());
+        newframe514.setVisible(true);
+    }//GEN-LAST:event_offerActionPerformed
+
+    private void clientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientActionPerformed
+        // TODO add your handling code here:
+        
+         Query07ClientInfoView newframe514 = new Query07ClientInfoView(this.hotel.getIdHotel());
+        newframe514.setVisible(true);
+    }//GEN-LAST:event_clientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -951,12 +961,10 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JLabel admin;
     private javax.swing.JButton book1;
     private javax.swing.JButton book3;
+    private javax.swing.JButton califications;
+    private javax.swing.JButton client;
     private javax.swing.JLabel inquieriess;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
@@ -993,10 +1001,13 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JButton offer;
     private javax.swing.JLabel parameter1;
+    private javax.swing.JButton people;
     private javax.swing.JPanel realPanelconsultations;
     private javax.swing.JLabel reserva1;
     private javax.swing.JLabel reserva2;
+    private javax.swing.JButton roomReserv;
     private javax.swing.JLabel roomw1;
     private javax.swing.JLabel roomw2;
     private javax.swing.JLabel roomw3;
@@ -1005,5 +1016,6 @@ public class master extends javax.swing.JFrame {
     private javax.swing.JLabel roomw6;
     private javax.swing.JLabel roomw7;
     private javax.swing.JPanel sidepanel;
+    private javax.swing.JButton totalHotel;
     // End of variables declaration//GEN-END:variables
 }
