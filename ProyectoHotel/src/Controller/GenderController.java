@@ -41,7 +41,7 @@ public class GenderController {
                 while (rs.next()) {
                     String name = rs.getString("type");
                     int idX = rs.getInt("idGender");
-                   GenderModel genderModel = new GenderModel(name);
+                   GenderModel genderModel = new GenderModel(name,idX);
                     genders.add(genderModel); 
                     
                 }
@@ -64,7 +64,7 @@ public class GenderController {
      public static Response deleteGender(int gender) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call DELETE_GENDER(?)}";
+        String statement = "{call deleteGender(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 

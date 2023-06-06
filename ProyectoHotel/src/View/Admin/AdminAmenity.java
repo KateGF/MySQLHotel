@@ -65,7 +65,7 @@ public class AdminAmenity extends javax.swing.JFrame {
         jButton77 = new javax.swing.JButton();
         jButton277 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton278 = new javax.swing.JButton();
@@ -140,7 +140,7 @@ public class AdminAmenity extends javax.swing.JFrame {
                                 .addComponent(jButton277, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton278, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

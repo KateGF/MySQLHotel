@@ -115,7 +115,7 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/Logotipo Banda en Naranja con X.png"))); // NOI18N
 
         username.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        username.setText("Allan");
+        username.setText("kat02");
         username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameActionPerformed(evt);
@@ -123,7 +123,7 @@ public class ViewLogin extends javax.swing.JFrame {
         });
 
         password.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        password.setText("1234");
+        password.setText("kat");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(240, 248, 255));

@@ -20,6 +20,7 @@ import View.Admin.Queries.Query08RoomsxRes;
 import View.Admin.Queries.Query02OfferView;
 import View.Admin.Queries.Query06TotalHotel;
 import View.Master.Parameters;
+import View.Master.master;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -67,10 +68,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         AddCountries();
         this.hotelList = Controller.HotelController.getHotels();
         addHotels();
+        master.setVisible(false);
 
         //ADMIN ZONE
         if (user.getIdUserType() == 2) {
-            jButton1.setVisible(true);
+            master.setVisible(true);
         }
         userLabel.setText(this.user.getUsername());
     }
@@ -123,7 +125,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
-        jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -422,14 +423,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem24);
 
-        jMenuItem25.setText("Gender");
-        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem25ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem25);
-
         jMenuItem7.setText("Log Out");
         jMenu1.add(jMenuItem7);
 
@@ -715,10 +708,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
       new AdminClassifications().setVisible(true);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
-    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
-      new AdminGenders().setVisible(true);
-    }//GEN-LAST:event_jMenuItem25ActionPerformed
-
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
        
         if(hotelSelected!=null){
@@ -733,6 +722,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void masterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masterActionPerformed
         // TODO add your handling code here:
        // new AdminHotel(master, this.user).setVisible(true);
+       new master(hotelSelected).setVisible(true);
     }//GEN-LAST:event_masterActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -774,7 +764,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-      new ViewRegister(this.user).setVisible(true); 
+      new ViewEditUser(this.user).setVisible(true); 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
     /**
      * Creates new form Principal
@@ -861,7 +851,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
-    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem7;

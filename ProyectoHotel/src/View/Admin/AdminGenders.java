@@ -45,9 +45,15 @@ public class AdminGenders extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                GenderModel gen = genders.get(genderBox.getSelectedIndex());
+                
+                int selectedIndex = genderBox.getSelectedIndex();
+                if(selectedIndex!=-1){
+                       GenderModel gen = genders.get(selectedIndex);
+                        jTextField1.setText(gen.getName()+ "");
+                }
+             
               
-                jTextField1.setText(gen.getName()+ "");
+               
           
             }
         });
@@ -67,8 +73,8 @@ public class AdminGenders extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel13 = new javax.swing.JPanel();
-        jButton77 = new javax.swing.JButton();
-        jButton277 = new javax.swing.JButton();
+        deleteGender = new javax.swing.JButton();
+        insertAmenity = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         genderBox = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
@@ -79,21 +85,21 @@ public class AdminGenders extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(50, 70, 80));
 
-        jButton77.setBackground(new java.awt.Color(255, 192, 203));
-        jButton77.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButton77.setText("DELETE");
-        jButton77.addActionListener(new java.awt.event.ActionListener() {
+        deleteGender.setBackground(new java.awt.Color(255, 192, 203));
+        deleteGender.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        deleteGender.setText("DELETE");
+        deleteGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton77ActionPerformed(evt);
+                deleteGenderActionPerformed(evt);
             }
         });
 
-        jButton277.setBackground(new java.awt.Color(152, 251, 152));
-        jButton277.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        jButton277.setText("ADD");
-        jButton277.addActionListener(new java.awt.event.ActionListener() {
+        insertAmenity.setBackground(new java.awt.Color(152, 251, 152));
+        insertAmenity.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        insertAmenity.setText("ADD");
+        insertAmenity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton277ActionPerformed(evt);
+                insertAmenityActionPerformed(evt);
             }
         });
 
@@ -140,9 +146,9 @@ public class AdminGenders extends javax.swing.JFrame {
                             .addComponent(genderBox, 0, 240, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton77)
+                            .addComponent(deleteGender)
                             .addGroup(jPanel13Layout.createSequentialGroup()
-                                .addComponent(jButton277, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(insertAmenity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton278, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(94, Short.MAX_VALUE))
@@ -156,11 +162,11 @@ public class AdminGenders extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton77, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteGender, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton277, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertAmenity, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton278, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43))
         );
@@ -170,26 +176,26 @@ public class AdminGenders extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
+    private void deleteGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGenderActionPerformed
         // TODO add your handling code here:
         //DELETE
             int idGen = genders.get( genderBox.getSelectedIndex()).getIdGender();
          Response insertGender = GenderController.deleteGender(idGen);
         JOptionPane.showMessageDialog(this, insertGender.getMessage());
         getGender();
-    }//GEN-LAST:event_jButton77ActionPerformed
+    }//GEN-LAST:event_deleteGenderActionPerformed
 
     private void genderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderBoxActionPerformed
 
-    private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
+    private void insertAmenityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertAmenityActionPerformed
        // AmmenityController.insertAmmenity(FRAMEBITS, WIDTH)
         String x = jTextField1.getText();
         Response insertGender = GenderController.insertGender(x);
         JOptionPane.showMessageDialog(this, insertGender.getMessage());
         getGender();
-    }//GEN-LAST:event_jButton277ActionPerformed
+    }//GEN-LAST:event_insertAmenityActionPerformed
 
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
         // TODO add your handling code here:
@@ -246,10 +252,10 @@ public class AdminGenders extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteGender;
     private javax.swing.JComboBox<String> genderBox;
-    private javax.swing.JButton jButton277;
+    private javax.swing.JButton insertAmenity;
     private javax.swing.JButton jButton278;
-    private javax.swing.JButton jButton77;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel13;

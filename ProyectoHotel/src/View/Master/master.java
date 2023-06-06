@@ -28,6 +28,7 @@ public class master extends javax.swing.JFrame {
      */
     public master() {
         initComponents();
+         loadAmmenities();
         
         
        
