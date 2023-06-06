@@ -280,7 +280,72 @@ public class AmmenityController {
         return amenities;
     }
    
-     
+      
+      // katy
+      
+      
+   public static Response insertAmmenity(String am) {
+        // Para construir una llamada parametrizada, coloque el nombre del procedimiento
+        // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
+        String statement = "{call insertAmmenity(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+        
+            call.setString(1, am);
+          
+
+            call = insertData(call);
+
+            if (call == null) {
+                return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+            }
+
+           
+            call.getConnection().close();
+            call.close();
+
+           
+            return new Response(Response_code.SUCCESS, "Ammenity registered succesfully.");
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+        }
+    }
+    
+     public static Response deleteAmmenity(int am) {
+        // Para construir una llamada parametrizada, coloque el nombre del procedimiento
+        // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
+        String statement = "{call deleteAmmenity(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+        
+            call.setInt(1, am);
+          
+
+            call = insertData(call);
+
+            if (call == null) {
+                return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+            }
+
+           
+            call.getConnection().close();
+            call.close();
+
+           
+            return new Response(Response_code.SUCCESS, "Ammenity deleted succesfully.");
+        } catch (SQLException e) {
+            System.out.println(e);
+            return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
+        }
+    }
+    
      
     private static CallableStatement insertData(CallableStatement call) {
         try {

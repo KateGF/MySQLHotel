@@ -4,6 +4,7 @@
  */
 
 package View;
+import Controller.GenderController;
 import Controller.LocationsController;
 import Controller.UserController;
 import Model.Location.Location;
@@ -12,6 +13,7 @@ import Model.UserModel;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import Model.GenderModel;
 
 /**
  *
@@ -24,6 +26,7 @@ public class ViewRegister extends javax.swing.JFrame {
     ArrayList<Location> states;
     ArrayList<Location> cantons;
     ArrayList<Location> districts;
+    ArrayList<GenderModel> genders;
     
     /**
      * Creates new form Register
@@ -32,7 +35,33 @@ public class ViewRegister extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         AddCountries();
+        loadGenders();
+        
+
     }
+    
+    /**
+     * Creates new form Register
+     */
+    public ViewRegister(UserModel user) {
+        initComponents();
+        this.setLocationRelativeTo(this);
+        AddCountries();
+        loadGenders();
+        this.userName.setText(user.getUsername());
+        this.name.setText(user.getFirstName());
+        this.lastName.setText(user.getLastName());
+
+    }
+    
+    
+        void loadGenders() {
+        genders = GenderController.getGenders();
+        for (GenderModel g : genders) {
+            genderBox.addItem(g.getName());
+           
+        }
+        }
 void AddCountries() {
         countries = LocationsController.getCountries();
         for (Location c : countries) {
@@ -121,12 +150,12 @@ void AddCountries() {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         nationality = new javax.swing.JTextField();
-        stateBox = new javax.swing.JComboBox<String>();
-        countryBox = new javax.swing.JComboBox<String>();
+        stateBox = new javax.swing.JComboBox<>();
+        countryBox = new javax.swing.JComboBox<>();
         photo = new javax.swing.JTextField();
         phone = new javax.swing.JTextField();
-        gender = new javax.swing.JComboBox<String>();
-        cantonBox = new javax.swing.JComboBox<String>();
+        genderBox = new javax.swing.JComboBox<>();
+        cantonBox = new javax.swing.JComboBox<>();
         password = new javax.swing.JTextField();
         userName = new javax.swing.JTextField();
         id = new javax.swing.JTextField();
@@ -137,7 +166,7 @@ void AddCountries() {
         name = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
-        districtBox = new javax.swing.JComboBox<String>();
+        districtBox = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -189,12 +218,11 @@ void AddCountries() {
 
         phone.setText("7185-2535");
 
-        gender.setBackground(new java.awt.Color(240, 248, 255));
-        gender.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
-        gender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        gender.addActionListener(new java.awt.event.ActionListener() {
+        genderBox.setBackground(new java.awt.Color(240, 248, 255));
+        genderBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        genderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                genderActionPerformed(evt);
+                genderBoxActionPerformed(evt);
             }
         });
 
@@ -412,7 +440,7 @@ void AddCountries() {
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(genderBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(150, 150, 150)
@@ -543,7 +571,7 @@ void AddCountries() {
                                 .addComponent(jButton1)))
                         .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genderBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -656,9 +684,9 @@ void AddCountries() {
         // TODO add your handling code here:
     }//GEN-LAST:event_photoActionPerformed
 
-    private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
+    private void genderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_genderActionPerformed
+    }//GEN-LAST:event_genderBoxActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        countryBoxPress();
@@ -735,7 +763,7 @@ private void nameKeyTyped(java.awt.event.KeyEvent evt) {
     private javax.swing.JComboBox<String> cantonBox;
     private javax.swing.JComboBox<String> countryBox;
     private javax.swing.JComboBox<String> districtBox;
-    private javax.swing.JComboBox<String> gender;
+    private javax.swing.JComboBox<String> genderBox;
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

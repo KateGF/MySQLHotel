@@ -29,7 +29,7 @@ public class QueriesController {
     public static ArrayList<Q01PeopleByHotelModel> peoplePerHotel(int idHotel, String ordenBy) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
-        String statement = "{call peoplePerHotel(?)}";
+        String statement = "{call peoplePerHotel(?,?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         ArrayList<Q01PeopleByHotelModel> users = new ArrayList<>();
         try {
@@ -38,6 +38,7 @@ public class QueriesController {
             CallableStatement call = DBconnection.prepareCall(statement);
 
              call.setInt(1, idHotel);
+              call.setString(2, ordenBy);
             call = queryData(call);
 
             if (call != null) {

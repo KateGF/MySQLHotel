@@ -5,44 +5,58 @@
 package View.Admin;
 
 import Controller.AmmenityController;
+import Controller.ClassificationController;
+import Controller.GenderController;
 import Model.AmenityModel;
+import Model.GenderModel;
+import Model.Response;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author josep
  */
-public class AdminGenres extends javax.swing.JFrame {
+public class AdminGenders extends javax.swing.JFrame {
 
-    ArrayList<AmenityModel> ammenities;
+    ArrayList<GenderModel> genders;
     /**
      * Creates new form addAmenity
      */
-    public AdminGenres() {
+    public AdminGenders() {
         initComponents();
          this.setLocationRelativeTo(this);
-         
-        ammenities = AmmenityController.getAmenities();
-        jComboBox2.removeAllItems();
-        for (AmenityModel r : ammenities) {
-            jComboBox2.addItem(r.getName().toString());
-        }
-        
-        jComboBox2.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                AmenityModel amm = ammenities.get(jComboBox2.getSelectedIndex());
-              
-                jTextField1.setText(amm.getName()+ "");
-          
-            }
-        });
+         getGender();
 
     }
 
+    
+    void getGender(){
+         
+        genders = GenderController.getGenders();
+        genderBox.removeAllItems();
+        for (GenderModel r : genders) {
+            genderBox.addItem(r.getName());
+        }
+        
+        genderBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                GenderModel gen = genders.get(genderBox.getSelectedIndex());
+              
+                jTextField1.setText(gen.getName()+ "");
+          
+            }
+        });
+    
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +70,7 @@ public class AdminGenres extends javax.swing.JFrame {
         jButton77 = new javax.swing.JButton();
         jButton277 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        genderBox = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton278 = new javax.swing.JButton();
@@ -87,15 +101,15 @@ public class AdminGenres extends javax.swing.JFrame {
         jLabel25.setForeground(new java.awt.Color(240, 248, 255));
         jLabel25.setText("SELECT :");
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        genderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                genderBoxActionPerformed(evt);
             }
         });
 
         jLabel26.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(240, 248, 255));
-        jLabel26.setText("ADD/ EDIT Genres");
+        jLabel26.setText("ADD/ EDIT Genders");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -123,7 +137,7 @@ public class AdminGenres extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1)
-                            .addComponent(jComboBox2, 0, 240, Short.MAX_VALUE))
+                            .addComponent(genderBox, 0, 240, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton77)
@@ -140,7 +154,7 @@ public class AdminGenres extends javax.swing.JFrame {
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genderBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton77, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
@@ -158,14 +172,23 @@ public class AdminGenres extends javax.swing.JFrame {
 
     private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
         // TODO add your handling code here:
+        //DELETE
+            int idGen = genders.get( genderBox.getSelectedIndex()).getIdGender();
+         Response insertGender = GenderController.deleteGender(idGen);
+        JOptionPane.showMessageDialog(this, insertGender.getMessage());
+        getGender();
     }//GEN-LAST:event_jButton77ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void genderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_genderBoxActionPerformed
 
     private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
        // AmmenityController.insertAmmenity(FRAMEBITS, WIDTH)
+        String x = jTextField1.getText();
+        Response insertGender = GenderController.insertGender(x);
+        JOptionPane.showMessageDialog(this, insertGender.getMessage());
+        getGender();
     }//GEN-LAST:event_jButton277ActionPerformed
 
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
@@ -189,14 +212,22 @@ public class AdminGenres extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminGenres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGenders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminGenres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGenders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminGenres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGenders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminGenres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminGenders.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -209,16 +240,16 @@ public class AdminGenres extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminGenres().setVisible(true);
+                new AdminGenders().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> genderBox;
     private javax.swing.JButton jButton277;
     private javax.swing.JButton jButton278;
     private javax.swing.JButton jButton77;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel13;

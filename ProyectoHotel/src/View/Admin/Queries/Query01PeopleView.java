@@ -7,6 +7,7 @@ package View.Admin.Queries;
 import Controller.QueriesController;
 import Model.Querys.Q01PeopleByHotelModel;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,20 +29,17 @@ public class Query01PeopleView extends javax.swing.JFrame {
      */
     public Query01PeopleView(int idHotel) {
         initComponents();
-             this.idHotel = idHotel;
+        this.idHotel = idHotel;
         setLocationRelativeTo(this);
         callQuery("asc");
-   
+        
     }
 
     int idHotel = 0;
-    String orderBy;
-
+   
     void callQuery(String orderBy) {
-
-        //String code = NameBox.getSelectedItem().toString();
-        //Date date1 = start.getDate();
-        //Date date2 = finish.getDate();
+       
+       cleanTable();
         ArrayList<Q01PeopleByHotelModel> peopleByHotel = QueriesController.peoplePerHotel(idHotel, orderBy);
 
         int row = 0;
@@ -59,6 +57,22 @@ public class Query01PeopleView extends javax.swing.JFrame {
 
     }
 
+    
+    void cleanTable(){
+        int row = 0;
+       
+        while(row!=100){
+            peopleTable.setValueAt("", row, 0);
+            peopleTable.setValueAt("", row, 1);
+            peopleTable.setValueAt("", row, 2);
+            peopleTable.setValueAt("", row, 3);
+            peopleTable.setValueAt("", row, 4);
+            peopleTable.setValueAt("", row, 5);
+            peopleTable.setValueAt("", row, 6);
+            row++;
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -307,11 +321,11 @@ public class Query01PeopleView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       
+         callQuery("asc");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        callQuery("desc");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

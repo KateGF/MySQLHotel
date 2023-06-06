@@ -83,7 +83,7 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
     void loadGenders() {
         genders = GenderController.getGenders();
         for (GenderModel g : genders) {
-            genderBox.addItem(g.getGender());
+            genderBox.addItem(g.getName());
            
         }
         }

@@ -6,9 +6,11 @@ package View.Admin;
 
 import Controller.AmmenityController;
 import Model.AmenityModel;
+import Model.Response;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +25,10 @@ public class AdminAmenity extends javax.swing.JFrame {
     public AdminAmenity() {
         initComponents();
          this.setLocationRelativeTo(this);
+         getAmmenities();
+    }
          
+    void getAmmenities() {     
         ammenities = AmmenityController.getAmenities();
         jComboBox2.removeAllItems();
         for (AmenityModel r : ammenities) {
@@ -34,9 +39,13 @@ public class AdminAmenity extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                AmenityModel amm = ammenities.get(jComboBox2.getSelectedIndex());
+                int selectedIndex = jComboBox2.getSelectedIndex();
+                if(selectedIndex!=-1){
+                    AmenityModel amm = ammenities.get(selectedIndex);
               
-                jTextField1.setText(amm.getName()+ "");
+                    jTextField1.setText(amm.getName()+ ""); 
+                }
+               
           
             }
         });
@@ -157,7 +166,14 @@ public class AdminAmenity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
-        // TODO add your handling code here:
+           int selectedIndex = jComboBox2.getSelectedIndex();
+            AmenityModel amm = ammenities.get(selectedIndex);
+                if(selectedIndex!=-1){
+                     Response deleteAmenity = AmmenityController.deleteAmmenity(amm.getIdAmmenity());
+                     JOptionPane.showMessageDialog(this, deleteAmenity.getMessage());
+                     getAmmenities();
+                }
+      
     }//GEN-LAST:event_jButton77ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -166,6 +182,11 @@ public class AdminAmenity extends javax.swing.JFrame {
 
     private void jButton277ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton277ActionPerformed
        // AmmenityController.insertAmmenity(FRAMEBITS, WIDTH)
+       
+        String x = jTextField1.getText();
+        Response insertAmmenity = AmmenityController.insertAmmenity(x);
+        JOptionPane.showMessageDialog(this, insertAmmenity.getMessage());
+        getAmmenities();
     }//GEN-LAST:event_jButton277ActionPerformed
 
     private void jButton278ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton278ActionPerformed
