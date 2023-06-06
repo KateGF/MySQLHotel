@@ -5,12 +5,6 @@
  */
 package Model.Querys;
 
-import Model.HotelModel;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -25,11 +19,12 @@ public class Q01PeopleByHotelModel {
     int id;
     Date checkIn;
     Date checkOut;
-    int room;
+    String room;
     String country;
-    int payment;
+    Double payment;
 
-    public Q01PeopleByHotelModel(String name, int id, Date checkIn, Date checkOut, int room, String country, int payment) {
+    public Q01PeopleByHotelModel(String name, int id, Date checkIn, 
+            Date checkOut, String room, String country, Double payment) {
         this.name = name;
         this.id = id;
         this.checkIn = checkIn;
@@ -72,11 +67,11 @@ public class Q01PeopleByHotelModel {
         this.checkOut = checkOut;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(String room) {
         this.room = room;
     }
 
@@ -88,11 +83,11 @@ public class Q01PeopleByHotelModel {
         this.country = country;
     }
 
-    public int getPayment() {
+    public Double getPayment() {
         return payment;
     }
 
-    public void setPayment(int payment) {
+    public void setPayment(Double payment) {
         this.payment = payment;
     }
     

@@ -6,11 +6,11 @@
 package Controller;
 
 import Model.Location.Location;
+import Model.Querys.Q01PeopleByHotelModel;
 import Model.Querys.Q02OfferByHotelModel;
 import Model.Querys.Q03CalificationAverageModel;
 import Model.Querys.Q06TotalHotelModel;
 import Model.Querys.Q07ClientByAgeModel;
-import Model.Review;
 import Model.UserModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -26,18 +26,18 @@ import java.util.Date;
 public class QueriesController {
 
     // FALTA ***************************************
-    public static ArrayList<UserModel> peoplePerHotel(int idHotel, String ordenBy) {
+    public static ArrayList<Q01PeopleByHotelModel> peoplePerHotel(int idHotel, String ordenBy) {
         // Para construir una llamada parametrizada, coloque el nombre del procedimiento
         // y entre los paréntesis van símbolos de pregunta '?', que son los parámetros del procedimiento.
         String statement = "{call peoplePerHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
-        ArrayList<UserModel> users = new ArrayList<>();
+        ArrayList<Q01PeopleByHotelModel> users = new ArrayList<>();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
 
-            // call.registerOutParameter(1, OracleTypes.CURSOR);
+             call.setInt(1, idHotel);
             call = queryData(call);
 
             if (call != null) {
@@ -45,39 +45,29 @@ public class QueriesController {
                 ResultSet rs = (ResultSet) call.getResultSet();
                 while (rs.next()) {
 
-                    String firstName = rs.getString("name");
-                    String lastName = rs.getString("lastName");
-                    int idDisc = rs.getInt("Discount");
-                    String districtH = rs.getString("District");
-                    String cantonH = rs.getString("Canton");
-                    String stateH = rs.getString("State");
-                    String countryH = rs.getString("Country");
+                    String name = rs.getString("username");
+                    int id = rs.getInt("id");
+                    Date checkIn = rs.getDate("checkIn");
+                    Date checkOut = rs.getDate("checkOut");
+                    String room = rs.getString("Room");
+                    //String countryH = rs.getString("Country");
+                    Double payment = rs.getDouble("price");
                     //   int idHotel = rs.getInt("idHotel");
 
                     //  HotelModel hotelModel = new HotelModel(idHotel,name, idDisc, null, districtH, cantonH, stateH, countryH);
                     //  users.add(hotelModel);
+                    Q01PeopleByHotelModel model = new Q01PeopleByHotelModel(name, id, checkIn, checkOut, room, "", payment);
+                     users.add(model);
                 }
             }
 
-            // Se obtiene el código de respuesta del procedimiento (para verificar si hubo algún error en la ejecución).
-            // Este código lo puede utilizar para verificar que tipo de error hubo, y así poder generar un mensaje de error
-            // claro para el usuario sobre el error que sucedió.
-            //int result_code = call.getInt(15);
-            // Se cierra la conexión con la base de datos.
-            // ES IMPORTANTE QUE SIEMPRE QUE SE ABRA UNA CONEXIÓN LA CIERRE, PUES ESTAS NO SE CIERRAN 
-            // AUTOMÁTICAMENTE. 
+      
             call.getConnection().close();
             call.close();
 
-            // Se retorna el objeto respuesta.
-            /* Para esta prueba, el código de error 0 significa que no hubo errores.
-             if (result_code != 0) {
-             return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
-             }*/
-//            return new Response(Response_code.SUCCESS, "Persona obtenida exitosamente.");
+   
         } catch (SQLException e) {
             System.out.println(e);
-//            return new Response(Response_code.ERROR, "Ocurrió un error inesperado, intente de nuevo.");
         }
 
         return users;
@@ -460,8 +450,8 @@ public class QueriesController {
         return locations;
     }
 
-    // FALTA ***************************************
-    public static ArrayList<Q03CalificationAverageModel> reviewsAverage(int idHotel) {
+    // LISTO ***************************************
+    public static ArrayList<Q03CalificationAverageModel> reviewsALL(int idHotel) {
         ArrayList<Q03CalificationAverageModel> locations = new ArrayList<>();
         String statement = "{call getAllReviewsByHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
@@ -493,6 +483,35 @@ public class QueriesController {
 
         }
         return locations;
+    }
+ 
+    public static Double reviewsAverage(int idHotel) {
+       
+        Double avg = 0.0;
+        String statement = "{call getAllReviewsAVG(?)}";
+        Connection DBconnection = new ConnectionDB().getConnection();
+        try {
+
+            // Se crea una llamada parametrizada.
+            CallableStatement call = DBconnection.prepareCall(statement);
+            call.setInt(1, idHotel);
+            call = queryData(call);
+            if (call != null) {
+                ResultSet rs = (ResultSet) call.getResultSet();
+
+                while (rs.next()) {
+                     avg = rs.getDouble("avg(r.star)");
+                }
+            }
+
+            call.getConnection().close();
+            call.close();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+
+        }
+        return avg;
     }
 
     private static CallableStatement insertData(CallableStatement call) {

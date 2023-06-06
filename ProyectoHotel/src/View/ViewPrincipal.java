@@ -741,7 +741,14 @@ public class ViewPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-       new Query01PeopleView().setVisible(true);
+       
+        if(hotelSelected!=null){
+             int idHotel = this.hotelSelected.getIdHotel();
+             new Query01PeopleView(idHotel).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Select hotel");
+        }
+       
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void masterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masterActionPerformed
