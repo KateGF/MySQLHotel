@@ -617,7 +617,7 @@ void AddCountries() {
     private void lastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lastNameActionPerformed
-
+ 
     private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
 
         String SfirstName = name.getText();
@@ -625,7 +625,7 @@ void AddCountries() {
         String MiddleName = middle.getText();
         String SsecondSurname = secondSurname.getText();
         String SuserName = userName.getText();
-        //String Sgender = gender.getSelectedItem().toString();
+        int Sgender = genders.get (genderBox.getSelectedIndex()).getIdGender();
         String Sphoto = photo.getText();
         String Spassword = password.getText();
         //String SphoneNumber = phone.getText();
@@ -635,11 +635,11 @@ void AddCountries() {
         Date SbirthDate = new Date();
         //String SCountry = country.getSelectedItem().toString();
         //String SState = state.getSelectedItem().toString();
-       // int SDistrict = Integer.parseInt(district.getSelectedItem().toString());
+        int SDistrict = districts.get(districtBox.getSelectedIndex()).getID();
 
         UserModel user = new UserModel(0,Sphoto, idCard, SfirstName, SlastName, 
                 SsecondSurname, MiddleName, SuserName, Spassword, SbirthDate, 
-                3, 4, 1, 7, 9);
+                Sgender, SDistrict, 1, 7, 9);
 
         Response response = UserController.register_user(user);
         
