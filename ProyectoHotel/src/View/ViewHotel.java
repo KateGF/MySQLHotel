@@ -5,8 +5,10 @@
 package View;
 
 import Controller.AmmenityController;
+import Controller.DiscountController;
 import Controller.ReviewController;
 import Model.AmenityModel;
+import Model.DiscountModel;
 import Model.HotelModel;
 import Model.ReservationModel;
 import Model.Review;
@@ -33,6 +35,7 @@ public class ViewHotel extends javax.swing.JFrame {
     HotelModel hotel;
     UserModel user;
 
+    ArrayList<DiscountModel> discounts;
     public ViewHotel(HotelModel hotel, UserModel user) {
         initComponents();
         //adminZoneButton.setVisible(false);
@@ -49,10 +52,15 @@ public class ViewHotel extends javax.swing.JFrame {
         this.user = user;
         setHotelInfo(hotel);
         //setDefaultCloseOperation(2);
-      
+      getDiscounts();
 
     }
-
+ void getDiscounts() {
+        discounts = DiscountController.getDiscountsHotel(hotel.getIdHotel());
+        for (DiscountModel d : discounts) {
+            listReview1.add(d.getCode() + " -- " + d.getExpireDate().toLocaleString());
+        }
+    }
     void setHotelInfo(HotelModel hotel) {
         this.hotelName1.setText(hotel.getName());
         this.regLabel.setText("Reg Date: " + hotel.getRegisterDate().toLocaleString());
@@ -114,12 +122,12 @@ public class ViewHotel extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(240, 248, 255));
         jLabel8.setText("REVIEWS");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 248, 255));
         jLabel7.setText("DISCOUNTS :");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         regLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         regLabel.setForeground(new java.awt.Color(240, 248, 255));
