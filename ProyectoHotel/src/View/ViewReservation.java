@@ -57,6 +57,8 @@ public class ViewReservation extends javax.swing.JFrame {
                 Price.setText(reserve.getAdminPrice()+ "");
                 jTextField2.setText(reserve.getCapacity()+"");
                 jTextField4.setText(reserve.getNamePayment());
+                
+              //  jdcFecha2.setDate(reserve.get);
     
         
     }

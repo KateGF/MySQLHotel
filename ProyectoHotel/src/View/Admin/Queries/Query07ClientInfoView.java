@@ -36,10 +36,21 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
     /**
      * Creates new form ClientInfo
      */
-    public Query07ClientInfoView() {
+    int idHotel;
+    public Query07ClientInfoView(int idHotel) {
         initComponents();
         setLocationRelativeTo(this);
         loadGenders();
+        this.idHotel = idHotel;
+       // callQuery(18, 25);
+        
+    }
+    
+     public Query07ClientInfoView() {
+        initComponents();
+        setLocationRelativeTo(this);
+        loadGenders();
+      
        // callQuery(18, 25);
         
     }
@@ -47,7 +58,7 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
  
  int row = 0;
   void callQuery1(int age1, int age2){
-     
+     cleanTable();
      //String code = NameBox.getSelectedItem().toString();
      //Date date1 = start.getDate();
      //Date date2 = finish.getDate();
@@ -64,9 +75,22 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
  
  }
   
-  
-   void callQuery2(int age1, int age2, String gender){
+     
+    void cleanTable(){
+        int row = 0;
+       
+        while(row!=99){
+            jTable2.setValueAt("", row, 0);
+            jTable2.setValueAt("", row, 1);
+            jTable2.setValueAt("", row, 2);
+          
+            row++;
+        }
+    }
     
+    
+   void callQuery2(int age1, int age2, String gender){
+    cleanTable();
      ArrayList<Q07ClientByAgeModel> clientAgeRangeGender = QueriesController.clientByAgeGender(age1, age2, gender);
  
       for (Q07ClientByAgeModel a : clientAgeRangeGender) {
@@ -76,7 +100,7 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
        jTable2.setValueAt(a.getNameGender(), row, 2);
       row++;
       }
-
+row = 0;
  } 
  
  
@@ -111,6 +135,7 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         genderBox = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -123,7 +148,6 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(50, 70, 80));
 
@@ -220,6 +244,14 @@ public class Query07ClientInfoView extends javax.swing.JFrame {
             }
         });
         jPanel2.add(genderBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 110, -1));
+
+        jButton1.setText("Search by Gender");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(240, 248, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -468,12 +500,16 @@ callQuery1(61, 75);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void genderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderBoxActionPerformed
-        // TODO add your handling code here:
-       // callQuery1(31, 45);
-         String selectedGender = genderBox.getSelectedItem().toString();
-        callQuery2(61, 75, selectedGender);
-        System.out.println("query2");
+     
     }//GEN-LAST:event_genderBoxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+           // TODO add your handling code here:
+       // callQuery1(31, 45);
+        String selectedGender = genderBox.getSelectedItem().toString();
+        callQuery2(0, 75, selectedGender);
+        System.out.println("query2");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -513,6 +549,7 @@ callQuery1(61, 75);        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> genderBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;

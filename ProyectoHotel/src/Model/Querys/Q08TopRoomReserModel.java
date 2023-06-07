@@ -20,22 +20,22 @@ import java.util.Date;
 
 // Queries that are with joins
 public class Q08TopRoomReserModel {
-    int idRoom;
+    String room;
     int idReservation;
-    int totalPayRoom;
+    Double totalPayRoom;
 
-    public Q08TopRoomReserModel(int idRoom, int idReservation, int totalPayRoom) {
-        this.idRoom = idRoom;
+    public Q08TopRoomReserModel(String idRoom, int idReservation, Double totalPayRoom) {
+        this.room = idRoom;
         this.idReservation = idReservation;
         this.totalPayRoom = totalPayRoom;
     }
 
-    public int getIdRoom() {
-        return idRoom;
+    public String getIdRoom() {
+        return room;
     }
 
-    public void setIdRoom(int idRoom) {
-        this.idRoom = idRoom;
+    public void setIdRoom(String idRoom) {
+        this.room = idRoom;
     }
 
     public int getIdReservation() {
@@ -46,11 +46,11 @@ public class Q08TopRoomReserModel {
         this.idReservation = idReservation;
     }
 
-    public int getTotalPayRoom() {
+    public Double getTotalPayRoom() {
         return totalPayRoom;
     }
 
-    public void setTotalPayRoom(int totalPayRoom) {
+    public void setTotalPayRoom(Double totalPayRoom) {
         this.totalPayRoom = totalPayRoom;
     }
     

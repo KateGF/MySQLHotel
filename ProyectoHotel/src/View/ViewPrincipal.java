@@ -123,8 +123,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
-        jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -407,22 +405,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem11);
 
-        jMenuItem23.setText("Amenity");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem23);
-
-        jMenuItem24.setText("Classifications");
-        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem24ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem24);
-
         jMenuItem7.setText("Log Out");
         jMenu1.add(jMenuItem7);
 
@@ -434,6 +416,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jMenuItem4MousePressed(evt);
+            }
+        });
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
             }
         });
         jMenu2.add(jMenuItem4);
@@ -578,15 +565,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         // this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
-        filter = !filter;
-        if (filter == true) {
-            jPanel2.setVisible(true);
-        } else {
-            jPanel2.setVisible(false);
-        }
-    }//GEN-LAST:event_jMenuItem1MousePressed
-
     private void jMenuItem4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MousePressed
         new AdminCreateHotel(this.user).setVisible(true);
     }//GEN-LAST:event_jMenuItem4MousePressed
@@ -683,15 +661,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
         addHotels();
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        //new AdminLocations(user.getFirstName()).setVisible(true);
-        new Parameters(user.getFirstName()).setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         picture();
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -699,14 +668,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
       new ViewRegister().setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-      new AdminAmenity().setVisible(true);
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
-
-    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-      new AdminClassifications().setVisible(true);
-    }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
        
@@ -722,7 +683,11 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void masterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masterActionPerformed
         // TODO add your handling code here:
        // new AdminHotel(master, this.user).setVisible(true);
-       new master(hotelSelected).setVisible(true);
+        if(hotelSelected!=null){
+       new master(hotelSelected,user).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Select hotel");
+        }
     }//GEN-LAST:event_masterActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -753,19 +718,41 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        new Query07ClientInfoView().setVisible(true);
+        new Query07ClientInfoView(this.hotelSelected.getIdHotel()).setVisible(true);
         
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
         
-         new Query08RoomsxRes().setVisible(true);
+         new Query08RoomsxRes(this.hotelSelected.getIdHotel()).setVisible(true);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
       new ViewEditUser(this.user).setVisible(true); 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        //new AdminLocations(user.getFirstName()).setVisible(true);
+        new Parameters(user.getFirstName()).setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
+        filter = !filter;
+        if (filter == true) {
+            jPanel2.setVisible(true);
+        } else {
+            jPanel2.setVisible(false);
+        }
+    }//GEN-LAST:event_jMenuItem1MousePressed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
     /**
      * Creates new form Principal
      */
@@ -849,8 +836,6 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
-    private javax.swing.JMenuItem jMenuItem23;
-    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem7;

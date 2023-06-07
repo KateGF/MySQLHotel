@@ -6,9 +6,11 @@
 package View.Master;
 
 import Controller.AmmenityController;
+import Controller.ClassificationController;
 import Controller.GenderController;
 import Controller.LocationsController;
 import Model.AmenityModel;
+import Model.ClassificationModel;
 import Model.GenderModel;
 import Model.Location.Location;
 import Model.Response;
@@ -25,7 +27,8 @@ public class Parameters extends javax.swing.JFrame {
     ArrayList<GenderModel> genders;
     
     ArrayList<AmenityModel> ammenities;
-    
+    ArrayList<ClassificationModel> classifi;
+     
     
     
     /**
@@ -37,6 +40,7 @@ public class Parameters extends javax.swing.JFrame {
         AddCountries();
         getGender();
         getAmmenities();
+        getClassifications();
     }
     String username; 
      public Parameters(String user) {
@@ -56,6 +60,37 @@ public class Parameters extends javax.swing.JFrame {
         countries = LocationsController.getCountries();
         for (Location c : countries) {
             listCountry.add(c.getName());
+        }
+    }
+    
+    
+    
+    void getClassifications(){
+         classifi = ClassificationController.getClassifications();
+        classiBox.removeAllItems();
+        for (ClassificationModel r : classifi) {
+            classiBox.addItem(r.getName());
+        }
+        try{
+         classiBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                int selectedIndex = classiBox.getSelectedIndex();
+                if(selectedIndex == -1){
+                    
+                }else{
+                      ClassificationModel amm = classifi.get(selectedIndex);
+                      jTextField1.setText(amm.getName()+ "");
+                }
+              
+              
+                
+          
+            }
+        });}
+        catch (Exception e ){
+            
         }
     }
     
@@ -273,7 +308,18 @@ public class Parameters extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        DeleteClasification = new javax.swing.JButton();
+        insertClassi = new javax.swing.JButton();
+        jLabel51 = new javax.swing.JLabel();
+        classiBox = new javax.swing.JComboBox<>();
+        jLabel52 = new javax.swing.JLabel();
+        txtClassi = new javax.swing.JTextField();
+        jButton280 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel17.setText("Gender List: ");
@@ -565,7 +611,7 @@ public class Parameters extends javax.swing.JFrame {
                         .addComponent(listState, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 161, Short.MAX_VALUE)
+                        .addGap(0, 197, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel27))
@@ -765,7 +811,7 @@ public class Parameters extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addGap(268, 268, 268)))))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cantons", jPanel3);
@@ -892,7 +938,7 @@ public class Parameters extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(listDistricts, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(151, Short.MAX_VALUE))
+                        .addContainerGap(187, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1168,7 +1214,7 @@ public class Parameters extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGap(0, 699, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1276,7 +1322,7 @@ public class Parameters extends javax.swing.JFrame {
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGap(0, 699, Short.MAX_VALUE)
             .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel12Layout.createSequentialGroup()
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1285,18 +1331,105 @@ public class Parameters extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ammenity", jPanel12);
 
+        jPanel19.setBackground(new java.awt.Color(50, 70, 80));
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        DeleteClasification.setBackground(new java.awt.Color(255, 192, 203));
+        DeleteClasification.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        DeleteClasification.setText("DELETE");
+        DeleteClasification.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteClasificationActionPerformed(evt);
+            }
+        });
+        jPanel19.add(DeleteClasification, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, -1, 40));
+
+        insertClassi.setBackground(new java.awt.Color(152, 251, 152));
+        insertClassi.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        insertClassi.setText("ADD");
+        insertClassi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertClassiActionPerformed(evt);
+            }
+        });
+        jPanel19.add(insertClassi, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, 70, 40));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(240, 248, 255));
+        jLabel51.setText("SELECT :");
+        jPanel19.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, -1, 60));
+
+        classiBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classiBoxActionPerformed(evt);
+            }
+        });
+        jPanel19.add(classiBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 240, 40));
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(240, 248, 255));
+        jLabel52.setText("ADD/ EDIT Clasifications");
+        jPanel19.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, -1, 60));
+
+        txtClassi.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel19.add(txtClassi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 240, 41));
+
+        jButton280.setBackground(new java.awt.Color(152, 251, 152));
+        jButton280.setFont(new java.awt.Font("Segoe UI Semibold", 0, 11)); // NOI18N
+        jButton280.setText("RENAME");
+        jButton280.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton280ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(jButton280, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 350, 102, 40));
+
+        jPanel17.setBackground(new java.awt.Color(0, 15, 0));
+
+        jLabel53.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel53.setText("CLASIFICATION PARAMETER ");
+
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/images/icons/Shape18-26.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 851, Short.MAX_VALUE)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel54)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel53)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 663, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel53))
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab8", jPanel17);
+        jPanel19.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Classification", jPanel18);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1496,6 +1629,33 @@ public class Parameters extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAmmenityActionPerformed
 
+    private void DeleteClasificationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteClasificationActionPerformed
+        int idclass = classifi.get( classiBox.getSelectedIndex()).getIdclass();
+        Response insertClassification = ClassificationController.deleteClassification(idclass);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
+    }//GEN-LAST:event_DeleteClasificationActionPerformed
+
+    private void insertClassiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassiActionPerformed
+        String x = txtClassi.getText();
+        Response insertClassification = ClassificationController.insertClassification(x);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
+    }//GEN-LAST:event_insertClassiActionPerformed
+
+    private void classiBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classiBoxActionPerformed
+
+    }//GEN-LAST:event_classiBoxActionPerformed
+
+    private void jButton280ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton280ActionPerformed
+        String x = txtClassi.getText();
+
+        int idclass = classifi.get( classiBox.getSelectedIndex()).getIdclass();
+        Response insertClassification = ClassificationController.editClassification(idclass,x);
+        JOptionPane.showMessageDialog(this, insertClassification.getMessage());
+        getClassifications();
+    }//GEN-LAST:event_jButton280ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1536,14 +1696,17 @@ public class Parameters extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AmenityBox;
+    private javax.swing.JButton DeleteClasification;
     private javax.swing.JTextField NationalityID2;
     private javax.swing.JTextField NationalityName3;
     private javax.swing.JButton addAmmenity;
     private javax.swing.JTextField cantonName;
+    private javax.swing.JComboBox<String> classiBox;
     private javax.swing.JTextField countryName;
     private javax.swing.JButton deleteGender;
     private javax.swing.JTextField districtName;
     private javax.swing.JComboBox<String> genderBox;
+    private javax.swing.JButton insertClassi;
     private javax.swing.JButton insertGender;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -1555,6 +1718,7 @@ public class Parameters extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton278;
     private javax.swing.JButton jButton279;
+    private javax.swing.JButton jButton280;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1607,6 +1771,10 @@ public class Parameters extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1620,6 +1788,8 @@ public class Parameters extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1644,5 +1814,6 @@ public class Parameters extends javax.swing.JFrame {
     private java.awt.List listState;
     private javax.swing.JTextField stateName;
     private javax.swing.JTextField txtAmmenity;
+    private javax.swing.JTextField txtClassi;
     // End of variables declaration//GEN-END:variables
 }

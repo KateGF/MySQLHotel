@@ -11,6 +11,7 @@ import Model.Querys.Q02OfferByHotelModel;
 import Model.Querys.Q03CalificationAverageModel;
 import Model.Querys.Q06TotalHotelModel;
 import Model.Querys.Q07ClientByAgeModel;
+import Model.Querys.Q08TopRoomReserModel;
 import Model.UserModel;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -418,26 +419,28 @@ public class QueriesController {
     }
 
     // FALTA ***************************************
-    public static ArrayList<Location> topRoomReserv(int idHotel) {
-        ArrayList<Location> locations = new ArrayList<>();
-        String statement = "{call getPeopleByHotel(?)}";
+    public static ArrayList<Q08TopRoomReserModel> topRoomReserv(int idHotel) {
+        ArrayList<Q08TopRoomReserModel> locations = new ArrayList<>();
+        String statement = "{call getNRommMoreReservHotel(?)}";
         Connection DBconnection = new ConnectionDB().getConnection();
         try {
 
             // Se crea una llamada parametrizada.
             CallableStatement call = DBconnection.prepareCall(statement);
             call.setInt(1, idHotel);
+            
             call = queryData(call);
             if (call != null) {
                 ResultSet rs = (ResultSet) call.getResultSet();
 
                 while (rs.next()) {
-                    String name = rs.getString("name");
-                    int idX = rs.getInt("idState");
-                    Location location = new Location();
-                    location.setName(name);
-                    location.setID(idX);
-                    locations.add(location);
+                    
+                    String room = rs.getString("room");
+                    int reserv = rs.getInt("reserv");
+                     Double  totalPayRoom = rs.getDouble("total");
+                    
+                    Q08TopRoomReserModel q08TopRoomReserModel = new Q08TopRoomReserModel(room, reserv, totalPayRoom);
+                    locations.add(q08TopRoomReserModel);
                 }
             }
 
